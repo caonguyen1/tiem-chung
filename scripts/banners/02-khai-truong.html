@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="banner.css" />
+<style>
+  .banner { background: radial-gradient(120% 140% at 15% 20%, #2f47a8 0%, #22337f 45%, #141e4a 100%); color: #fff; }
+  .sparkle { position: absolute; color: var(--sun); font-size: 28px; }
+
+  /* ---------- PC ---------- */
+  .pc .copy { position: absolute; left: 190px; top: 86px; width: 880px; z-index: 2; }
+  .pc .pill { padding: 10px 22px; font-size: 20px; background: var(--sun); color: var(--navy-900); }
+  .pc .pill .dot { background: var(--navy); }
+  .pc h1 { margin-top: 28px; font-size: 82px; line-height: 1; font-weight: 820; letter-spacing: -0.02em; }
+  .pc h1 span { color: var(--sun); }
+  .pc .date { margin-top: 18px; display: flex; align-items: baseline; gap: 22px; font-size: 30px; color: #c5cfec; font-weight: 500; }
+  .pc .date strong { font-size: 64px; color: #fff; font-weight: 800; letter-spacing: 0.06em; }
+  .pc .chips { margin-top: 30px; gap: 14px; }
+  .pc .chip { gap: 12px; padding: 10px 22px 10px 10px; font-size: 20px; }
+  .pc .cta { margin-top: 34px; padding: 10px 12px 10px 34px; font-size: 24px; background: var(--sun); color: var(--navy-900); }
+  .pc .cta .arrow { width: 50px; height: 50px; background: var(--navy); color: #fff; font-size: 26px; }
+  .pc .frame { position: absolute; right: 150px; top: 70px; width: 760px; height: 570px; border-radius: 40px 200px 40px 40px; border: 10px solid rgb(255 255 255 / 0.9); }
+  .pc .logo { position: absolute; right: 830px; bottom: 40px; width: 150px; height: 150px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 20px 40px -18px rgb(0 0 0 / 0.5); }
+  .pc .logo img { width: 92px; }
+  .pc .stripe { position: absolute; left: 0; bottom: 0; width: 100%; height: 22px; border-radius: 0; }
+
+  /* ---------- Mobile ---------- */
+  .mb .copy { position: absolute; left: 28px; top: 30px; right: 28px; z-index: 2; }
+  .mb .pill { padding: 6px 14px; font-size: 12px; background: var(--sun); color: var(--navy-900); }
+  .mb .pill .dot { background: var(--navy); width: 7px; height: 7px; }
+  .mb h1 { margin-top: 14px; font-size: 44px; line-height: 1; font-weight: 820; letter-spacing: -0.02em; }
+  .mb h1 span { color: var(--sun); }
+  .mb .date { margin-top: 10px; font-size: 32px; font-weight: 800; letter-spacing: 0.06em; }
+  .mb .frame { position: absolute; left: 28px; right: 28px; bottom: 82px; height: 200px; border-radius: 22px 80px 22px 22px; border: 5px solid rgb(255 255 255 / 0.9); }
+  .mb .cta { position: absolute; left: 28px; bottom: 22px; padding: 6px 7px 6px 20px; font-size: 15px; background: var(--sun); color: var(--navy-900); }
+  .mb .cta .arrow { width: 32px; height: 32px; background: var(--navy); color: #fff; font-size: 17px; }
+  .mb .stripe { position: absolute; left: 0; bottom: 0; width: 100%; height: 10px; border-radius: 0; }
+  .mb .note { position: absolute; right: 28px; bottom: 30px; font-size: 13px; color: #c5cfec; text-align: right; line-height: 1.3; }
+</style>
+</head>
+<body>
+<div class="banner">
+  <svg class="arcs only-pc" viewBox="0 0 1920 710" preserveAspectRatio="none">
+    <path d="M820 760C930 330 1300 60 1960 20" stroke="#FADC00" stroke-width="26" fill="none"/>
+    <path d="M900 790C1010 400 1360 140 1960 110" stroke="#ffffff" stroke-opacity="0.06" stroke-width="90" fill="none"/>
+  </svg>
+  <svg class="arcs only-mb" viewBox="0 0 540 540" preserveAspectRatio="none">
+    <path d="M300 260C360 150 440 90 560 70" stroke="#FADC00" stroke-width="10" fill="none"/>
+  </svg>
+  <span class="sparkle only-pc" style="left:120px;top:70px">✦</span>
+  <span class="sparkle only-pc" style="left:1040px;top:120px;font-size:20px">✦</span>
+  
+
+  <div class="copy">
+    <span class="pill"><span class="dot"></span>Sắp khai trương</span>
+    <h1>Tiêm chủng Tâm Trí<br /><span>Quy Nhơn</span></h1>
+    <p class="date only-pc"><strong>08.11.2026</strong> 424 Nguyễn Thị Minh Khai</p>
+    <p class="date only-mb">08.11.2026</p>
+    <div class="chips only-pc">
+      <span class="chip"><span data-icon="gift" data-size="52"></span>Ưu đãi tháng<br />khai trương</span>
+      <span class="chip"><span data-icon="baby" data-size="52"></span>Không gian<br />thân thiện cho bé</span>
+      <span class="chip"><span data-icon="pregnancy" data-size="52"></span>Bác sĩ<br />Sản – Nhi</span>
+    </div>
+    <span class="cta only-pc">Nhận ưu đãi <span class="arrow">→</span></span>
+  </div>
+
+  <div class="photo frame" style="background-image:url('../../public/images/facade.jpg'); background-position: 50% 55%;"></div>
+  <div class="logo only-pc"><img src="../../public/images/logo-mark.png" alt="" /></div>
+  <span class="cta only-mb">Nhận ưu đãi <span class="arrow">→</span></span>
+  <p class="note only-mb">424 Nguyễn Thị Minh Khai<br />Quy Nhơn, Gia Lai</p>
+  <div class="stripe"></div>
+</div>
+<script src="icons.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="banner.css" />
+<style>
+  .banner { background: linear-gradient(100deg, #fffbe0 0%, #fff7c2 40%, #fdf3b0 100%); }
+
+  /* ---------- PC ---------- */
+  .pc .copy { position: absolute; left: 190px; top: 96px; width: 860px; z-index: 2; }
+  .pc .pill { padding: 10px 22px; font-size: 20px; background: #fff; color: var(--navy); box-shadow: 0 10px 24px -14px rgb(20 30 74 / 0.4); }
+  .pc .kicker { margin-top: 28px; font-size: 34px; font-weight: 600; color: #3d4670; }
+  .pc h1 { margin-top: 6px; font-size: 98px; line-height: 0.98; font-weight: 820; letter-spacing: -0.02em; color: var(--navy); }
+  .pc .quote { margin-top: 24px; max-width: 700px; font-size: 26px; line-height: 1.45; color: #3d4670; padding-left: 22px; border-left: 6px solid var(--navy); }
+  .pc .cta { margin-top: 36px; padding: 10px 12px 10px 34px; font-size: 24px; background: var(--navy); color: #fff; box-shadow: 0 16px 30px -14px rgb(40 60 150 / 0.8); }
+  .pc .cta .arrow { width: 50px; height: 50px; background: var(--sun); color: var(--navy-900); font-size: 26px; }
+  .pc .disc { position: absolute; right: 120px; top: -170px; width: 900px; height: 900px; border-radius: 50%; background: #fff; opacity: 0.55; }
+  .pc .frame { position: absolute; right: 250px; bottom: 0; width: 620px; height: 640px; border-radius: 310px 310px 0 0; }
+  .pc .tag { position: absolute; right: 150px; bottom: 120px; padding: 18px 26px; background: #fff; border-radius: 22px; box-shadow: 0 24px 40px -20px rgb(20 30 74 / 0.45); }
+  .pc .tag b { display: block; font-size: 26px; color: var(--navy-900); }
+  .pc .tag span { font-size: 18px; color: #5b6382; }
+  .pc .icons { position: absolute; right: 860px; top: 120px; display: flex; flex-direction: column; gap: 18px; }
+
+  /* ---------- Mobile ---------- */
+  .mb .copy { position: absolute; left: 28px; top: 30px; width: 290px; z-index: 2; }
+  .mb .pill { padding: 6px 14px; font-size: 12px; background: #fff; color: var(--navy); }
+  .mb .kicker { margin-top: 14px; font-size: 18px; font-weight: 600; color: #3d4670; }
+  .mb h1 { margin-top: 4px; font-size: 46px; line-height: 0.98; font-weight: 820; letter-spacing: -0.02em; color: var(--navy); }
+  .mb .disc { position: absolute; right: -150px; bottom: -150px; width: 480px; height: 480px; border-radius: 50%; background: #fff; opacity: 0.6; }
+  .mb .frame { position: absolute; right: -10px; bottom: 0; width: 290px; height: 330px; border-radius: 145px 145px 0 0; }
+  .mb .cta { position: absolute; left: 28px; bottom: 30px; padding: 6px 7px 6px 20px; font-size: 15px; background: var(--navy); color: #fff; z-index: 2; }
+  .mb .cta .arrow { width: 32px; height: 32px; background: var(--sun); color: var(--navy-900); font-size: 17px; }
+  .mb .icons { position: absolute; left: 28px; top: 300px; display: flex; gap: 10px; }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="disc"></div>
+  <svg class="arcs only-pc" viewBox="0 0 1920 710" preserveAspectRatio="none">
+    <path d="M1000 720C1060 420 1260 200 1560 120" stroke="#283C96" stroke-width="20" fill="none"/>
+  </svg>
+
+  <div class="copy">
+    <span class="pill"><span class="dot"></span>Mẹ và bé là trọng tâm</span>
+    <p class="kicker">Có bác sĩ Sản và Nhi</p>
+    <h1>Đồng hành<br />từng mũi tiêm</h1>
+    <p class="quote only-pc">Từ lúc chuẩn bị mang thai, trong thai kỳ đến những năm đầu đời — 100% được bác sĩ khám sàng lọc trước tiêm.</p>
+    <span class="cta only-pc">Đặt lịch tư vấn <span class="arrow">→</span></span>
+  </div>
+
+  <div class="icons only-pc">
+    <span data-icon="pregnancy" data-size="88"></span>
+    <span data-icon="baby" data-size="88"></span>
+    <span data-icon="stethoscope" data-size="88"></span>
+  </div>
+  <div class="icons only-mb">
+    <span data-icon="pregnancy" data-size="52"></span>
+    <span data-icon="baby" data-size="52"></span>
+  </div>
+
+  <div class="photo frame" style="background-image:url('../../public/images/doctor-do-van-tam.jpg'); background-position: 50% 0%;"></div>
+  <div class="tag only-pc"><b>BSCKII. Đỗ Văn Tâm</b><span>Giám đốc Hệ thống Y tế Tâm Trí</span></div>
+  <span class="cta only-mb">Đặt lịch tư vấn <span class="arrow">→</span></span>
+</div>
+<script src="icons.js"></script>
+</body>
+</html>

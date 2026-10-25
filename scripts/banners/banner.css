@@ -1,0 +1,118 @@
+/* Shared styles for the hero banner artwork rendered by scripts/banners/render.sh. */
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=block");
+
+:root {
+  --navy: #283c96;
+  --navy-700: #22337f;
+  --navy-900: #141e4a;
+  --sun: #fadc00;
+  --sun-50: #fffbe0;
+  --brand-50: #f2f4fb;
+  --brand-100: #e3e8f6;
+  --ink: #141c3a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Google Sans Flex", system-ui, sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* PC canvas is 1920×710, mobile is 540×540 rendered at 2× */
+.pc .only-mb,
+.mb .only-pc {
+  display: none !important;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pill .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--sun);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.cta .arrow {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -14px rgb(20 30 74 / 0.35);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--navy-900);
+}
+
+.chip svg {
+  flex-shrink: 0;
+}
+
+.stripe {
+  background: linear-gradient(to bottom, var(--navy) 0 62%, #fff 62% 70%, var(--sun) 70% 100%);
+  border-radius: 999px;
+}
+
+.photo {
+  position: absolute;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.arcs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

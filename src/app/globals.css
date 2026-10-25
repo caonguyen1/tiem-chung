@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/*
+ * Tâm Trí brand tokens. Navy #283C96 and yellow #FADC00 come from the logo spec
+ * (docs/company/README.md); every other shade is derived from those two.
+ */
+@theme {
+  --color-brand-50: #f2f4fb;
+  --color-brand-100: #e3e8f6;
+  --color-brand-200: #c5cfec;
+  --color-brand-300: #96a6d8;
+  --color-brand-400: #5e74bd;
+  --color-brand-500: #3a51ab;
+  --color-brand-600: #283c96;
+  --color-brand-700: #22337f;
+  --color-brand-800: #1c2a66;
+  --color-brand-900: #141e4a;
+  --color-brand-950: #0c1230;
+
+  --color-sun-50: #fffbe0;
+  --color-sun-100: #fff5b3;
+  --color-sun-200: #ffed70;
+  --color-sun-300: #fde336;
+  --color-sun-400: #fadc00;
+  --color-sun-500: #e2c600;
+  --color-sun-600: #b39c00;
+
+  --color-ink: #141c3a;
+  --color-muted: #5b6382;
+  --color-line: #e4e7f1;
+  --color-canvas: #f7f8fc;
+  --color-alert: #d9480f;
+
+  --font-sans: var(--font-google-sans-flex), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+  --shadow-card: 0 1px 2px rgb(20 30 74 / 0.04), 0 8px 24px -12px rgb(20 30 74 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(20 30 74 / 0.05), 0 24px 48px -20px rgb(20 30 74 / 0.28);
+
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01";
+  }
+
+  /* Links to pages that are not built yet (see src/lib/routes.ts): visible, never interactive. */
+  [data-pending-page] {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  ::selection {
+    background: var(--color-sun-300);
+    color: var(--color-brand-900);
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 48rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* The navy + yellow stripe painted along the walls of the clinic, reused as a divider. */
+@utility brand-stripe {
+  background: linear-gradient(
+    to bottom,
+    var(--color-brand-600) 0 62%,
+    #fff 62% 70%,
+    var(--color-sun-400) 70% 100%
+  );
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
