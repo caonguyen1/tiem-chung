@@ -14,7 +14,7 @@ export function KnowledgeSection({ articles, categories }: Props) {
   const categoryName = (slug: string) => categories.find((c) => c.slug === slug)?.name ?? "";
 
   return (
-    <section className="bg-canvas py-16 lg:py-24">
+    <section className="bg-canvas py-12 lg:py-20">
       <div className="container-page">
         <SectionHeading
           eyebrow="Kiến thức tiêm chủng"

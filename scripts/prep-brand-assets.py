@@ -73,7 +73,7 @@ save_jpg(cover, "cover.jpg", 2400)
 
 facade = page_image("PH", 0)
 save_jpg(facade, "facade.jpg", 1800)
-for i, name in [(2, "interior-pharmacy.jpg"), (8, "interior-waiting.jpg"), (3, "interior-reception.jpg")]:
+for i, name in [(2, "interior-pharmacy.jpg"), (8, "interior-waiting.jpg"), (3, "interior-reception.jpg"), (7, "interior-exam-room.jpg")]:
     save_jpg(page_image("PH", i), name, 1400)
 
 book_p1 = page_image("SO", 0)

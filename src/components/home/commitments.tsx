@@ -29,7 +29,7 @@ const commitments = [
 /** Why Tâm Trí (USP block). */
 export function Commitments() {
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-12 lg:py-20">
       <div className="container-page grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <div className="relative">
           <div className="relative aspect-[4/3.4] overflow-hidden rounded-[2rem] rounded-bl-[6rem]">

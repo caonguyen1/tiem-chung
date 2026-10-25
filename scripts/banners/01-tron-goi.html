@@ -6,20 +6,20 @@
 <style>
   .banner { background: linear-gradient(112deg, #eef1fa 0%, #ffffff 52%, #fff9d6 100%); }
 
-  /* ---------- PC 1920×710 ---------- */
-  .pc .copy { position: absolute; left: 190px; top: 92px; width: 900px; z-index: 2; }
-  .pc .pill { padding: 10px 22px; font-size: 20px; background: var(--navy); color: #fff; }
-  .pc h1 { margin-top: 26px; font-size: 104px; line-height: 0.98; font-weight: 820; letter-spacing: -0.02em; color: var(--navy); }
+  /* ---------- PC 1920×560 ---------- */
+  .pc .copy { position: absolute; left: 190px; top: 62px; width: 900px; z-index: 2; }
+  .pc .pill { padding: 8px 20px; font-size: 18px; background: var(--navy); color: #fff; }
+  .pc h1 { margin-top: 18px; font-size: 84px; line-height: 0.98; font-weight: 820; letter-spacing: -0.02em; color: var(--navy); }
   .pc h1 em { font-style: normal; position: relative; display: inline-block; }
-  .pc h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: 6px; height: 22px; background: var(--sun); z-index: -1; border-radius: 6px; }
-  .pc .sub { margin-top: 22px; font-size: 32px; font-weight: 500; color: #3d4670; }
-  .pc .chips { margin-top: 34px; gap: 14px; }
-  .pc .chip { gap: 12px; padding: 10px 20px 10px 10px; font-size: 20px; }
-  .pc .cta { margin-top: 34px; padding: 10px 12px 10px 34px; font-size: 24px; background: var(--navy); color: #fff; box-shadow: 0 16px 30px -14px rgb(40 60 150 / 0.8); }
-  .pc .cta .arrow { width: 50px; height: 50px; background: var(--sun); color: var(--navy-900); font-size: 26px; }
-  .pc .frame { position: absolute; right: 170px; top: 60px; width: 640px; height: 600px; border-radius: 320px 320px 48px 48px; border: 12px solid #fff; box-shadow: 0 40px 80px -40px rgb(20 30 74 / 0.55); }
-  .pc .badge { position: absolute; right: 740px; bottom: 90px; width: 150px; height: 150px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 24px 40px -20px rgb(20 30 74 / 0.5); }
-  .pc .stripe { position: absolute; right: 420px; bottom: 34px; width: 200px; height: 18px; }
+  .pc h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: 5px; height: 18px; background: var(--sun); z-index: -1; border-radius: 5px; }
+  .pc .sub { margin-top: 14px; font-size: 28px; font-weight: 500; color: #3d4670; }
+  .pc .chips { margin-top: 22px; gap: 12px; }
+  .pc .chip { gap: 10px; padding: 8px 18px 8px 8px; font-size: 18px; }
+  .pc .cta { margin-top: 24px; padding: 8px 10px 8px 30px; font-size: 22px; background: var(--navy); color: #fff; box-shadow: 0 16px 30px -14px rgb(40 60 150 / 0.8); }
+  .pc .cta .arrow { width: 44px; height: 44px; background: var(--sun); color: var(--navy-900); font-size: 22px; }
+  .pc .frame { position: absolute; right: 200px; top: 36px; width: 560px; height: 488px; border-radius: 280px 280px 40px 40px; border: 10px solid #fff; box-shadow: 0 40px 80px -40px rgb(20 30 74 / 0.55); }
+  .pc .badge { position: absolute; right: 690px; bottom: 44px; width: 124px; height: 124px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 24px 40px -20px rgb(20 30 74 / 0.5); }
+  .pc .stripe { position: absolute; right: 400px; bottom: 20px; width: 180px; height: 16px; }
 
   /* ---------- Mobile 540×540 ---------- */
   .mb .copy { position: absolute; left: 28px; top: 30px; width: 300px; z-index: 2; }
@@ -37,7 +37,7 @@
 </head>
 <body>
 <div class="banner">
-  <svg class="arcs only-pc" viewBox="0 0 1920 710" preserveAspectRatio="none">
+  <svg class="arcs only-pc" viewBox="0 0 1920 560" preserveAspectRatio="none">
     <path d="M980 760C1080 330 1420 70 1960 30" stroke="#FADC00" stroke-width="34" fill="none"/>
     <path d="M1090 780C1180 420 1470 170 1960 130" stroke="#283C96" stroke-opacity="0.10" stroke-width="80" fill="none"/>
     <circle cx="90" cy="640" r="220" fill="#E3E8F6" fill-opacity="0.6"/>
@@ -52,10 +52,10 @@
     <p class="sub only-pc">cho cả gia đình · từ sơ sinh đến người lớn</p>
     <p class="sub only-mb">cho cả gia đình</p>
     <div class="chips only-pc">
-      <span class="chip"><span data-icon="stethoscope" data-size="52"></span>Bác sĩ<br />khám sàng lọc</span>
-      <span class="chip"><span data-icon="shield" data-size="52"></span>Vắc xin<br />chính hãng</span>
-      <span class="chip"><span data-icon="timer" data-size="52"></span>Theo dõi<br />30 phút</span>
-      <span class="chip"><span data-icon="reminder" data-size="52"></span>Nhắc lịch<br />qua Zalo</span>
+      <span class="chip"><span data-icon="stethoscope" data-size="44"></span>Bác sĩ<br />khám sàng lọc</span>
+      <span class="chip"><span data-icon="shield" data-size="44"></span>Vắc xin<br />chính hãng</span>
+      <span class="chip"><span data-icon="timer" data-size="44"></span>Theo dõi<br />30 phút</span>
+      <span class="chip"><span data-icon="reminder" data-size="44"></span>Nhắc lịch<br />qua Zalo</span>
     </div>
     <div class="chips only-mb">
       <span class="chip"><span data-icon="stethoscope" data-size="30"></span>Bác sĩ khám sàng lọc</span>
@@ -66,7 +66,7 @@
   <span class="cta only-mb">Xem gói ngay <span class="arrow">→</span></span>
 
   <div class="photo frame" style="background-image:url('../../public/images/family.jpg'); background-position: 50% 70%;"></div>
-  <div class="badge only-pc"><span data-icon="shield" data-size="110" data-disc="0"></span></div>
+  <div class="badge only-pc"><span data-icon="shield" data-size="90" data-disc="0"></span></div>
   <div class="stripe only-pc"></div>
 </div>
 <script src="icons.js"></script>

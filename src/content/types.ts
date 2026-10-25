@@ -28,7 +28,7 @@ export type SiteSettings = {
 
 /**
  * A finished banner artwork (admin module "Banner & trang chủ"): one image for
- * desktop (1920×710) and one for mobile (1080×1080), plus where it links to.
+ * desktop (1920×560) and one for mobile (1080×1080), plus where it links to.
  */
 export type HeroBanner = {
   id: string;

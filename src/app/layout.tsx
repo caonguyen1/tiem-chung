@@ -16,7 +16,12 @@ const googleSansFlex = Google_Sans_Flex({
   fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
 });
 
+// The site holds sample prices and placeholder doctors until launch, so search
+// engines stay out unless the deployment sets SITE_INDEXABLE=1.
+const indexable = process.env.SITE_INDEXABLE === "1";
+
 export const metadata: Metadata = {
+  robots: indexable ? undefined : { index: false, follow: false },
   title: {
     default: `${siteSettings.name} – ${siteSettings.slogan}`,
     template: `%s | ${siteSettings.shortName}`,

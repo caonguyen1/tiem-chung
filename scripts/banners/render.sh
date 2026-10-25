@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Renders every scripts/banners/NN-*.html into public/images/banners/<name>-pc.jpg
-# (1920×710) and <name>-mb.jpg (1080×1080) with headless Chrome.
+# (1920×560) and <name>-mb.jpg (1080×1080) with headless Chrome.
 # Usage: bash scripts/banners/render.sh [name-filter]
 set -euo pipefail
 
@@ -25,7 +25,7 @@ for html in "$here"/[0-9][0-9]-*.html; do
   name="$(basename "$html" .html)"
   name="${name#[0-9][0-9]-}"
   [[ -n "${1:-}" && "$name" != *"$1"* ]] && continue
-  shot "$html" pc 1920 710 1 "$out/$name-pc.jpg"
+  shot "$html" pc 1920 560 1 "$out/$name-pc.jpg"
   shot "$html" mb 540 540 2 "$out/$name-mb.jpg"
   echo "rendered $name"
 done

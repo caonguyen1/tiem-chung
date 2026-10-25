@@ -25,27 +25,30 @@ export const articleCategories: ArticleCategory[] = [
   { slug: "thanh-thieu-nien", name: "Thanh thiếu niên" },
 ];
 
-// Topics taken from the "Sổ tiêm chủng Tâm Trí" booklet.
+// Topics taken from the "Sổ tiêm chủng Tâm Trí" booklet. The first article is
+// the featured one on the homepage.
 export const articles: Article[] = [
+  {
+    slug: "phan-ung-thuong-gap-sau-tiem",
+    title: "Những phản ứng thường gặp sau tiêm và cách chăm sóc tại nhà",
+    excerpt:
+      "Sốt nhẹ, sưng đau chỗ tiêm có đáng lo? Cách chăm sóc bé tại nhà trong 24–48 giờ đầu và khi nào cần đưa bé quay lại cơ sở y tế ngay.",
+    categorySlug: "nhi",
+    image: "/images/interior-waiting.jpg",
+    views: 3120,
+    publishedAt: "2026-10-18",
+    reviewedBy: "BSCKII. Đỗ Văn Tâm",
+  },
   {
     slug: "kham-sang-loc-truoc-tiem-chung",
     title: "Khám sàng lọc trước tiêm chủng: những thông tin ba mẹ cần biết",
     excerpt:
       "Vì sao bác sĩ phải khám trước mỗi mũi tiêm, cần báo những gì về sức khỏe của bé và bác sĩ sẽ khám như thế nào theo quy định của Bộ Y tế.",
     categorySlug: "me-va-be",
-    image: "/images/screening.jpg",
+    image: "/images/interior-exam-room.jpg",
     views: 4210,
     publishedAt: "2026-10-20",
     reviewedBy: "BSCKII. Đỗ Văn Tâm",
-  },
-  {
-    slug: "phan-ung-thuong-gap-sau-tiem",
-    title: "Những phản ứng thường gặp sau tiêm và cách chăm sóc tại nhà",
-    excerpt: "Sốt nhẹ, sưng đau chỗ tiêm có đáng lo? Khi nào cần đưa bé quay lại cơ sở y tế ngay.",
-    categorySlug: "nhi",
-    image: "/images/interior-waiting.jpg",
-    views: 3120,
-    publishedAt: "2026-10-18",
   },
   {
     slug: "tiem-chung-truoc-mang-thai",

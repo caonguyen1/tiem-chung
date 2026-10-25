@@ -12,7 +12,7 @@ export function CenterNetwork({ centers, stats }: Props) {
   const [main] = centers;
 
   return (
-    <section className="relative overflow-hidden bg-brand-800 py-16 text-white lg:py-24">
+    <section className="relative overflow-hidden bg-brand-800 py-12 text-white lg:py-20">
       <svg aria-hidden="true" viewBox="0 0 800 400" className="pointer-events-none absolute -top-24 -left-40 w-[900px] opacity-60">
         <path d="M0 420C80 180 300 40 820 20" stroke="#FADC00" strokeWidth="8" fill="none" />
       </svg>

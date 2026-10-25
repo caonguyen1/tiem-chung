@@ -27,7 +27,7 @@ export function VaccinePackages({ packages }: { packages: VaccinePackage[] }) {
   const list = packages.filter((p) => p.kind === kind);
 
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-12 lg:py-20">
       <div className="container-page">
         <SectionHeading
           eyebrow="Gói vắc xin"

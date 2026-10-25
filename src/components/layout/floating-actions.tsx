@@ -7,7 +7,7 @@ import { siteSettings } from "@/content/site";
 export function FloatingActions() {
   return (
     <>
-      <div className="fixed right-5 bottom-6 z-30 hidden flex-col items-end gap-3 lg:flex">
+      <div data-export-hide className="fixed right-5 bottom-6 z-30 hidden flex-col items-end gap-3 lg:flex">
         <a
           href={siteSettings.zaloUrl}
           aria-label="Chat với bác sĩ"
@@ -31,6 +31,7 @@ export function FloatingActions() {
       </div>
 
       <nav
+        data-export-hide
         aria-label="Liên hệ nhanh"
         className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-4 border-t border-line bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
       >

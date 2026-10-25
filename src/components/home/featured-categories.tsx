@@ -8,7 +8,7 @@ import { SectionHeading } from "../ui/section-heading";
 /** "Danh mục nổi bật": the disease groups as large icon tiles. */
 export function FeaturedCategories({ groups }: { groups: DiseaseGroup[] }) {
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-12 lg:py-20">
       <div className="container-page">
         <SectionHeading
           eyebrow="Danh mục nổi bật"

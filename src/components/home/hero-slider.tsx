@@ -12,7 +12,7 @@ const INTERVAL_MS = 6000;
 const SWIPE_PX = 40;
 
 /**
- * Full-artwork banner carousel. Each banner has its own desktop (1920×710) and
+ * Full-artwork banner carousel. Each banner has its own desktop (1920×560) and
  * mobile (1080×1080) image; CSS shows the right one so only that one loads.
  */
 export function HeroSlider({ banners }: { banners: HeroBanner[] }) {
@@ -46,7 +46,7 @@ export function HeroSlider({ banners }: { banners: HeroBanner[] }) {
             touchStartX.current = null;
           }}
         >
-          <div className="grid aspect-square md:aspect-[1920/710]">
+          <div className="grid aspect-square md:aspect-[1920/560]">
             {banners.map((banner, index) => {
               const current = index === active;
               const eager = index === 0;
@@ -119,7 +119,7 @@ function ArrowButton({ direction, onClick }: { direction: "prev" | "next"; onCli
       type="button"
       onClick={onClick}
       aria-label={direction === "prev" ? "Banner trước" : "Banner sau"}
-      className={`absolute top-1/2 z-20 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-brand-700 shadow-card opacity-0 transition duration-300 group-hover:opacity-100 hover:bg-white focus-visible:opacity-100 md:grid ${
+      className={`absolute top-1/2 z-20 hidden size-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-brand-700 shadow-card transition duration-300 hover:bg-white md:grid ${
         direction === "prev" ? "left-4" : "right-4"
       }`}
     >

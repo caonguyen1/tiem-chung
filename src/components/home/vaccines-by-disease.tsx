@@ -22,7 +22,7 @@ export function VaccinesByDisease({ groups, vaccines }: Props) {
   const list = vaccines.filter((v) => v.diseaseSlugs.includes(active.slug)).slice(0, 4);
 
   return (
-    <section className="bg-canvas py-16 lg:py-24">
+    <section className="bg-canvas py-12 lg:py-20">
       <div className="container-page">
         <SectionHeading
           eyebrow="Vắc xin phòng bệnh"

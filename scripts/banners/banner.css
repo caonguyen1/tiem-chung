@@ -38,7 +38,7 @@ body {
   overflow: hidden;
 }
 
-/* PC canvas is 1920×710, mobile is 540×540 rendered at 2× */
+/* PC canvas is 1920×560, mobile is 540×540 rendered at 2× */
 .pc .only-mb,
 .mb .only-pc {
   display: none !important;

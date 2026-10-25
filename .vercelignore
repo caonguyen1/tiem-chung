@@ -1,0 +1,5 @@
+# Not needed to build or serve the site; keeps the upload small.
+docs/
+scripts/
+out/
+.claude/
