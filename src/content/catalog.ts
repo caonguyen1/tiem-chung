@@ -2,19 +2,22 @@ import type { DiseaseGroup, Vaccine, VaccinePackage } from "./types";
 
 // Groups and brand names come from the client's "Danh mục tổng hợp vắc xin".
 // Prices are sample values until the admin enters the real price list.
+// `featured` groups show as tiles on the homepage, in this order (the baby's
+// schedule first). The rest stay reachable through search. Sample choice of
+// 8 groups (2026-10-26) until the client picks their own in the admin.
 export const diseaseGroups: DiseaseGroup[] = [
-  { slug: "phe-cau", name: "Phế cầu khuẩn", shortName: "Phế cầu", icon: "lungs", featured: true },
-  { slug: "hpv", name: "Phòng HPV – ung thư cổ tử cung", shortName: "HPV", icon: "hpv", featured: true },
-  { slug: "cum", name: "Cúm mùa", shortName: "Cúm", icon: "influenza", featured: true },
-  { slug: "sot-xuat-huyet", name: "Sốt xuất huyết", shortName: "Sốt xuất huyết", icon: "mosquito", featured: true },
   { slug: "6-trong-1", name: "6 trong 1", shortName: "6 trong 1", icon: "baby", featured: true },
+  { slug: "phe-cau", name: "Phế cầu khuẩn", shortName: "Phế cầu", icon: "lungs", featured: true },
   { slug: "rotavirus", name: "Tiêu chảy do Rotavirus", shortName: "Rotavirus", icon: "rotavirus", featured: true },
+  { slug: "cum", name: "Cúm mùa", shortName: "Cúm", icon: "influenza", featured: true },
   { slug: "soi-quai-bi-rubella", name: "Sởi – Quai bị – Rubella", shortName: "Sởi – Quai bị", icon: "rash", featured: true },
-  { slug: "tay-chan-mieng", name: "Tay chân miệng", shortName: "Tay chân miệng", icon: "hand", featured: true },
-  { slug: "viem-gan", name: "Viêm gan A, B", shortName: "Viêm gan", icon: "liver", featured: true },
-  { slug: "viem-nao-nhat-ban", name: "Viêm não Nhật Bản", shortName: "Viêm não NB", icon: "brain", featured: true },
-  { slug: "rsv", name: "Virus hợp bào hô hấp RSV", shortName: "RSV", icon: "virus", featured: true },
   { slug: "thuy-dau", name: "Thủy đậu", shortName: "Thủy đậu", icon: "blister", featured: true },
+  { slug: "hpv", name: "Phòng HPV – ung thư cổ tử cung", shortName: "HPV", icon: "hpv", featured: true },
+  { slug: "sot-xuat-huyet", name: "Sốt xuất huyết", shortName: "Sốt xuất huyết", icon: "mosquito", featured: true },
+  { slug: "tay-chan-mieng", name: "Tay chân miệng", shortName: "Tay chân miệng", icon: "hand", featured: false },
+  { slug: "viem-gan", name: "Viêm gan A, B", shortName: "Viêm gan", icon: "liver", featured: false },
+  { slug: "viem-nao-nhat-ban", name: "Viêm não Nhật Bản", shortName: "Viêm não NB", icon: "brain", featured: false },
+  { slug: "rsv", name: "Virus hợp bào hô hấp RSV", shortName: "RSV", icon: "virus", featured: false },
 ];
 
 export const vaccines: Vaccine[] = [

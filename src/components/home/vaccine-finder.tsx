@@ -118,7 +118,7 @@ export function VaccineFinder({ groups, vaccines }: Props) {
           <div
             role="tablist"
             aria-label="Nhóm bệnh"
-            className="no-scrollbar flex gap-0.5 overflow-x-auto border-t border-line p-1.5 md:gap-1 md:p-3 lg:grid lg:grid-cols-12 lg:overflow-visible"
+            className="grid grid-cols-4 gap-0.5 border-t border-line p-1.5 md:grid-cols-8 md:gap-1 md:p-3"
           >
             {groups.map((group) => {
               const selected = !term && group.slug === active.slug;
@@ -133,7 +133,7 @@ export function VaccineFinder({ groups, vaccines }: Props) {
                     setQuery("");
                     setActiveSlug(group.slug);
                   }}
-                  className={`relative flex w-[19%] shrink-0 flex-col items-center gap-1 rounded-xl px-0.5 pt-1.5 pb-2.5 text-center md:gap-1.5 md:rounded-2xl md:px-1 md:pt-2.5 md:pb-3 transition sm:w-[15%] lg:w-auto ${
+                  className={`relative flex flex-col items-center gap-1 rounded-xl px-0.5 pt-1.5 pb-2.5 text-center md:gap-1.5 md:rounded-2xl md:px-1 md:pt-2.5 md:pb-3 transition ${
                     selected ? "bg-brand-50" : "hover:bg-canvas"
                   }`}
                 >
