@@ -13,11 +13,11 @@ export function FaqContact() {
   const [center] = centers;
 
   return (
-    <section id="lien-he" className="scroll-mt-20 py-12 lg:scroll-mt-24 lg:py-20">
-      <div className="container-page grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
+    <section id="lien-he" className="scroll-mt-20 py-8 lg:scroll-mt-24 lg:py-20">
+      <div className="container-page grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
         <div>
           <SectionHeading eyebrow="Hỏi đáp" title="Câu hỏi thường gặp" />
-          <div className="mt-6 divide-y divide-line rounded-[var(--radius-card)] border border-line bg-white">
+          <div className="mt-4 divide-y divide-line md:mt-6 rounded-[var(--radius-card)] border border-line bg-white">
             {faqs.map((faq, index) => (
               <details key={faq.question} name="faq" open={index === 0} className="group px-4 md:px-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[16px] font-semibold text-brand-800 [&::-webkit-details-marker]:hidden">
@@ -32,7 +32,7 @@ export function FaqContact() {
 
         <div>
           <SectionHeading eyebrow="Liên hệ" title="Đến Tâm Trí tiêm chủng" />
-          <div className="mt-6 overflow-hidden rounded-[var(--radius-card)] border border-line bg-white">
+          <div className="mt-4 overflow-hidden rounded-[var(--radius-card)] border border-line bg-white md:mt-6">
             {center.mapEmbedUrl ? (
               <iframe
                 src={center.mapEmbedUrl}

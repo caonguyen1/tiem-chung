@@ -27,7 +27,7 @@ export function RecommendBand() {
   }, [age, gender]);
 
   return (
-    <section id="goi-y-vac-xin" className="scroll-mt-20 pb-12 lg:scroll-mt-24 lg:pb-20">
+    <section id="goi-y-vac-xin" className="scroll-mt-20 pb-8 lg:scroll-mt-24 lg:pb-20">
       <div className="container-page">
         <div className="relative overflow-hidden rounded-[1.75rem] bg-brand-700 p-4 md:p-8 lg:p-10">
           <svg aria-hidden="true" viewBox="0 0 600 300" preserveAspectRatio="none" className="pointer-events-none absolute top-0 right-0 hidden h-full w-[45%] lg:block">

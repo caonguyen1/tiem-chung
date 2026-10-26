@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import { useState } from "react";
 
 import type { VaccinePackage } from "@/content/types";
@@ -21,7 +21,7 @@ export function VaccinePackages({ packages }: { packages: VaccinePackage[] }) {
   const list = packages.filter((p) => p.kind === kind);
 
   return (
-    <section id="goi-vac-xin" className="scroll-mt-20 py-12 lg:scroll-mt-24 lg:py-20">
+    <section id="goi-vac-xin" className="scroll-mt-20 py-8 lg:scroll-mt-24 lg:py-20">
       <div className="container-page">
         <SectionHeading
           eyebrow="Gói vắc xin"
@@ -29,7 +29,7 @@ export function VaccinePackages({ packages }: { packages: VaccinePackage[] }) {
           description="Tiêm đủ, đúng lịch theo độ tuổi hoặc nhu cầu. Mỗi gói ghi rõ số loại vắc xin, số mũi và chi phí."
         />
 
-        <div role="tablist" aria-label="Loại gói" className="mt-6 grid w-full grid-cols-2 rounded-full bg-brand-50 p-1 md:mt-8 md:inline-grid md:w-auto">
+        <div role="tablist" aria-label="Loại gói" className="mt-4 grid w-full grid-cols-2 rounded-full bg-brand-50 p-1 md:mt-8 md:inline-grid md:w-auto">
           {tabs.map((tab) => (
             <button
               key={tab.kind}
@@ -49,7 +49,7 @@ export function VaccinePackages({ packages }: { packages: VaccinePackage[] }) {
         {/* Mobile: a swipeable row. Desktop: a grid. */}
         <ul
           role="tabpanel"
-          className="no-scrollbar -mx-4 mt-5 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:mt-8 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 lg:grid-cols-3"
+          className="no-scrollbar -mx-4 mt-4 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:mt-8 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 lg:grid-cols-3"
         >
           {list.map((pkg) => (
             <li key={pkg.slug} className="w-[72%] shrink-0 snap-start sm:w-[45%] md:w-auto">
@@ -58,7 +58,7 @@ export function VaccinePackages({ packages }: { packages: VaccinePackage[] }) {
           ))}
         </ul>
 
-        <div className="mt-6 flex justify-center md:mt-8">
+        <div className="mt-4 flex justify-center md:mt-8">
           <ButtonLink href="/goi-vac-xin" variant="outline">
             Xem tất cả gói vắc xin
             <ArrowRight className="size-4" />
@@ -72,15 +72,20 @@ export function VaccinePackages({ packages }: { packages: VaccinePackage[] }) {
 function PackageCard({ pkg }: { pkg: VaccinePackage }) {
   return (
     <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white md:rounded-[var(--radius-card)]">
-      <div className="flex items-center gap-2.5 bg-gradient-to-br from-brand-50 to-white p-3 pt-7 md:gap-3.5 md:p-5">
+      <div className="flex items-center gap-2.5 bg-gradient-to-br from-brand-50 to-white p-3 pr-11 md:gap-3.5 md:p-5 md:pr-5">
         <BrandIconByName name={pkg.icon} className="size-10 shrink-0 md:size-16" />
         <div className="min-w-0">
           <p className="text-[12px] font-semibold text-brand-500 md:text-[13px]">{pkg.audienceLabel}</p>
           <h3 className="mt-0.5 text-[15px] leading-snug font-bold text-brand-800 md:text-[18px]">{pkg.name}</h3>
         </div>
         {pkg.highlight && (
-          <span className="absolute top-2 right-2 rounded-full bg-sun-400 px-2 py-0.5 text-[10px] font-bold text-brand-900 md:top-3 md:right-3 md:px-2.5 md:text-[11px]">
-            {pkg.highlight}
+          // Mobile: a star badge, so it never covers the package name. Desktop: the label.
+          <span
+            title={pkg.highlight}
+            className="absolute top-2 right-2 grid size-7 place-items-center rounded-full bg-sun-400 text-brand-900 shadow-card md:top-3 md:right-3 md:flex md:size-auto md:px-2.5 md:py-0.5 md:shadow-none"
+          >
+            <Star className="size-4 fill-current md:hidden" aria-hidden="true" />
+            <span className="sr-only md:not-sr-only md:text-[11px] md:font-bold">{pkg.highlight}</span>
           </span>
         )}
       </div>

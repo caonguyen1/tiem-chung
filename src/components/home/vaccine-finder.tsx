@@ -46,7 +46,7 @@ export function VaccineFinder({ groups, vaccines }: Props) {
     : vaccines.filter((v) => v.diseaseSlugs.includes(active.slug));
 
   return (
-    <section id="tra-cuu-vac-xin" className="scroll-mt-20 bg-canvas py-12 lg:scroll-mt-24 lg:py-20">
+    <section id="tra-cuu-vac-xin" className="scroll-mt-20 bg-canvas py-8 lg:scroll-mt-24 lg:py-20">
       <div className="container-page">
         {/* One search panel: title + search on top, the disease groups as a row of icon tiles below. */}
         <div className="overflow-hidden rounded-[1.75rem] bg-white shadow-card ring-1 ring-line/70">
@@ -175,7 +175,7 @@ export function VaccineFinder({ groups, vaccines }: Props) {
           )}
         </div>
 
-        <div className="mt-6 flex justify-center md:mt-8">
+        <div className="mt-4 flex justify-center md:mt-8">
           <ButtonLink href="/vac-xin" variant="outline">
             Xem tất cả vắc xin
             <ArrowRight className="size-4" />

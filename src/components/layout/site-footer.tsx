@@ -23,7 +23,7 @@ export function SiteFooter() {
   return (
     <footer className="relative mt-auto overflow-hidden bg-brand-900 text-brand-100">
       <div className="brand-stripe h-3" />
-      <div className="container-page grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div className="container-page grid gap-8 py-10 md:grid-cols-2 md:gap-10 md:py-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <Image
             src="/images/logo-horizontal-white.png"
