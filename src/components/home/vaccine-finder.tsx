@@ -4,10 +4,9 @@ import { ArrowRight, Search, X } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import type { DiseaseGroup, Vaccine } from "@/content/types";
-import { BOOKING_HASH, CONSULT_HASH } from "@/lib/routes";
 import { normalizeForSearch } from "@/lib/search";
 
-import { AdvisorIcon, BrandIconByName } from "../icons/brand-icons";
+import { BrandIconByName } from "../icons/brand-icons";
 import { ButtonLink } from "../ui/button-link";
 import { VaccineCard } from "../vaccine/vaccine-card";
 
@@ -17,12 +16,6 @@ type Props = {
 };
 
 const MAX_RESULTS = 8;
-// Columns the consult card spans so a short row still fills the grid (2 cols md, 4 cols lg).
-const FILL_SPAN: Record<number, string> = {
-  1: "md:col-span-1 lg:col-span-3",
-  2: "md:col-span-2 lg:col-span-2",
-  3: "md:col-span-1 lg:col-span-1",
-};
 const POPULAR_TERMS = ["Cúm", "HPV", "Sốt xuất huyết", "Phế cầu"];
 
 /**
@@ -140,12 +133,12 @@ export function VaccineFinder({ groups, vaccines }: Props) {
                     setQuery("");
                     setActiveSlug(group.slug);
                   }}
-                  className={`relative flex w-[21%] shrink-0 flex-col items-center gap-1 rounded-xl px-0.5 pt-1.5 pb-2.5 text-center md:w-auto md:gap-1.5 md:rounded-2xl md:px-1 md:pt-2.5 md:pb-3 transition ${
+                  className={`relative flex min-w-[4.5rem] shrink-0 flex-col items-center gap-1 rounded-xl px-2.5 pt-1.5 pb-2.5 text-center md:min-w-0 md:px-1 md:gap-1.5 md:rounded-2xl md:px-1 md:pt-2.5 md:pb-3 transition ${
                     selected ? "bg-brand-50" : "hover:bg-canvas"
                   }`}
                 >
                   <BrandIconByName name={group.icon} className={`size-10 transition md:size-12 ${selected ? "scale-105" : ""}`} />
-                  <span className={`text-[11.5px] leading-tight font-semibold md:text-[12.5px] ${selected ? "text-brand-700" : "text-ink/80"}`}>{group.shortName}</span>
+                  <span className={`text-[11.5px] leading-tight font-semibold whitespace-nowrap md:text-[12.5px] ${selected ? "text-brand-700" : "text-ink/80"}`}>{group.shortName}</span>
                   {selected && <span className="absolute inset-x-4 bottom-1 h-1 rounded-full bg-sun-400 md:inset-x-5" />}
                 </button>
               );
@@ -174,11 +167,6 @@ export function VaccineFinder({ groups, vaccines }: Props) {
                   <VaccineCard vaccine={vaccine} />
                 </li>
               ))}
-              {results.length < 4 && (
-                <li className={`w-[70%] shrink-0 snap-start sm:w-[45%] md:w-auto ${FILL_SPAN[results.length]}`}>
-                  <ConsultCard topic={term ? query.trim() : active.name} />
-                </li>
-              )}
             </ul>
           ) : (
             <p className="rounded-2xl bg-white p-6 text-center text-muted">
@@ -195,30 +183,5 @@ export function VaccineFinder({ groups, vaccines }: Props) {
         </div>
       </div>
     </section>
-  );
-}
-
-/** Fills empty grid space with a nudge to ask a doctor or book directly. */
-function ConsultCard({ topic }: { topic: string }) {
-  return (
-    <div className="flex h-full flex-col justify-between gap-4 rounded-2xl bg-brand-700 p-4 text-white md:rounded-[var(--radius-card)] md:p-6">
-      <div className="flex items-start gap-3">
-        <AdvisorIcon className="size-12 shrink-0 md:size-14" />
-        <div>
-          <p className="text-[17px] leading-snug font-bold md:text-xl">Chưa chắc nên chọn loại nào?</p>
-          <p className="mt-1 text-[13px] leading-relaxed text-brand-100 md:text-[14px]">
-            Bác sĩ Tâm Trí tư vấn vắc xin phòng {topic} phù hợp với độ tuổi và sức khỏe của bạn.
-          </p>
-        </div>
-      </div>
-      <div className="grid grid-cols-2 gap-2">
-        <ButtonLink href={CONSULT_HASH} variant="white" className="h-10 px-3 text-[14px]">
-          Tư vấn
-        </ButtonLink>
-        <ButtonLink href={BOOKING_HASH} variant="sun" className="h-10 px-3 text-[14px] shadow-none">
-          Đặt lịch
-        </ButtonLink>
-      </div>
-    </div>
   );
 }

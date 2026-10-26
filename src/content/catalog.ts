@@ -2,12 +2,12 @@ import type { DiseaseGroup, Vaccine, VaccinePackage } from "./types";
 
 // Groups and brand names come from the client's "Danh mục tổng hợp vắc xin".
 // Prices are sample values until the admin enters the real price list.
-// `featured` groups show as tiles on the homepage, in this order (the baby's
-// schedule first). The rest stay reachable through search. Sample choice of
+// `featured` groups show as tiles on the homepage, in this order. Phế cầu leads
+// because the first group opens selected and it fills a full row of 4 cards. The rest stay reachable through search. Sample choice of
 // 8 groups (2026-10-26) until the client picks their own in the admin.
 export const diseaseGroups: DiseaseGroup[] = [
-  { slug: "6-trong-1", name: "6 trong 1", shortName: "6 trong 1", icon: "baby", featured: true },
   { slug: "phe-cau", name: "Phế cầu khuẩn", shortName: "Phế cầu", icon: "lungs", featured: true },
+  { slug: "6-trong-1", name: "6 trong 1", shortName: "6 trong 1", icon: "baby", featured: true },
   { slug: "rotavirus", name: "Tiêu chảy do Rotavirus", shortName: "Rotavirus", icon: "rotavirus", featured: true },
   { slug: "cum", name: "Cúm mùa", shortName: "Cúm", icon: "influenza", featured: true },
   { slug: "soi-quai-bi-rubella", name: "Sởi – Quai bị – Rubella", shortName: "Sởi – Quai bị", icon: "rash", featured: true },
