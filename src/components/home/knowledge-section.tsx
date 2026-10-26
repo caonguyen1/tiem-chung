@@ -21,7 +21,7 @@ export function KnowledgeSection({ articles, categories }: Props) {
         <SectionHeading eyebrow="Kiến thức tiêm chủng" title="Hiểu đúng để tiêm đủ" description="Bài viết do bác sĩ Tâm Trí biên soạn và kiểm duyệt." />
 
         {/* Mobile: a swipeable row. Desktop: four columns. */}
-        <ul className="no-scrollbar -mx-4 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:mt-8 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 lg:grid-cols-4">
+        <ul className="no-scrollbar -mx-4 mt-6 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:mt-8 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 lg:grid-cols-4">
           {articles.slice(0, SHOWN).map((article) => (
             <li key={article.slug} className="w-[75%] shrink-0 snap-start sm:w-[45%] md:w-auto">
               <article className="flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] bg-white shadow-card">

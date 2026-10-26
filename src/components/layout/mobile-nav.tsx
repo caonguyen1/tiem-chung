@@ -1,15 +1,23 @@
 "use client";
 
 import { ChevronRight, Menu, Phone, X } from "lucide-react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
+
 import { AppLink } from "@/components/ui/app-link";
-import { useEffect, useState } from "react";
 
 import { siteSettings } from "@/content/site";
 
 import { buttonClasses } from "../ui/button-link";
 
+const subscribeNoop = () => () => {};
+
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  // The drawer is portalled to <body> once mounted: the sticky header uses
+  // backdrop-blur, and a backdrop-filter makes `fixed` children position
+  // against the header box instead of the viewport.
+  const mounted = useSyncExternalStore(subscribeNoop, () => true, () => false);
 
   useEffect(() => {
     if (!open) return;
@@ -34,8 +42,10 @@ export function MobileNav() {
         <Menu className="size-6" />
       </button>
 
-      {/* The clipping wrapper keeps the off-canvas panel from widening the page. */}
-      <div className={`fixed inset-0 z-50 overflow-hidden ${open ? "" : "pointer-events-none invisible delay-300"}`}>
+      {mounted &&
+        createPortal(
+      // The clipping wrapper keeps the off-canvas panel from widening the page.
+      <div className={`xl:hidden fixed inset-0 z-50 overflow-hidden ${open ? "" : "pointer-events-none invisible delay-300"}`}>
       <div
         className={`absolute inset-0 bg-brand-950/40 backdrop-blur-sm transition-opacity ${open ? "opacity-100" : "opacity-0"}`}
         onClick={() => setOpen(false)}
@@ -90,7 +100,9 @@ export function MobileNav() {
           </a>
         </div>
       </aside>
-      </div>
+      </div>,
+          document.body,
+        )}
     </div>
   );
 }

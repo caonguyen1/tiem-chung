@@ -49,10 +49,10 @@ export function VaccinePackages({ packages }: { packages: VaccinePackage[] }) {
         {/* Mobile: a swipeable row. Desktop: a grid. */}
         <ul
           role="tabpanel"
-          className="no-scrollbar -mx-4 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:mt-8 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 lg:grid-cols-3"
+          className="no-scrollbar -mx-4 mt-5 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:mt-8 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 lg:grid-cols-3"
         >
           {list.map((pkg) => (
-            <li key={pkg.slug} className="w-[85%] shrink-0 snap-start sm:w-[48%] md:w-auto">
+            <li key={pkg.slug} className="w-[72%] shrink-0 snap-start sm:w-[45%] md:w-auto">
               <PackageCard pkg={pkg} />
             </li>
           ))}
@@ -71,39 +71,39 @@ export function VaccinePackages({ packages }: { packages: VaccinePackage[] }) {
 
 function PackageCard({ pkg }: { pkg: VaccinePackage }) {
   return (
-    <article className="relative flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-white">
-      <div className="flex items-center gap-3.5 bg-gradient-to-br from-brand-50 to-white p-4 md:p-5">
-        <BrandIconByName name={pkg.icon} className="size-14 shrink-0 md:size-16" />
+    <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white md:rounded-[var(--radius-card)]">
+      <div className="flex items-center gap-2.5 bg-gradient-to-br from-brand-50 to-white p-3 pt-7 md:gap-3.5 md:p-5">
+        <BrandIconByName name={pkg.icon} className="size-10 shrink-0 md:size-16" />
         <div className="min-w-0">
-          <p className="text-[13px] font-semibold text-brand-500">{pkg.audienceLabel}</p>
-          <h3 className="mt-0.5 text-[18px] leading-snug font-bold text-brand-800">{pkg.name}</h3>
+          <p className="text-[12px] font-semibold text-brand-500 md:text-[13px]">{pkg.audienceLabel}</p>
+          <h3 className="mt-0.5 text-[15px] leading-snug font-bold text-brand-800 md:text-[18px]">{pkg.name}</h3>
         </div>
         {pkg.highlight && (
-          <span className="absolute top-3 right-3 rounded-full bg-sun-400 px-2.5 py-0.5 text-[11px] font-bold text-brand-900">
+          <span className="absolute top-2 right-2 rounded-full bg-sun-400 px-2 py-0.5 text-[10px] font-bold text-brand-900 md:top-3 md:right-3 md:px-2.5 md:text-[11px]">
             {pkg.highlight}
           </span>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-4 pt-3 md:p-5 md:pt-4">
-        <dl className="grid grid-cols-2 gap-2">
+      <div className="flex flex-1 flex-col p-3 md:p-5 md:pt-4">
+        <dl className="grid grid-cols-2 gap-1.5 md:gap-2">
           <Stat label="Loại vắc xin" value={pkg.vaccineCount} />
           <Stat label="Mũi tiêm" value={pkg.doses} />
         </dl>
 
-        <div className="mt-4">
-          <p className="flex items-center gap-2 text-[13px]">
+        <div className="mt-2.5 md:mt-4">
+          <p className="flex items-center gap-2 text-[12px] md:text-[13px]">
             <span className="text-muted line-through">{formatVnd(pkg.originalPrice)}</span>
             <span className="rounded bg-alert/10 px-1.5 font-semibold text-alert">-{discountPercent(pkg.price, pkg.originalPrice)}%</span>
           </p>
-          <p className="text-[22px] font-bold text-brand-700">{formatVnd(pkg.price)}</p>
+          <p className="text-[18px] font-bold text-brand-700 md:text-[22px]">{formatVnd(pkg.price)}</p>
         </div>
 
-        <div className="mt-auto grid grid-cols-2 gap-2 pt-4">
-          <ButtonLink href={`/goi-vac-xin/${pkg.slug}`} variant="outline" className="h-10 px-3 text-[14px]">
+        <div className="mt-auto grid grid-cols-2 gap-1.5 pt-3 md:gap-2 md:pt-4">
+          <ButtonLink href={`/goi-vac-xin/${pkg.slug}`} variant="outline" className="h-9 px-2 text-[13px] md:h-10 md:px-3 md:text-[14px]">
             Xem chi tiết
           </ButtonLink>
-          <ButtonLink href={bookingHref(pkg.slug)} className="h-10 px-3 text-[14px]">
+          <ButtonLink href={bookingHref(pkg.slug)} className="h-9 px-2 text-[13px] shadow-none md:h-10 md:px-3 md:text-[14px]">
             Đặt lịch
           </ButtonLink>
         </div>
@@ -114,9 +114,9 @@ function PackageCard({ pkg }: { pkg: VaccinePackage }) {
 
 function Stat({ label, value }: { label: string; value: number }) {
   return (
-    <div className="flex flex-col-reverse rounded-xl bg-canvas px-3 py-2">
-      <dt className="text-[12px] text-muted">{label}</dt>
-      <dd className="text-[18px] font-bold text-ink">{value}</dd>
+    <div className="flex flex-col-reverse rounded-lg bg-canvas px-2.5 py-1.5 md:rounded-xl md:px-3 md:py-2">
+      <dt className="text-[11px] text-muted md:text-[12px]">{label}</dt>
+      <dd className="text-[15px] font-bold text-ink md:text-[18px]">{value}</dd>
     </div>
   );
 }

@@ -24,7 +24,7 @@ export function SectionHeading({ eyebrow, title, description, action, tone = "li
             {eyebrow}
           </p>
         )}
-        <h2 className={`text-[28px] leading-tight font-bold tracking-tight text-balance md:text-4xl ${dark ? "text-white" : "text-brand-800"}`}>
+        <h2 className={`text-[24px] leading-tight font-bold tracking-tight text-balance md:text-4xl ${dark ? "text-white" : "text-brand-800"}`}>
           {title}
         </h2>
         {description && <p className={`mt-3 hidden text-base text-pretty md:block ${dark ? "text-brand-100" : "text-muted"}`}>{description}</p>}
