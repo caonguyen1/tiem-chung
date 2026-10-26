@@ -4,9 +4,10 @@ import { ArrowRight, Search, X } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import type { DiseaseGroup, Vaccine } from "@/content/types";
+import { BOOKING_HASH, CONSULT_HASH } from "@/lib/routes";
 import { normalizeForSearch } from "@/lib/search";
 
-import { BrandIconByName } from "../icons/brand-icons";
+import { AdvisorIcon, BrandIconByName } from "../icons/brand-icons";
 import { ButtonLink } from "../ui/button-link";
 import { VaccineCard } from "../vaccine/vaccine-card";
 
@@ -16,6 +17,12 @@ type Props = {
 };
 
 const MAX_RESULTS = 8;
+// Columns the consult card spans so a short row still fills the grid (2 cols md, 4 cols lg).
+const FILL_SPAN: Record<number, string> = {
+  1: "md:col-span-1 lg:col-span-3",
+  2: "md:col-span-2 lg:col-span-2",
+  3: "md:col-span-1 lg:col-span-1",
+};
 const POPULAR_TERMS = ["Cúm", "HPV", "Sốt xuất huyết", "Phế cầu"];
 
 /**
@@ -118,7 +125,7 @@ export function VaccineFinder({ groups, vaccines }: Props) {
           <div
             role="tablist"
             aria-label="Nhóm bệnh"
-            className="grid grid-cols-4 gap-0.5 border-t border-line p-1.5 md:grid-cols-8 md:gap-1 md:p-3"
+            className="no-scrollbar flex gap-0.5 overflow-x-auto border-t border-line p-1.5 md:grid md:grid-cols-8 md:gap-1 md:overflow-visible md:p-3"
           >
             {groups.map((group) => {
               const selected = !term && group.slug === active.slug;
@@ -133,7 +140,7 @@ export function VaccineFinder({ groups, vaccines }: Props) {
                     setQuery("");
                     setActiveSlug(group.slug);
                   }}
-                  className={`relative flex flex-col items-center gap-1 rounded-xl px-0.5 pt-1.5 pb-2.5 text-center md:gap-1.5 md:rounded-2xl md:px-1 md:pt-2.5 md:pb-3 transition ${
+                  className={`relative flex w-[21%] shrink-0 flex-col items-center gap-1 rounded-xl px-0.5 pt-1.5 pb-2.5 text-center md:w-auto md:gap-1.5 md:rounded-2xl md:px-1 md:pt-2.5 md:pb-3 transition ${
                     selected ? "bg-brand-50" : "hover:bg-canvas"
                   }`}
                 >
@@ -167,6 +174,11 @@ export function VaccineFinder({ groups, vaccines }: Props) {
                   <VaccineCard vaccine={vaccine} />
                 </li>
               ))}
+              {results.length < 4 && (
+                <li className={`w-[70%] shrink-0 snap-start sm:w-[45%] md:w-auto ${FILL_SPAN[results.length]}`}>
+                  <ConsultCard topic={term ? query.trim() : active.name} />
+                </li>
+              )}
             </ul>
           ) : (
             <p className="rounded-2xl bg-white p-6 text-center text-muted">
@@ -183,5 +195,30 @@ export function VaccineFinder({ groups, vaccines }: Props) {
         </div>
       </div>
     </section>
+  );
+}
+
+/** Fills empty grid space with a nudge to ask a doctor or book directly. */
+function ConsultCard({ topic }: { topic: string }) {
+  return (
+    <div className="flex h-full flex-col justify-between gap-4 rounded-2xl bg-brand-700 p-4 text-white md:rounded-[var(--radius-card)] md:p-6">
+      <div className="flex items-start gap-3">
+        <AdvisorIcon className="size-12 shrink-0 md:size-14" />
+        <div>
+          <p className="text-[17px] leading-snug font-bold md:text-xl">Chưa chắc nên chọn loại nào?</p>
+          <p className="mt-1 text-[13px] leading-relaxed text-brand-100 md:text-[14px]">
+            Bác sĩ Tâm Trí tư vấn vắc xin phòng {topic} phù hợp với độ tuổi và sức khỏe của bạn.
+          </p>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <ButtonLink href={CONSULT_HASH} variant="white" className="h-10 px-3 text-[14px]">
+          Tư vấn
+        </ButtonLink>
+        <ButtonLink href={BOOKING_HASH} variant="sun" className="h-10 px-3 text-[14px] shadow-none">
+          Đặt lịch
+        </ButtonLink>
+      </div>
+    </div>
   );
 }
