@@ -34,7 +34,7 @@ export function OutbreakTicker({ alerts }: { alerts: OutbreakAlert[] }) {
     <div
       role="region"
       aria-label="Cảnh báo dịch bệnh"
-      className="flex items-stretch gap-3 border-b border-sun-200 bg-sun-50 py-2.5 pr-2 pl-3 md:gap-4 md:pl-5"
+      className="flex items-stretch gap-3 border-t border-sun-200 bg-sun-50 py-2.5 pr-2 pl-3 md:gap-4 md:pl-5"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}

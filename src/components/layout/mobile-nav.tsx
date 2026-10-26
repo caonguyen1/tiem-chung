@@ -82,7 +82,7 @@ export function MobileNav() {
           ))}
         </nav>
         <div className="grid gap-2 border-t border-line p-4">
-          <AppLink href="/dat-hen" onClick={() => setOpen(false)} className={buttonClasses("primary", "md")}>
+          <AppLink href="#dat-lich" onClick={() => setOpen(false)} className={buttonClasses("primary", "md")}>
             Đặt hẹn tiêm
           </AppLink>
           <a href={`tel:${siteSettings.hotline.dial}`} className={buttonClasses("outline", "md")}>

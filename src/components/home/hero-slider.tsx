@@ -1,12 +1,13 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { HeroBanner } from "@/content/types";
 
 import { AppLink } from "../ui/app-link";
+import { ButtonLink } from "../ui/button-link";
 
 const INTERVAL_MS = 6000;
 const SWIPE_PX = 40;
@@ -50,16 +51,8 @@ export function HeroSlider({ banners }: { banners: HeroBanner[] }) {
             {banners.map((banner, index) => {
               const current = index === active;
               const eager = index === 0;
-              return (
-                <AppLink
-                  key={banner.id}
-                  href={banner.href}
-                  aria-hidden={!current}
-                  tabIndex={current ? undefined : -1}
-                  className={`relative col-start-1 row-start-1 block transition-opacity duration-700 ease-out ${
-                    current ? "z-10 opacity-100" : "pointer-events-none opacity-0"
-                  }`}
-                >
+              const images = (
+                <>
                   <Image
                     src={banner.imageDesktop}
                     alt={banner.alt}
@@ -78,7 +71,41 @@ export function HeroSlider({ banners }: { banners: HeroBanner[] }) {
                     loading={eager ? "eager" : "lazy"}
                     fetchPriority={eager ? "high" : "auto"}
                   />
-                </AppLink>
+                </>
+              );
+              return (
+                <div
+                  key={banner.id}
+                  aria-hidden={!current}
+                  inert={!current}
+                  className={`relative col-start-1 row-start-1 transition-opacity duration-700 ease-out ${
+                    current ? "z-10 opacity-100" : "pointer-events-none opacity-0"
+                  }`}
+                >
+                  {banner.actions ? (
+                    <>
+                      {images}
+                      {/* Matches the empty corner the artwork leaves: 5.2%/5.5% mobile, 9.9%/12% desktop. */}
+                      <div className="absolute bottom-[5.5%] left-[5.2%] flex gap-2 md:bottom-[12%] md:left-[9.9%] md:gap-3">
+                        {banner.actions.map((action, actionIndex) => (
+                          <ButtonLink
+                            key={action.href}
+                            href={action.href}
+                            variant={actionIndex === 0 ? "primary" : "outline"}
+                            className="h-10 px-4 text-[14px] md:h-12 md:px-6 md:text-[15px] lg:h-13 lg:px-7 lg:text-base"
+                          >
+                            {action.label}
+                            {actionIndex === 0 && <ArrowRight className="size-4" />}
+                          </ButtonLink>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <AppLink href={banner.href} className="absolute inset-0 block">
+                      {images}
+                    </AppLink>
+                  )}
+                </div>
               );
             })}
           </div>
@@ -87,8 +114,8 @@ export function HeroSlider({ banners }: { banners: HeroBanner[] }) {
             <>
               <ArrowButton direction="prev" onClick={() => go(active - 1)} />
               <ArrowButton direction="next" onClick={() => go(active + 1)} />
-              {/* Bottom-right on mobile so the dots never cover the artwork's CTA (bottom-left). */}
-              <div className="absolute inset-x-0 bottom-3 z-20 flex justify-end pr-4 md:bottom-4 md:justify-center md:pr-0">
+              {/* Top-right on mobile, where no artwork text or button sits; bottom-centre on desktop. */}
+              <div className="absolute inset-x-0 top-3 z-20 flex justify-end pr-3 md:top-auto md:bottom-4 md:justify-center md:pr-0">
                 <div className="flex items-center gap-1.5 rounded-full bg-white/75 px-2.5 py-1.5 backdrop-blur">
                   {banners.map((banner, index) => (
                     <button

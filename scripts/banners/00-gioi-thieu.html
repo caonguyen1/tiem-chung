@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="banner.css" />
+<style>
+  /*
+   * The intro banner carries no baked-in CTA: the site renders two real buttons
+   * ("Đặt lịch tiêm", "Tra cứu vắc xin") over the empty bottom-left area, at
+   * left 9.9% / bottom 12% on PC and left 5.2% / bottom 5.5% on mobile.
+   */
+  .banner { background: linear-gradient(110deg, #eef1fa 0%, #ffffff 48%, #fff9d6 100%); }
+
+  /* ---------- PC 1920×560 ---------- */
+  .pc .copy { position: absolute; left: 190px; top: 58px; width: 900px; z-index: 2; }
+  .pc .pill { padding: 8px 20px; font-size: 18px; background: var(--navy); color: #fff; }
+  .pc h1 { margin-top: 16px; font-size: 76px; line-height: 1; font-weight: 820; letter-spacing: -0.02em; color: var(--navy); }
+  .pc h1 em { font-style: normal; position: relative; display: inline-block; }
+  .pc h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 16px; background: var(--sun); z-index: -1; border-radius: 5px; }
+  .pc .sub { margin-top: 14px; font-size: 25px; font-weight: 500; color: #3d4670; }
+  .pc .chips { margin-top: 18px; gap: 12px; }
+  .pc .chip { gap: 10px; padding: 8px 18px 8px 8px; font-size: 18px; }
+  .pc .frame { position: absolute; right: 190px; top: 34px; width: 640px; height: 492px; border-radius: 40px 220px 40px 40px; border: 10px solid #fff; box-shadow: 0 40px 80px -40px rgb(20 30 74 / 0.55); }
+  .pc .logo { position: absolute; right: 770px; top: 18px; width: 128px; height: 128px; border-radius: 50%; background: #fff; display: grid; place-items: center; box-shadow: 0 24px 40px -20px rgb(20 30 74 / 0.5); }
+  .pc .logo img { width: 78px; }
+
+  /* ---------- Mobile 540×540 ---------- */
+  .mb .copy { position: absolute; left: 28px; top: 28px; width: 330px; z-index: 2; }
+  .mb .pill { padding: 6px 14px; font-size: 12px; background: var(--navy); color: #fff; }
+  .mb h1 { margin-top: 12px; font-size: 50px; line-height: 1; font-weight: 820; letter-spacing: -0.02em; color: var(--navy); }
+  .mb h1 em { font-style: normal; position: relative; display: inline-block; }
+  .mb h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 10px; background: var(--sun); z-index: -1; border-radius: 4px; }
+  .mb .sub { margin-top: 10px; font-size: 15px; line-height: 1.35; font-weight: 500; color: #3d4670; width: 250px; }
+  .mb .chips { margin-top: 12px; gap: 6px; flex-direction: column; }
+  .mb .chip { gap: 6px; padding: 4px 12px 4px 4px; font-size: 12px; border-radius: 12px; width: fit-content; }
+  .mb .frame { position: absolute; right: -24px; top: 150px; width: 250px; height: 260px; border-radius: 26px 120px 26px 26px; border: 6px solid #fff; box-shadow: 0 30px 60px -30px rgb(20 30 74 / 0.6); }
+</style>
+</head>
+<body>
+<div class="banner">
+  <svg class="arcs only-pc" viewBox="0 0 1920 560" preserveAspectRatio="none">
+    <path d="M1000 600C1080 300 1360 70 1960 30" stroke="#FADC00" stroke-width="30" fill="none"/>
+    <path d="M1080 620C1170 360 1440 160 1960 120" stroke="#283C96" stroke-opacity="0.10" stroke-width="80" fill="none"/>
+    <circle cx="80" cy="520" r="200" fill="#E3E8F6" fill-opacity="0.6"/>
+  </svg>
+  <svg class="arcs only-mb" viewBox="0 0 540 540" preserveAspectRatio="none">
+    <path d="M250 560C300 330 420 170 580 130" stroke="#FADC00" stroke-width="12" fill="none"/>
+  </svg>
+
+  <div class="copy">
+    <span class="pill"><span class="dot"></span>Hệ sinh thái y tế Tâm Trí</span>
+    <h1 class="only-pc">Trung tâm Tiêm chủng<br /><em>Tâm Trí</em></h1>
+    <h1 class="only-mb">Tiêm chủng<br /><em>Tâm Trí</em></h1>
+    <p class="sub only-pc">Cùng hệ thống Phòng khám Sản – Nhi và Nhà thuốc Tâm Trí</p>
+    <p class="sub only-mb">Cùng hệ thống Phòng khám Sản – Nhi và Nhà thuốc Tâm Trí</p>
+    <div class="chips only-pc">
+      <span class="chip"><span data-icon="pregnancy" data-size="44"></span>Bác sĩ<br />Sản khoa</span>
+      <span class="chip"><span data-icon="baby" data-size="44"></span>Bác sĩ<br />Nhi khoa</span>
+      <span class="chip"><span data-icon="stethoscope" data-size="44"></span>Khám sàng lọc<br />trước tiêm</span>
+    </div>
+    <div class="chips only-mb">
+      <span class="chip"><span data-icon="pregnancy" data-size="26"></span>Bác sĩ Sản – Nhi</span>
+      <span class="chip"><span data-icon="stethoscope" data-size="26"></span>Khám sàng lọc trước tiêm</span>
+    </div>
+  </div>
+
+  <div class="photo frame" style="background-image:url('../../public/images/facade.jpg'); background-position: 45% 55%;"></div>
+  <div class="logo only-pc"><img src="../../public/images/logo-mark.png" alt="" /></div>
+</div>
+<script src="icons.js"></script>
+</body>
+</html>

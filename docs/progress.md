@@ -24,4 +24,18 @@ Cập nhật: 2026-10-23. Tạm dừng theo yêu cầu, chưa commit gì vào gi
 
 - Giá, giờ mở cửa, email, nội dung cảnh báo và 3 bác sĩ (ngoài BSCKII. Đỗ Văn Tâm) đều là dữ liệu mẫu.
 - Dev server chạy ở cổng 3210, vì cổng 3100 đã bị chiếm.
-- Trình duyệt trong app không chạy được `preview_start` theo tên cho repo này. Hãy bật dev server bằng lệnh nền, sau đó mở bằng URL.
+- Bật dev server bằng `preview_start` với tên `web` (cấu hình trong `.claude/launch.json`).
+
+## Góp ý của khách ngày 2026-10-26 (đã làm)
+
+Khách ưu tiên mobile và muốn trang chủ tập trung vào ba việc: tìm vắc xin, hiểu vì sao chọn Tâm Trí, đặt lịch nhanh.
+
+- Thứ tự mới: Banner giới thiệu (hệ sinh thái Sản – Nhi, có 2 nút Đặt lịch / Tra cứu) → Lối tắt 4 ô + cảnh báo dịch → Tra cứu vắc xin theo bệnh (gộp 2 khối cũ, có ô tìm kiếm) → Gói vắc xin → Vì sao chọn Tâm Trí (dải 4 ô) → Gợi ý vắc xin (chạy được, ra kết quả ngay) → Kiến thức (4 bài) → FAQ + Liên hệ.
+- Đã bỏ khỏi trang chủ: khối bác sĩ (chỉ còn link nhỏ), khối "Mỗi mũi tiêm là một lời cam kết", danh mục nổi bật riêng, khối hệ thống trung tâm.
+- Popup Đặt lịch (`#dat-lich`) dùng được thật; mọi nút Đặt lịch/Đặt hẹn mở popup này.
+- Đã bỏ các cam kết chưa được xác nhận ("giữ giá trọn gói", "đảm bảo đủ vắc xin").
+- Trang mobile ngắn hơn khoảng 42% (từ khoảng 11.850px còn khoảng 6.840px).
+
+## Cần hỏi khách
+
+- Link nhúng Google Maps của chính trung tâm (khi điểm Google Business đã tạo xong). Tìm theo địa chỉ hiện đang ra "Mộc coffe" ở cùng số 424, nên tạm thời hiển thị khung bản đồ có nút mở Google Maps (`mapEmbedUrl` trong dữ liệu trung tâm).

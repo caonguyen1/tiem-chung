@@ -42,13 +42,13 @@ export function SiteHeader() {
 
           <div className="ml-auto flex items-center gap-2 xl:ml-2">
             <AppLink
-              href="/tim-kiem"
+              href="#tra-cuu-vac-xin"
               aria-label="Tìm vắc xin"
               className="grid size-10 place-items-center rounded-full text-brand-700 transition hover:bg-brand-50"
             >
               <Search className="size-5" />
             </AppLink>
-            <ButtonLink href="/dat-hen" size="sm" className="hidden sm:inline-flex lg:h-11 lg:px-5">
+            <ButtonLink href="#dat-lich" size="sm" className="px-3.5 lg:h-11 lg:px-5">
               <CalendarCheck className="size-4" />
               Đặt hẹn
             </ButtonLink>

@@ -86,6 +86,28 @@ export function BookIcon(props: IconProps) {
   );
 }
 
+export function CalendarIcon(props: IconProps) {
+  return (
+    <BrandIcon {...props}>
+      <rect x="14" y="17" width="36" height="33" rx="6" />
+      <path d="M14 27h36M23 13v8M41 13v8" />
+      <circle cx="40" cy="40" r="6.5" {...sunOutlined} />
+      <path d="m37.3 40 2 2 3.5-3.8" />
+      <path d="M21 34h5M21 41h8" />
+    </BrandIcon>
+  );
+}
+
+export function PackageIcon(props: IconProps) {
+  return (
+    <BrandIcon {...props}>
+      <path d="M15 21l17 9v21l-17-9Z" {...sun} />
+      <path d="M32 13 15 21v21l17 9 17-9V21Z" />
+      <path d="M15 21l17 9 17-9M32 30v21M23.5 17l17 8.5v8" />
+    </BrandIcon>
+  );
+}
+
 /* ---------- Commitments / USP ---------- */
 
 export function StethoscopeIcon(props: IconProps) {
@@ -314,6 +336,8 @@ export const brandIcons = {
   doctorChat: DoctorChatIcon,
   location: LocationIcon,
   book: BookIcon,
+  calendar: CalendarIcon,
+  package: PackageIcon,
   stethoscope: StethoscopeIcon,
   shield: ShieldIcon,
   timer: TimerIcon,

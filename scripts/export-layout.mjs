@@ -45,6 +45,7 @@ const exportCss = `
 /** Scroll the whole page once so every lazy image loads, then wait for them. */
 async function loadLazyImages(page) {
   await page.evaluate(async () => {
+    document.querySelectorAll("iframe[loading=lazy]").forEach((frame) => (frame.loading = "eager"));
     const step = window.innerHeight;
     for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
       window.scrollTo(0, y);
@@ -70,17 +71,22 @@ async function loadLazyImages(page) {
 /**
  * Chrome cannot capture more than ~16k device pixels in one shot (a taller page
  * comes back with its top repeated), so capture slices and stitch them.
+ * The viewport is first stretched to the full page height: cross-origin iframes
+ * (the Google map) are only painted while they sit inside the viewport.
  */
-async function captureFullPage(page, scale, file) {
+async function captureFullPage(page, viewport, file) {
+  const scale = viewport.deviceScaleFactor;
   const { width, height } = await page.evaluate(() => ({
     width: document.documentElement.clientWidth,
     height: document.documentElement.scrollHeight,
   }));
+  await page.setViewport({ ...viewport, height });
+  await new Promise((resolve) => setTimeout(resolve, 2500));
   const sliceHeight = 3000;
   const slices = [];
   for (let y = 0; y < height; y += sliceHeight) {
     const h = Math.min(sliceHeight, height - y);
-    const buffer = await page.screenshot({ type: "png", clip: { x: 0, y, width, height: h }, captureBeyondViewport: true });
+    const buffer = await page.screenshot({ type: "png", clip: { x: 0, y, width, height: h }, captureBeyondViewport: false });
     slices.push({ input: buffer, top: Math.round(y * scale), left: 0 });
   }
   await sharp({ create: { width: Math.round(width * scale), height: Math.round(height * scale), channels: 3, background: "#ffffff" } })
@@ -96,13 +102,17 @@ try {
     for (const viewport of viewports) {
       const page = await browser.newPage();
       await page.setViewport(viewport);
+      // Some embeds (Google Maps) render nothing for a "HeadlessChrome" user agent.
+      const userAgent = (await browser.userAgent()).replace("HeadlessChrome", "Chrome");
+      await page.setUserAgent({ userAgent });
       await page.goto(new URL(route, baseUrl).href, { waitUntil: "networkidle0", timeout: 60_000 });
       await page.addStyleTag({ content: exportCss });
       await loadLazyImages(page);
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      // Embedded iframes (the Google map) load after images; give them a moment.
+      await new Promise((resolve) => setTimeout(resolve, 2500));
 
       const file = path.join(outDir, `${fileStem(route)}-${viewport.name}.jpg`);
-      await captureFullPage(page, viewport.deviceScaleFactor, file);
+      await captureFullPage(page, viewport, file);
       console.log(`exported ${path.relative(root, file)}`);
       await page.close();
     }

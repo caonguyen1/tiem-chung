@@ -39,7 +39,7 @@ export function FloatingActions() {
         <MobileAction href="#tu-van" label="Tư vấn" icon={<MessageCircleQuestion className="size-5" />} />
         <MobileAction href={siteSettings.zaloUrl} label="Chat BS" icon={<MessagesSquare className="size-5" />} />
         <AppLink
-          href="/dat-hen"
+          href="#dat-lich"
           className="m-1.5 flex flex-col items-center justify-center gap-0.5 rounded-xl bg-brand-600 text-[12px] font-semibold text-white"
         >
           <CalendarCheck className="size-5" />

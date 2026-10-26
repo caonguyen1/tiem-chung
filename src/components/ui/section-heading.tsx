@@ -27,7 +27,7 @@ export function SectionHeading({ eyebrow, title, description, action, tone = "li
         <h2 className={`text-[28px] leading-tight font-bold tracking-tight text-balance md:text-4xl ${dark ? "text-white" : "text-brand-800"}`}>
           {title}
         </h2>
-        {description && <p className={`mt-3 text-base text-pretty ${dark ? "text-brand-100" : "text-muted"}`}>{description}</p>}
+        {description && <p className={`mt-3 hidden text-base text-pretty md:block ${dark ? "text-brand-100" : "text-muted"}`}>{description}</p>}
       </div>
       {/* "See all" links only appear once the listing page exists. */}
       {action && isNavigable(action.href) && (

@@ -37,6 +37,11 @@ export type HeroBanner = {
   href: string;
   imageDesktop: string;
   imageMobile: string;
+  /**
+   * Real buttons laid over the artwork's empty bottom-left corner. Only for
+   * artwork drawn without baked-in buttons (scripts/banners/00-gioi-thieu.html).
+   */
+  actions?: NavItem[];
 };
 
 export type OutbreakAlert = {
@@ -113,4 +118,10 @@ export type Center = {
   phone: string;
   image: string;
   mapUrl: string;
+  /**
+   * The "Embed a map" URL from the center's own Google Maps listing. Left empty
+   * until the listing exists: a plain address search pins whatever business
+   * Google already knows at that address (a café, for 424 Nguyễn Thị Minh Khai).
+   */
+  mapEmbedUrl?: string;
 };

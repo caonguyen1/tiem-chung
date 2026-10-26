@@ -1,14 +1,14 @@
 "use client";
 
-import { ArrowRight, BellRing, PackageCheck, ShieldCheck } from "lucide-react";
-import { AppLink } from "@/components/ui/app-link";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 import type { VaccinePackage } from "@/content/types";
 import { discountPercent, formatVnd } from "@/lib/format";
-import { isNavigable } from "@/lib/routes";
+import { bookingHref } from "@/lib/routes";
 
 import { BrandIconByName } from "../icons/brand-icons";
+import { ButtonLink } from "../ui/button-link";
 import { SectionHeading } from "../ui/section-heading";
 
 const tabs = [
@@ -16,81 +16,67 @@ const tabs = [
   { kind: "audience", label: "Theo đối tượng" },
 ] as const;
 
-const promises = [
-  { Icon: ShieldCheck, text: "Giữ giá trọn gói" },
-  { Icon: PackageCheck, text: "Đảm bảo đủ vắc xin" },
-  { Icon: BellRing, text: "Nhắc lịch từng mũi" },
-];
-
 export function VaccinePackages({ packages }: { packages: VaccinePackage[] }) {
   const [kind, setKind] = useState<VaccinePackage["kind"]>("age");
   const list = packages.filter((p) => p.kind === kind);
 
   return (
-    <section className="py-12 lg:py-20">
+    <section id="goi-vac-xin" className="scroll-mt-20 py-12 lg:scroll-mt-24 lg:py-20">
       <div className="container-page">
         <SectionHeading
           eyebrow="Gói vắc xin"
-          title="Trọn gói theo từng giai đoạn"
-          description="Tiêm đủ, tiêm đúng lịch và tiết kiệm hơn so với tiêm lẻ. Bỏ chọn mũi đã tiêm để tính lại giá ngay trong trang chi tiết."
-          action={{ label: "Tất cả gói vắc xin", href: "/goi-vac-xin" }}
+          title="Gói tiêm theo từng giai đoạn"
+          description="Tiêm đủ, đúng lịch theo độ tuổi hoặc nhu cầu. Mỗi gói ghi rõ số loại vắc xin, số mũi và chi phí."
         />
 
-        <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div role="tablist" aria-label="Loại gói" className="inline-flex w-fit rounded-full bg-brand-50 p-1">
-            {tabs.map((tab) => (
-              <button
-                key={tab.kind}
-                type="button"
-                role="tab"
-                aria-selected={kind === tab.kind}
-                onClick={() => setKind(tab.kind)}
-                className={`rounded-full px-5 py-2.5 text-[15px] font-semibold transition ${
-                  kind === tab.kind ? "bg-white text-brand-700 shadow-card" : "text-muted hover:text-brand-700"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-[14px] text-muted">
-            {promises.map(({ Icon, text }) => (
-              <li key={text} className="flex items-center gap-1.5">
-                <Icon className="size-4 text-brand-500" />
-                {text}
-              </li>
-            ))}
-          </ul>
+        <div role="tablist" aria-label="Loại gói" className="mt-6 grid w-full grid-cols-2 rounded-full bg-brand-50 p-1 md:mt-8 md:inline-grid md:w-auto">
+          {tabs.map((tab) => (
+            <button
+              key={tab.kind}
+              type="button"
+              role="tab"
+              aria-selected={kind === tab.kind}
+              onClick={() => setKind(tab.kind)}
+              className={`rounded-full px-5 py-2.5 text-[15px] font-semibold transition ${
+                kind === tab.kind ? "bg-white text-brand-700 shadow-card" : "text-muted hover:text-brand-700"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
 
-        <ul role="tabpanel" className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Mobile: a swipeable row. Desktop: a grid. */}
+        <ul
+          role="tabpanel"
+          className="no-scrollbar -mx-4 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:mt-8 md:grid md:grid-cols-2 md:gap-4 md:overflow-visible md:px-0 lg:grid-cols-3"
+        >
           {list.map((pkg) => (
-            <li key={pkg.slug}>
+            <li key={pkg.slug} className="w-[85%] shrink-0 snap-start sm:w-[48%] md:w-auto">
               <PackageCard pkg={pkg} />
             </li>
           ))}
         </ul>
+
+        <div className="mt-6 flex justify-center md:mt-8">
+          <ButtonLink href="/goi-vac-xin" variant="outline">
+            Xem tất cả gói vắc xin
+            <ArrowRight className="size-4" />
+          </ButtonLink>
+        </div>
       </div>
     </section>
   );
 }
 
 function PackageCard({ pkg }: { pkg: VaccinePackage }) {
-  const detailHref = `/goi-vac-xin/${pkg.slug}`;
-  const live = isNavigable(detailHref);
   return (
-    <article
-      className={`group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-white transition duration-300 ${live ? "hover:-translate-y-1 hover:shadow-lift" : ""}`}
-    >
-      <div className="relative flex items-center gap-4 bg-gradient-to-br from-brand-50 to-white p-5">
-        <BrandIconByName name={pkg.icon} className="size-16 shrink-0" />
+    <article className="relative flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-white">
+      <div className="flex items-center gap-3.5 bg-gradient-to-br from-brand-50 to-white p-4 md:p-5">
+        <BrandIconByName name={pkg.icon} className="size-14 shrink-0 md:size-16" />
         <div className="min-w-0">
-          <p className="text-[13px] font-medium text-brand-500">{pkg.audienceLabel}</p>
-          <h3 className="mt-0.5 text-lg leading-snug font-bold text-brand-800">
-            <AppLink href={detailHref} className="after:absolute after:inset-0">
-              {pkg.name}
-            </AppLink>
-          </h3>
+          <p className="text-[13px] font-semibold text-brand-500">{pkg.audienceLabel}</p>
+          <h3 className="mt-0.5 text-[18px] leading-snug font-bold text-brand-800">{pkg.name}</h3>
         </div>
         {pkg.highlight && (
           <span className="absolute top-3 right-3 rounded-full bg-sun-400 px-2.5 py-0.5 text-[11px] font-bold text-brand-900">
@@ -98,25 +84,39 @@ function PackageCard({ pkg }: { pkg: VaccinePackage }) {
           </span>
         )}
       </div>
-      <div className="flex flex-1 flex-col p-5 pt-4">
-        <p className="text-[14px] text-muted">
-          <strong className="font-semibold text-ink">{pkg.vaccineCount} loại vắc xin</strong> · {pkg.doses} mũi tiêm
-        </p>
-        <div className="mt-auto flex items-end justify-between gap-3 pt-5">
-          <div>
-            <p className="flex items-center gap-2 text-[13px]">
-              <span className="text-muted line-through">{formatVnd(pkg.originalPrice)}</span>
-              <span className="rounded bg-alert/10 px-1.5 font-semibold text-alert">-{discountPercent(pkg.price, pkg.originalPrice)}%</span>
-            </p>
-            <p className="text-[22px] font-bold text-brand-700">{formatVnd(pkg.price)}</p>
-          </div>
-          {live && (
-            <span className="grid size-11 place-items-center rounded-full bg-brand-600 text-white transition group-hover:bg-sun-400 group-hover:text-brand-900">
-              <ArrowRight className="size-5" />
-            </span>
-          )}
+
+      <div className="flex flex-1 flex-col p-4 pt-3 md:p-5 md:pt-4">
+        <dl className="grid grid-cols-2 gap-2">
+          <Stat label="Loại vắc xin" value={pkg.vaccineCount} />
+          <Stat label="Mũi tiêm" value={pkg.doses} />
+        </dl>
+
+        <div className="mt-4">
+          <p className="flex items-center gap-2 text-[13px]">
+            <span className="text-muted line-through">{formatVnd(pkg.originalPrice)}</span>
+            <span className="rounded bg-alert/10 px-1.5 font-semibold text-alert">-{discountPercent(pkg.price, pkg.originalPrice)}%</span>
+          </p>
+          <p className="text-[22px] font-bold text-brand-700">{formatVnd(pkg.price)}</p>
+        </div>
+
+        <div className="mt-auto grid grid-cols-2 gap-2 pt-4">
+          <ButtonLink href={`/goi-vac-xin/${pkg.slug}`} variant="outline" className="h-10 px-3 text-[14px]">
+            Xem chi tiết
+          </ButtonLink>
+          <ButtonLink href={bookingHref(pkg.slug)} className="h-10 px-3 text-[14px]">
+            Đặt lịch
+          </ButtonLink>
         </div>
       </div>
     </article>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: number }) {
+  return (
+    <div className="flex flex-col-reverse rounded-xl bg-canvas px-3 py-2">
+      <dt className="text-[12px] text-muted">{label}</dt>
+      <dd className="text-[18px] font-bold text-ink">{value}</dd>
+    </div>
   );
 }

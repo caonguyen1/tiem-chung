@@ -1,42 +1,41 @@
 import { AppLink } from "@/components/ui/app-link";
-import { siteSettings } from "@/content/site";
 import type { OutbreakAlert } from "@/content/types";
+import { BOOKING_HASH, CONSULT_HASH } from "@/lib/routes";
 
-import { AdvisorIcon, BookIcon, DoctorChatIcon, LocationIcon, SyringeIcon } from "../icons/brand-icons";
+import { CalendarIcon, DoctorChatIcon, PackageIcon, SyringeIcon } from "../icons/brand-icons";
 import { OutbreakTicker } from "./outbreak-ticker";
 
+// The four jobs the client wants one tap away (feedback 2026-10-26).
 const shortcuts = [
-  { label: "Tôi nên tiêm gì?", hint: "Gợi ý theo tuổi", href: "/toi-nen-tiem-gi", Icon: AdvisorIcon },
-  { label: "Chat với bác sĩ", hint: "Qua Zalo", href: siteSettings.zaloUrl, Icon: DoctorChatIcon },
-  { label: "Danh mục vắc xin", hint: "27 nhóm bệnh", href: "/vac-xin", Icon: SyringeIcon },
-  { label: "Trung tâm gần tôi", hint: "Chỉ đường", href: "/he-thong-trung-tam", Icon: LocationIcon },
-  { label: "Kiến thức tiêm chủng", hint: "Bác sĩ kiểm duyệt", href: "/kien-thuc", Icon: BookIcon },
+  { label: "Tra cứu vắc xin", hint: "Theo bệnh, tên vắc xin", href: "#tra-cuu-vac-xin", Icon: SyringeIcon },
+  { label: "Gói vắc xin", hint: "Theo độ tuổi, đối tượng", href: "#goi-vac-xin", Icon: PackageIcon },
+  { label: "Đặt lịch tiêm", hint: "Xác nhận qua điện thoại", href: BOOKING_HASH, Icon: CalendarIcon },
+  { label: "Tư vấn", hint: "Bác sĩ, chuyên viên gọi lại", href: CONSULT_HASH, Icon: DoctorChatIcon },
 ];
 
-/** Outbreak alerts + the five shortcut tiles, right under the banner. */
+/** Shortcut tiles + outbreak alerts, right under the banner. */
 export function QuickAccess({ alerts }: { alerts: OutbreakAlert[] }) {
   return (
-    <section aria-label="Lối tắt" className="pt-4 md:pt-5">
+    <section aria-label="Lối tắt" className="pt-3 md:pt-5">
       <div className="container-page">
         <div className="overflow-hidden rounded-[var(--radius-card)] bg-white shadow-card ring-1 ring-line/70">
-          <OutbreakTicker alerts={alerts} />
-
-          <ul className="no-scrollbar flex snap-x snap-mandatory gap-1 overflow-x-auto p-2 sm:grid sm:grid-cols-5 sm:overflow-visible md:p-3">
+          <ul className="grid grid-cols-4 gap-1 p-2 md:p-3">
             {shortcuts.map(({ label, hint, href, Icon }) => (
-              <li key={label} className="w-[38%] shrink-0 snap-start sm:w-auto">
+              <li key={label}>
                 <AppLink
                   href={href}
-                  className="group flex h-full flex-col items-center gap-3 rounded-2xl px-2 py-4 text-center transition hover:bg-brand-50 lg:flex-row lg:gap-3.5 lg:px-4 lg:text-left"
+                  className="group flex h-full flex-col items-center gap-2 rounded-2xl px-1 py-3 text-center transition hover:bg-brand-50 md:flex-row md:gap-3.5 md:px-4 md:py-4 md:text-left"
                 >
-                  <Icon className="size-14 shrink-0 transition duration-300 group-hover:-translate-y-0.5 group-hover:scale-105 lg:size-16" />
+                  <Icon className="size-12 shrink-0 transition duration-300 group-hover:scale-105 md:size-14 lg:size-16" />
                   <span>
-                    <span className="block text-[15px] leading-snug font-semibold text-brand-800">{label}</span>
-                    <span className="mt-0.5 block text-[13px] text-muted">{hint}</span>
+                    <span className="block text-[13px] leading-tight font-semibold text-brand-800 md:text-[16px]">{label}</span>
+                    <span className="mt-0.5 hidden text-[13px] text-muted md:block">{hint}</span>
                   </span>
                 </AppLink>
               </li>
             ))}
           </ul>
+          <OutbreakTicker alerts={alerts} />
         </div>
       </div>
     </section>
