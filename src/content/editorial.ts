@@ -88,6 +88,9 @@ export const centers: Center[] = [
     openingHours: "7:30 – 20:00 hằng ngày",
     phone: "0593 888 666",
     image: "/images/facade.jpg",
-    mapUrl: "https://maps.google.com/?q=424+Nguyen+Thi+Minh+Khai+Quy+Nhon",
+    // The center's own Google Maps listing, sent by the client on 2026-10-27.
+    mapUrl: "https://maps.app.goo.gl/BAJLobQ1btSiGvwZ6",
+    mapEmbedUrl:
+      "https://maps.google.com/maps?q=Trung+T%C3%A2m+Ti%C3%AAm+Ch%E1%BB%A7ng+T%C3%A2m+Tr%C3%AD&ll=13.7587829,109.2117828&z=17&output=embed",
   },
 ];

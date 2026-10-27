@@ -38,4 +38,4 @@ Khách ưu tiên mobile và muốn trang chủ tập trung vào ba việc: tìm 
 
 ## Cần hỏi khách
 
-- Link nhúng Google Maps của chính trung tâm (khi điểm Google Business đã tạo xong). Tìm theo địa chỉ hiện đang ra "Mộc coffe" ở cùng số 424, nên tạm thời hiển thị khung bản đồ có nút mở Google Maps (`mapEmbedUrl` trong dữ liệu trung tâm).
+- ~~Link Google Maps của trung tâm~~: khách gửi ngày 2026-10-27 (https://maps.app.goo.gl/BAJLobQ1btSiGvwZ6), đã gắn vào `mapUrl` và `mapEmbedUrl`.
