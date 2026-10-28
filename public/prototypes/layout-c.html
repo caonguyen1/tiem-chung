@@ -1,0 +1,349 @@
+﻿<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Phương án C – Rực rỡ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" />
+<link rel="stylesheet" href="banner-c.css" />
+<style>
+  /* Phương án C: nhiều màu, nhiều lớp. Xanh Tâm Trí làm nền chính, vàng làm nút
+     và điểm nhấn, thêm bảng màu pastel cho nhóm bệnh và thẻ sản phẩm. */
+  :root {
+    --navy: #283c96;
+    --blue: #2f5bdc;
+    --bright: #3f7bff;
+    --ink: #1c2a66;
+    --body: #4a5277;
+    --muted: #7a819e;
+    --page: #eef3ff;
+    --sun: #fadc00;
+    --orange: #f04e23;
+    --line: #e2e8f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Google Sans Flex", system-ui, sans-serif; color: var(--body); background: var(--page); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  svg { display: block; }
+  .wrap { width: 100%; max-width: 1232px; margin: 0 auto; padding: 0 16px; }
+  h1, h2, h3, h4 { color: var(--ink); font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
+  h2 { font-size: 32px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: 999px; font-weight: 700; font-size: 15px; white-space: nowrap; }
+  .btn-sun { background: var(--navy); color: #fff; }
+  .btn-white { background: #fff; color: var(--navy); }
+  .btn-navy { background: var(--navy); color: #fff; }
+  .btn-line { background: #fff; color: var(--navy); box-shadow: inset 0 0 0 1.5px #c9d4f3; }
+  .btn-sm { height: 40px; padding: 0 16px; font-size: 14px; }
+  .link { display: inline-flex; align-items: center; gap: 4px; color: var(--blue); font-weight: 700; font-size: 15px; }
+  .link svg { width: 16px; height: 16px; }
+  section { padding: 64px 0; }
+  .head { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+  .head h2 { display: flex; align-items: center; gap: 12px; }
+  .head h2 .mark { width: 8px; height: 30px; border-radius: 8px; background: linear-gradient(var(--sun) 0 50%, var(--bright) 50%); }
+
+  /* Header */
+  .topbar { background: #1c2a66; color: #c5cfec; font-size: 13.5px; }
+  .topbar .wrap { display: flex; gap: 28px; height: 36px; align-items: center; }
+  .topbar span { display: inline-flex; gap: 6px; align-items: center; }
+  .topbar svg { width: 14px; height: 14px; color: var(--sun); }
+  .topbar b { color: #fff; }
+  .topbar .r { margin-left: auto; }
+  .mast { background: linear-gradient(100deg, #283c96 0%, #2f5bdc 60%, #3f7bff 100%); }
+  .mast .wrap { display: flex; align-items: center; gap: 28px; height: 84px; }
+  .mast .logo { height: 46px; }
+  .mast .search { flex: 1; display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 6px 0 20px; border-radius: 999px; background: #fff; color: var(--muted); font-size: 15px; }
+  .mast .search svg { width: 20px; height: 20px; color: var(--navy); }
+  .mast .search b { margin-left: auto; width: 40px; height: 40px; border-radius: 50%; background: var(--navy); display: grid; place-items: center; color: #fff; }
+  .mast .search b svg { color: #fff; }
+  .mast .acts { display: flex; gap: 10px; }
+  .mast .ghost { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 18px; border-radius: 999px; background: rgb(255 255 255 / 0.14); color: #fff; font-weight: 700; font-size: 15px; }
+  .mast .ghost svg { width: 18px; height: 18px; }
+  .menu { background: #fff; box-shadow: 0 6px 20px -16px rgb(28 42 102 / 0.5); }
+  .menu .wrap { display: flex; gap: 34px; height: 52px; align-items: center; font-weight: 600; font-size: 15px; color: var(--ink); }
+  .menu .hot { color: var(--blue); }
+
+  /* Hero row */
+  .hero { padding: 24px 0 0; }
+  .hero-grid { display: grid; grid-template-columns: 800px 1fr; gap: 20px; }
+  .hero-grid .bn { box-shadow: 0 24px 50px -28px rgb(28 42 102 / 0.6); }
+  .dots { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); display: flex; gap: 6px; padding: 6px 10px; border-radius: 999px; background: rgb(0 0 0 / 0.18); z-index: 5; }
+  .dots i { width: 8px; height: 8px; border-radius: 99px; background: rgb(255 255 255 / 0.6); }
+  .dots i.on { width: 24px; background: #fff; }
+  .alerts { display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: 28px; background: #fff; }
+  .alerts h3 { display: flex; align-items: center; gap: 8px; font-size: 17px; color: var(--orange); }
+  .alerts h3 svg { width: 20px; height: 20px; }
+  .acard { position: relative; flex: 1; display: flex; flex-direction: column; justify-content: end; padding: 18px; border-radius: 20px; color: #fff; overflow: hidden; }
+  .acard .ico { position: absolute; right: 12px; top: 12px; width: 76px; height: 76px; }
+  .acard small { display: inline-block; width: fit-content; padding: 3px 10px; border-radius: 999px; background: rgb(255 255 255 / 0.22); font-size: 12px; font-weight: 700; }
+  .acard b { display: block; margin-top: 8px; font-size: 18px; line-height: 1.25; }
+  .acard span { font-size: 13.5px; opacity: 0.9; }
+  .a1 { background: linear-gradient(140deg, #3f7bff, #283c96); }
+  .a2 { background: linear-gradient(140deg, #5c93ff, #2f5bdc); }
+  .usp { margin-top: 20px; display: grid; grid-template-columns: repeat(4, 1fr); padding: 16px 8px; border-radius: 24px; background: #fff; }
+  .usp div { display: flex; align-items: center; gap: 12px; padding: 0 16px; border-left: 1px solid var(--line); }
+  .usp div:first-child { border-left: 0; }
+  .usp svg { width: 48px; height: 48px; flex-shrink: 0; }
+  .usp b { display: block; color: var(--ink); font-size: 15.5px; }
+  .usp span { font-size: 13px; color: var(--muted); line-height: 1.35; }
+
+  /* Quick tiles */
+  .quick { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .qt { position: relative; display: flex; align-items: center; gap: 14px; padding: 20px; border-radius: 24px; color: #fff; overflow: hidden; min-height: 108px; }
+  .qt svg { width: 60px; height: 60px; flex-shrink: 0; }
+  .qt b { display: block; font-size: 18.5px; }
+  .qt span { font-size: 13.5px; opacity: 0.9; }
+  .qt::after { content: ""; position: absolute; right: -30px; bottom: -40px; width: 120px; height: 120px; border-radius: 50%; background: rgb(255 255 255 / 0.14); }
+  .q1 { background: linear-gradient(135deg, #3f7bff, #283c96); }
+  .q2, .q4 { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+  .q2 span, .q4 span { color: var(--muted); opacity: 1; }
+  .q2::after, .q4::after { display: none; }
+  .q3 { background: linear-gradient(135deg, #283c96, #1c2a66); }
+  
+
+  /* Finder */
+  .finder { background: linear-gradient(180deg, var(--page) 0%, #fff 30%); }
+  .find-box { padding: 32px; border-radius: 32px; background: #fff; box-shadow: 0 20px 50px -34px rgb(28 42 102 / 0.5); }
+  .groups { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; }
+  .group { background: #fff; box-shadow: inset 0 0 0 1px var(--line); display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 6px 16px; border-radius: 22px; font-size: 14.5px; font-weight: 700; color: var(--ink); text-align: center; border: 2px solid transparent; }
+  .group svg { width: 60px; height: 60px; }
+  .group.on { background: #f2f6ff; box-shadow: none; border-color: var(--navy); box-shadow: 0 10px 20px -12px rgb(40 60 150 / 0.6); }
+  .result-label { margin: 28px 0 16px; display: flex; align-items: center; justify-content: space-between; font-size: 15px; color: var(--muted); }
+  .result-label b { color: var(--ink); }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .vcard { display: flex; flex-direction: column; border-radius: 24px; background: #fff; border: 1px solid var(--line); overflow: hidden; }
+  .vcard .art { position: relative; height: 150px; display: grid; place-items: center; }
+  .vcard .art i, .vcard .art .vial-box { width: 58px; }
+  .vcard .art .flag { position: absolute; left: 12px; top: 12px; padding: 3px 10px; border-radius: 999px; background: #fff; box-shadow: 0 2px 6px -2px rgb(28 42 102 / 0.2); font-size: 12px; font-weight: 700; color: var(--ink); }
+  .vcard .info { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+  .vcard h3 { font-size: 19px; }
+  .vcard p { margin-top: 4px; font-size: 14px; line-height: 1.45; }
+  .vcard .bottom { margin-top: auto; padding-top: 14px; display: flex; align-items: center; justify-content: space-between; }
+  .vcard .price { font-size: 19px; font-weight: 800; color: var(--navy); }
+  .center { margin-top: 28px; display: flex; justify-content: center; }
+
+  /* Packages */
+  .pkg { background: linear-gradient(120deg, #283c96, #2f5bdc 60%, #3f7bff); position: relative; overflow: hidden; }
+  .pkg::before { content: ""; position: absolute; inset: -50%; background: repeating-conic-gradient(from 0deg at 85% 20%, rgb(255 255 255 / 0.05) 0 6deg, transparent 6deg 18deg); }
+  .pkg .wrap { position: relative; }
+  .pkg h2 { color: #fff; }
+  .pkg .head p { color: #c5cfec; margin-top: 4px; }
+  .seg { display: inline-flex; padding: 5px; border-radius: 999px; background: rgb(255 255 255 / 0.14); }
+  .seg b { padding: 9px 20px; border-radius: 999px; font-size: 15px; font-weight: 600; color: #fff; }
+  .seg b.on { background: #fff; color: var(--navy); }
+  .pcard { position: relative; display: flex; flex-direction: column; border-radius: 24px; background: #fff; overflow: hidden; }
+  .pcard .top { position: relative; padding: 18px 18px 16px; display: flex; gap: 12px; align-items: center; }
+  .pcard .top svg { width: 56px; height: 56px; flex-shrink: 0; }
+  .pcard .top small { display: block; font-size: 13px; font-weight: 700; color: var(--blue); }
+  .pcard h3 { font-size: 16.5px; white-space: nowrap; }
+  .pcard .badge { position: absolute; top: 0; right: 18px; padding: 6px 10px 8px; border-radius: 0 0 12px 12px; background: var(--navy); color: var(--sun); font-size: 12px; font-weight: 800; }
+  .pcard .stats { margin: 0 18px; display: flex; gap: 8px; }
+  .pcard .stats span { flex: 1; padding: 8px 12px; border-radius: 14px; background: var(--page); font-size: 12.5px; line-height: 1.3; color: var(--muted); }
+  .pcard .stats b { display: block; font-size: 18px; color: var(--ink); }
+  .pcard .price { margin: 16px 18px 0; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .pcard .price b { font-size: 24px; font-weight: 800; color: var(--navy); letter-spacing: -0.01em; }
+  .pcard .price s { font-size: 13.5px; color: var(--muted); }
+  .pcard .price em { font-style: normal; padding: 2px 8px; border-radius: 999px; background: #ffe6dc; color: var(--orange); font-size: 12px; font-weight: 800; }
+  .pcard .acts { margin: 16px 18px 18px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 8px; }
+  .pcard .acts .btn { height: 44px; padding: 0 10px; }
+  .pcard.hot { box-shadow: 0 0 0 3px #9fc0ff; }
+
+  /* Why */
+  .why-box { display: grid; grid-template-columns: 360px 1fr; gap: 32px; align-items: center; padding: 36px; border-radius: 32px; background: #fff; }
+  .why-box h2 { font-size: 34px; }
+  .why-box p.lead { margin-top: 10px; color: var(--muted); }
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .why-grid div { padding: 22px 18px; border-radius: 22px; background: #f4f7ff; }
+  .why-grid svg { width: 56px; height: 56px; }
+  .why-grid h3 { margin-top: 14px; font-size: 17px; }
+  .why-grid p { margin-top: 4px; font-size: 14px; line-height: 1.45; }
+
+  /* Recommend */
+  .rec-box { position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; padding: 30px 36px; border-radius: 28px; background: linear-gradient(110deg, #1c2a66, #283c96 55%, #2f5bdc); color: #fff; overflow: hidden; }
+  .rec-box h2 { color: #fff; font-size: 26px; }
+  .rec-box p { opacity: 0.9; }
+  .rec-box svg.ic { width: 76px; height: 76px; }
+  .rec-form { display: flex; gap: 10px; }
+  .select { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 54px; min-width: 180px; padding: 0 16px 0 20px; border-radius: 999px; background: #fff; color: var(--ink); font-weight: 600; font-size: 15px; }
+  .select small { display: block; font-size: 11.5px; color: var(--muted); line-height: 1; margin-bottom: 3px; font-weight: 500; }
+  .select span { line-height: 1.1; }
+  .select svg { width: 16px; height: 16px; transform: rotate(90deg); color: var(--muted); }
+  .rec-form .btn { height: 54px; }
+
+  /* Knowledge */
+  .news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .news article { border-radius: 24px; background: #fff; overflow: hidden; border: 1px solid var(--line); }
+  .news .img { position: relative; }
+  .news img { width: 100%; height: 180px; object-fit: cover; }
+  .news .tag { position: absolute; left: 12px; bottom: 12px; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 800; }
+  .news .body { padding: 16px 18px 20px; }
+  .news .meta { font-size: 13px; color: var(--muted); }
+  .news h3 { margin-top: 6px; font-size: 17px; line-height: 1.35; }
+
+  /* FAQ + contact */
+  .faq-wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: start; }
+  .faq { margin-top: 4px; display: grid; gap: 10px; }
+  .faq div { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 18px 18px 18px 22px; border-radius: 20px; background: #fff; border: 1px solid var(--line); font-size: 16px; font-weight: 600; color: var(--ink); }
+  .faq div.open { border-color: var(--bright); background: #f6f9ff; }
+  .faq div.open p { display: block; }
+  .faq span { width: 32px; height: 32px; border-radius: 50%; background: #eef3ff; display: grid; place-items: center; color: var(--navy); flex-shrink: 0; }
+  .faq svg { width: 16px; height: 16px; }
+  .contact { border-radius: 28px; background: linear-gradient(150deg, #283c96, #2f5bdc); color: #d5dcf3; overflow: hidden; }
+  .contact img { width: 100%; height: 210px; object-fit: cover; }
+  .contact .body { padding: 24px 26px 26px; }
+  .contact h3 { color: #fff; font-size: 22px; }
+  .contact ul { list-style: none; margin-top: 14px; display: grid; gap: 10px; font-size: 15px; }
+  .contact li { display: flex; gap: 10px; }
+  .contact li svg { width: 18px; height: 18px; color: var(--sun); margin-top: 3px; flex-shrink: 0; }
+  .contact .acts { margin-top: 20px; display: flex; gap: 10px; }
+  .contact .btn-line { background: rgb(255 255 255 / 0.14); color: #fff; box-shadow: none; }
+
+
+  /* Hoa văn cho box xanh: đường cong từ logo, vệt sáng và lưới chấm. */
+  .tex { position: relative; isolation: isolate; }
+  .tex::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240' fill='none'%3E%3Cpath d='M60 260C120 120 250 50 420 40' stroke='%23fff' stroke-opacity='.14' stroke-width='2'/%3E%3Cpath d='M110 270C170 150 280 95 420 90' stroke='%23fff' stroke-opacity='.1' stroke-width='2'/%3E%3Cpath d='M160 280C215 185 300 140 420 138' stroke='%23FADC00' stroke-opacity='.55' stroke-width='3'/%3E%3C/svg%3E") right bottom / auto 100% no-repeat,
+      radial-gradient(circle at 88% 0%, rgb(255 255 255 / 0.22), transparent 42%),
+      radial-gradient(rgb(255 255 255 / 0.1) 1px, transparent 1.6px) 0 0 / 14px 14px; }
+
+  footer { background: #1c2a66; color: #aeb9e0; padding: 56px 0 28px; font-size: 14.5px; }
+  footer .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
+  footer .logo { height: 48px; }
+  footer h4 { color: #fff; font-size: 15.5px; margin-bottom: 14px; }
+  footer ul { list-style: none; display: grid; gap: 8px; }
+  footer .copy { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / 0.12); font-size: 13.5px; display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap">
+  <span><i data-ui="pin" style="display:inline-block;width:14px;height:14px;color:#fadc00"></i>424 Nguyễn Thị Minh Khai, Quy Nhơn</span>
+  <span><i data-ui="clock" style="display:inline-block;width:14px;height:14px;color:#fadc00"></i>Mở cửa 7:30 – 20:00 hằng ngày</span>
+  <span class="r"><i data-ui="phone" style="display:inline-block;width:14px;height:14px;color:#fadc00"></i>Tổng đài <b>0593 888 666</b></span>
+</div></div>
+<header class="mast tex"><div class="wrap">
+  <img class="logo" src="/images/logo-horizontal-white.png" alt="Tiêm chủng Tâm Trí" />
+  <div class="search"><span data-ui="search"></span>Bạn cần tìm vắc xin gì?<b data-ui="search" style="padding:11px"></b></div>
+  <div class="acts">
+    <a class="ghost"><span data-ui="phone"></span>Tư vấn</a>
+    <a class="btn btn-white">Đặt lịch tiêm</a>
+  </div>
+</div></header>
+<nav class="menu"><div class="wrap">
+  <a>Vắc xin phòng bệnh</a><a>Gói vắc xin</a><a class="hot">Khuyến mãi</a><a>Tôi nên tiêm gì?</a><a>Kiến thức tiêm chủng</a><a>Đội ngũ chuyên môn</a><a>Về chúng tôi</a>
+</div></nav>
+
+<div class="hero"><div class="wrap">
+  <div class="hero-grid">
+    <div class="bn bn-pkg">
+      <div class="bg"></div><div class="rays"></div>
+      <span class="bokeh" style="width:180px;height:180px;right:-40px;bottom:-60px;background:rgb(250 220 0 / .35)"></span>
+      <span class="bokeh" style="width:90px;height:90px;left:380px;top:-30px;background:rgb(255 255 255 / .14)"></span>
+      <div class="copy">
+        <span class="kicker"><img src="/images/logo-mark.png" alt="" />Tiêm chủng Tâm Trí</span>
+        <h2><span class="t1">Trọn gói vắc xin</span><span class="t2" style="font-size:44px">cho bé 0–24 tháng</span></h2>
+        <p class="desc">Bác sĩ Sản – Nhi sắp sẵn lịch, nhắc từng mũi.</p>
+        <div class="pills">
+          <span class="pill"><i data-icon="stethoscope"></i>Khám sàng lọc</span>
+          <span class="pill"><i data-icon="shield"></i>Vắc xin rõ nguồn gốc</span>
+        </div>
+      </div>
+      <a class="cta">Xem gói vắc xin<i>›</i></a>
+      <div class="photo" style="right:44px;top:50px;width:270px;height:270px"><img src="/images/family.jpg" alt="" style="object-position:50% 70%" /></div>
+      <i class="vial" data-vial="Hexaxim|#fadc00" style="right:290px;top:70px;width:58px;transform:rotate(-12deg)"></i>
+      <i class="vial" data-vial="Prevenar|#5ea0ff" style="right:30px;top:226px;width:70px;transform:rotate(10deg)"></i>
+      <div class="sticker" style="right:236px;top:282px"><span><b>25 mũi</b>13 loại<br />vắc xin</span></div>
+      <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+    </div>
+    <aside class="alerts">
+      <h3><span data-ui="alert"></span>Cảnh báo dịch</h3>
+      <a class="acard a1 tex"><span class="ico"><i data-icon="mosquito" data-disc="#ffffff"></i></span><small>Đang vào mùa</small><b>Sốt xuất huyết đang vào mùa cao điểm</b><span>Dấu hiệu nặng và cách phòng</span></a>
+      <a class="acard a2 tex"><span class="ico"><i data-icon="influenza" data-disc="#ffffff"></i></span><small>Giao mùa</small><b>Cúm mùa tăng khi thời tiết chuyển lạnh</b><span>Ai nên tiêm nhắc lại mỗi năm</span></a>
+    </aside>
+  </div>
+  <div class="usp"><template data-each="why"><div><i data-icon="{{it[0]}}" data-disc="#F2F4FB"></i><p><b>{{it[1]}}</b><span>{{it[2]}}</span></p></div></template></div>
+</div></div>
+
+<section style="padding-bottom:0"><div class="wrap">
+  <div class="quick">
+    <a class="qt q1 tex"><i data-icon="syringe" data-disc="#ffffff"></i><p><b>Tra cứu vắc xin</b><span>Theo bệnh, tên vắc xin</span></p></a>
+    <a class="qt q2"><i data-icon="package" data-disc="#F2F4FB"></i><p><b>Gói vắc xin</b><span>Theo độ tuổi, đối tượng</span></p></a>
+    <a class="qt q3 tex"><i data-icon="calendar" data-disc="#ffffff"></i><p><b>Đặt lịch tiêm</b><span>Xác nhận qua điện thoại</span></p></a>
+    <a class="qt q4"><i data-icon="chat" data-disc="#F2F4FB"></i><p><b>Tư vấn</b><span>Bác sĩ gọi lại cho bạn</span></p></a>
+  </div>
+</div></section>
+
+<section class="finder"><div class="wrap">
+  <div class="head"><h2><span class="mark"></span>Vắc xin theo nhóm bệnh</h2><a class="link">Xem tất cả vắc xin<span data-ui="chevron"></span></a></div>
+  <div class="find-box">
+    <div class="groups"><template data-each="groups"><span class="group {{i === 0 ? 'on' : ''}}" ><i data-icon="{{it[1]}}" data-disc="#F2F4FB"></i>{{it[0]}}</span></template></div>
+    <p class="result-label"><span>Vắc xin phòng <b>Phế cầu khuẩn</b></span><span>4 vắc xin</span></p>
+    <div class="cards"><template data-each="vaccines"><article class="vcard"><div class="art" style="background:{{'linear-gradient(160deg,#f4f7ff,#e3ebff)'}}"><span class="flag">{{it.origin}}</span><i data-vial="{{it.name.split(' ')[0]}}|{{i % 2 ? '#3f7bff' : '#fadc00'}}" style="width:62px;transform:rotate(-8deg)"></i></div><div class="info"><h3>{{it.name}}</h3><p>{{it.prevents}}</p><div class="bottom"><span class="price">{{vnd(it.price)}}</span><a class="btn btn-sun btn-sm">Đặt lịch</a></div></div></article></template></div>
+  </div>
+</div></section>
+
+<section class="pkg tex"><div class="wrap">
+  <div class="head"><div><h2>Gói vắc xin trọn gói</h2><p>Lịch tiêm bác sĩ sắp sẵn, không lo trễ mũi.</p></div><div class="seg"><b class="on">Theo độ tuổi</b><b>Theo đối tượng</b></div></div>
+  <div class="cards"><template data-each="packages"><article class="pcard {{it.hot ? 'hot' : ''}}">{{it.hot ? '<span class="badge">Phổ biến nhất</span>' : ''}}<div class="top"><i data-icon="{{it.icon}}" data-disc="#F2F4FB"></i><div><small>{{it.who}}</small><h3>{{it.name}}</h3></div></div><div class="stats"><span><b>{{it.doses}}</b>mũi tiêm</span><span><b>{{it.count}}</b>loại vắc xin</span></div><div class="price"><b>{{vnd(it.price)}}</b><s>{{vnd(it.was)}}</s><em>-{{Math.round((it.was - it.price) / it.was * 100)}}%</em></div><div class="acts"><a class="btn btn-line">Chi tiết</a><a class="btn btn-sun">Đặt lịch</a></div></article></template></div>
+  <div class="center"><a class="btn btn-white">Xem tất cả gói vắc xin</a></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="why-box">
+    <div><h2>Vì sao gia đình chọn Tâm Trí?</h2><p class="lead">Cùng hệ thống Phòng khám Sản – Nhi và Nhà thuốc Tâm Trí.</p><a class="btn btn-navy" style="margin-top:22px">Tìm hiểu đội ngũ chuyên môn</a></div>
+    <div class="why-grid"><template data-each="why"><div><i data-icon="{{it[0]}}"></i><h3>{{it[1]}}</h3><p>{{it[2]}}</p></div></template></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="rec-box tex">
+    <i class="ic" data-icon="advisor" data-disc="#ffffff"></i>
+    <div><h2>Chưa biết nên tiêm gì?</h2><p>Chọn độ tuổi và giới tính, chúng tôi gợi ý vắc xin phù hợp.</p></div>
+    <div class="rec-form">
+      <div class="select"><span><small>Độ tuổi</small>0 – 6 tháng</span><span data-ui="chevron"></span></div>
+      <div class="select"><span><small>Giới tính</small>Bé gái</span><span data-ui="chevron"></span></div>
+      <a class="btn btn-white">Xem gợi ý</a>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="head"><h2><span class="mark"></span>Kiến thức tiêm chủng</h2><a class="link">Xem tất cả bài viết<span data-ui="chevron"></span></a></div>
+  <div class="news"><template data-each="articles"><article><div class="img"><img src="{{it.img}}" alt="" /><span class="tag" style="background:#fff;color:#283c96">{{it.tag}}</span></div><div class="body"><p class="meta">{{it.date}}</p><h3>{{it.title}}</h3></div></article></template></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap faq-wrap">
+  <div>
+    <div class="head"><h2><span class="mark"></span>Câu hỏi thường gặp</h2></div>
+    <div class="faq"><template data-each="faqs"><div>{{it}}<span>{{UI.plus}}</span></div></template></div>
+  </div>
+  <div class="contact tex">
+    <img src="/images/facade.jpg" alt="" />
+    <div class="body">
+      <h3>Tâm Trí Quy Nhơn</h3>
+      <ul><li>{{pin}}424 Nguyễn Thị Minh Khai, P. Quy Nhơn Nam, T. Gia Lai</li><li>{{clock}}7:30 – 20:00 hằng ngày</li><li>{{phone}}0593 888 666</li></ul>
+      <div class="acts"><a class="btn btn-white btn-sm">Chỉ đường</a><a class="btn btn-line btn-sm">Gọi tổng đài</a></div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div><img class="logo" src="/images/logo-horizontal-white.png" alt="" /><p style="margin-top:16px;max-width:300px">Tận tâm đồng hành cùng bạn. Thuộc hệ thống Y tế Tâm Trí, Quy Nhơn.</p></div>
+    <div><h4>Dịch vụ</h4><ul><li>Vắc xin phòng bệnh</li><li>Gói vắc xin</li><li>Tôi nên tiêm gì?</li><li>Bảng giá</li></ul></div>
+    <div><h4>Về Tâm Trí</h4><ul><li>Giới thiệu</li><li>Đội ngũ chuyên môn</li><li>Kiến thức tiêm chủng</li></ul></div>
+    <div><h4>Chính sách</h4><ul><li>Quy chế hoạt động</li><li>Bảo mật</li><li>Thanh toán</li></ul></div>
+  </div>
+  <div class="copy"><span>© 2026 Trung tâm Tiêm chủng Tâm Trí</span><span>Tổng đài 0593 888 666</span></div>
+</div></footer>
+
+<script src="data.js"></script>
+<script>
+  document.querySelector(".contact ul").innerHTML = document.querySelector(".contact ul").innerHTML.replace(/\{\{(\w+)\}\}/g, (_, k) => UI[k]);
+  renderTemplates();
+</script>
+<script src="icons.js"></script>
+<script src="banner-c.js"></script>
+</body>
+</html>

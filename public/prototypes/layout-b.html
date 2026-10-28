@@ -1,0 +1,350 @@
+﻿<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Phương án B – Ấm áp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght,ROND@6..144,1..1000,0..100&display=swap" />
+<style>
+  /* Phương án B: nền xanh rất nhạt, thẻ trắng bo tròn lớn, khung ảnh hình vòm
+     (lấy từ đường cong mẹ ôm con trong logo), mảng vàng nhạt cho khối gói. */
+  :root {
+    --navy: #283c96;
+    --navy-soft: #3a51ab;
+    --ink: #1c2a66;
+    --body: #4d5679;
+    --muted: #7d84a2;
+    --page: #f3f6fd;
+    --sky: #e4ebfb;
+    --butter: #fff4c4;
+    --butter-deep: #ffe97a;
+    --sun: #fadc00;
+    --line: #e3e8f5;
+    --r-2xl: 40px;
+    --r-xl: 32px;
+    --r-lg: 26px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Google Sans Flex", system-ui, sans-serif; font-variation-settings: "ROND" 40; color: var(--body); background: var(--page); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  svg { display: block; }
+  .wrap { width: 100%; max-width: 1232px; margin: 0 auto; padding: 0 16px; }
+  h1, h2, h3, h4 { color: var(--ink); font-weight: 620; letter-spacing: -0.015em; line-height: 1.15; font-variation-settings: "ROND" 100; }
+  h2 { font-size: 38px; }
+  .lead { margin-top: 10px; font-size: 17px; color: var(--muted); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 52px; padding: 0 26px; border-radius: 999px; font-weight: 600; font-size: 15.5px; white-space: nowrap; font-variation-settings: "ROND" 100; }
+  .btn-primary { background: var(--navy); color: #fff; box-shadow: 0 12px 24px -12px rgb(40 60 150 / 0.55); }
+  .btn-sun { background: var(--sun); color: var(--ink); }
+  .btn-white { background: #fff; color: var(--navy); }
+  .btn-soft { background: var(--sky); color: var(--navy); }
+  .btn-sm { height: 42px; padding: 0 18px; font-size: 14.5px; }
+  .link { display: inline-flex; align-items: center; gap: 4px; color: var(--navy); font-weight: 600; font-size: 15px; }
+  .link svg { width: 16px; height: 16px; }
+  section { padding: 56px 0; }
+  .head { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 36px; }
+  .head.center { flex-direction: column; align-items: center; text-align: center; }
+
+  /* Floating header */
+  header { position: sticky; top: 16px; z-index: 10; padding-top: 16px; }
+  header .bar { display: flex; align-items: center; gap: 36px; height: 76px; padding: 0 12px 0 28px; background: rgb(255 255 255 / 0.94); backdrop-filter: blur(12px); border-radius: 999px; box-shadow: 0 10px 30px -18px rgb(28 42 102 / 0.35); }
+  header .logo { height: 42px; }
+  header nav { display: flex; gap: 6px; font-size: 15px; font-weight: 500; color: var(--ink); }
+  header nav a { padding: 8px 14px; border-radius: 999px; }
+  header nav a:first-child { background: var(--page); }
+  header .tools { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  header .call { display: flex; align-items: center; gap: 8px; height: 52px; padding: 0 20px; border-radius: 999px; background: var(--butter); color: var(--ink); font-weight: 600; font-size: 15px; }
+  header .call svg { width: 17px; height: 17px; }
+
+  /* Hero */
+  .hero { padding: 40px 0 24px; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .hero-copy h1 { font-size: 64px; line-height: 1.05; font-weight: 640; letter-spacing: -0.025em; }
+  .hero-copy .hello { display: inline-flex; align-items: center; gap: 10px; padding: 6px 16px 6px 6px; border-radius: 999px; background: #fff; font-size: 14.5px; color: var(--ink); font-weight: 500; }
+  .hero-copy .hello img { width: 30px; height: 30px; border-radius: 50%; background: var(--page); padding: 3px; object-fit: contain; }
+  .hero-copy h1 { margin-top: 22px; }
+  .hero-copy p { margin-top: 20px; font-size: 19px; max-width: 470px; }
+  .hero-copy .actions { margin-top: 32px; display: flex; gap: 12px; }
+  .hero-copy .facts { margin-top: 40px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero-copy .facts span { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px 8px 8px; border-radius: 999px; background: #fff; font-size: 14px; font-weight: 500; color: var(--ink); }
+  .hero-copy .facts svg { width: 30px; height: 30px; }
+  .hero-art { position: relative; height: 560px; }
+  .hero-art .sunball { position: absolute; right: 20px; top: 30px; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff5b8, #ffe466); }
+  .hero-art .arch { position: absolute; right: 60px; bottom: 0; width: 440px; height: 520px; border-radius: 220px 220px var(--r-xl) var(--r-xl); overflow: hidden; border: 10px solid #fff; box-shadow: 0 30px 60px -30px rgb(28 42 102 / 0.45); }
+  .hero-art .arch img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 30%; }
+  .hero-art .chip { position: absolute; display: flex; align-items: center; gap: 12px; padding: 12px 20px 12px 12px; background: #fff; border-radius: 24px; box-shadow: 0 20px 40px -20px rgb(28 42 102 / 0.4); font-size: 14.5px; line-height: 1.35; color: var(--ink); font-weight: 600; font-variation-settings: "ROND" 100; }
+  .hero-art .chip small { display: block; font-weight: 400; color: var(--muted); font-size: 13px; }
+  .hero-art .chip svg { width: 46px; height: 46px; }
+  .hero-art .chip.one { left: 10px; top: 120px; }
+  .hero-art .chip.two { right: 0; bottom: 70px; }
+  .hero-dots { display: flex; justify-content: center; gap: 8px; margin-top: 28px; }
+  .hero-dots i { width: 10px; height: 10px; border-radius: 999px; background: #cdd6f1; }
+  .hero-dots i.on { width: 32px; background: var(--navy); }
+
+  /* Quick access */
+  .quick-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .quick-item { position: relative; padding: 24px; border-radius: var(--r-xl); background: #fff; min-height: 180px; }
+  .quick-item svg.ic { width: 64px; height: 64px; }
+  .quick-item h3 { margin-top: 20px; font-size: 19px; }
+  .quick-item p { font-size: 14.5px; color: var(--muted); margin-top: 2px; }
+  .quick-item .go { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; border-radius: 50%; background: var(--page); display: grid; place-items: center; color: var(--navy); }
+  .quick-item .go svg { width: 18px; height: 18px; }
+  .quick-item.feature { background: var(--navy); }
+  .quick-item.feature h3 { color: #fff; }
+  .quick-item.feature p { color: #c5cfec; }
+  .quick-item.feature .go { background: var(--sun); color: var(--ink); }
+  .alert { margin-top: 16px; display: flex; align-items: center; gap: 14px; padding: 10px 10px 10px 10px; border-radius: 999px; background: #fff; font-size: 15px; color: var(--ink); }
+  .alert .tag { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; background: #fff0e6; font-size: 13.5px; font-weight: 600; color: #b4410b; }
+  .alert .tag span { width: 16px; height: 16px; }
+  .alert .link { margin-left: auto; padding-right: 14px; font-size: 14.5px; }
+
+  /* Finder */
+  .finder-box { padding: 56px; border-radius: var(--r-2xl); background: #fff; }
+  .search { display: flex; align-items: center; gap: 10px; width: 600px; height: 60px; margin-top: 28px; padding: 0 6px 0 22px; background: var(--page); border-radius: 999px; color: var(--muted); font-size: 16px; }
+  .search svg { width: 20px; height: 20px; color: var(--navy); }
+  .search .btn { margin-left: auto; height: 48px; }
+  .popular { margin-top: 14px; display: flex; gap: 8px; justify-content: center; font-size: 14px; }
+  .popular b { font-weight: 500; padding: 4px 14px; border-radius: 999px; background: var(--page); color: var(--navy); }
+  .groups { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; margin-top: 8px; }
+  .group { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px 4px 18px; border-radius: var(--r-lg); font-size: 14.5px; font-weight: 500; color: var(--ink); text-align: center; }
+  .group svg { width: 64px; height: 64px; }
+  .group.on { background: var(--butter); }
+  .divider { height: 1px; background: var(--line); margin: 32px 0 28px; }
+  .result-label { margin-bottom: 18px; font-size: 15px; color: var(--muted); }
+  .result-label b { color: var(--ink); font-weight: 600; }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .vcard { display: flex; flex-direction: column; border-radius: var(--r-lg); background: var(--page); overflow: hidden; }
+  .vcard .top { padding: 22px 22px 18px; }
+  .vcard .meta { display: inline-block; padding: 3px 10px; border-radius: 999px; background: #fff; font-size: 12.5px; color: var(--muted); }
+  .vcard h3 { margin-top: 12px; font-size: 22px; }
+  .vcard p { margin-top: 6px; font-size: 14.5px; line-height: 1.5; }
+  .vcard .bottom { margin: auto 8px 8px; padding: 14px 8px 8px 16px; border-radius: 20px; background: #fff; display: flex; align-items: center; justify-content: space-between; }
+  .vcard .price small { display: block; font-size: 12px; color: var(--muted); line-height: 1.2; }
+  .vcard .price b { font-size: 19px; color: var(--ink); font-weight: 650; font-variation-settings: "ROND" 100; }
+  .center { margin-top: 32px; display: flex; justify-content: center; }
+
+  /* Packages */
+  .pkg-box { padding: 56px; border-radius: var(--r-2xl); background: var(--butter); }
+  .seg { display: inline-flex; padding: 5px; border-radius: 999px; background: rgb(255 255 255 / 0.6); }
+  .seg b { padding: 10px 22px; border-radius: 999px; font-size: 15px; font-weight: 500; color: var(--body); }
+  .seg b.on { background: #fff; color: var(--ink); font-weight: 600; }
+  .pcard { position: relative; display: flex; flex-direction: column; padding: 26px; border-radius: var(--r-xl); background: #fff; }
+  .pcard .badge { position: absolute; top: 22px; right: 22px; display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: var(--navy); color: #fff; font-size: 12.5px; font-weight: 600; }
+  .pcard svg.ic { width: 64px; height: 64px; }
+  .pcard .who { margin-top: 18px; font-size: 14px; color: var(--muted); }
+  .pcard h3 { margin-top: 2px; font-size: 20px; white-space: nowrap; }
+  .pcard .stats { margin-top: 16px; display: flex; gap: 8px; }
+  .pcard .stats span { flex: 1; padding: 10px 12px; border-radius: 16px; background: var(--page); font-size: 13px; line-height: 1.3; }
+  .pcard .stats b { display: block; font-size: 20px; color: var(--ink); font-weight: 650; font-variation-settings: "ROND" 100; }
+  .pcard .price { margin-top: 22px; }
+  .pcard .price s { font-size: 14px; color: var(--muted); }
+  .pcard .price b { display: block; font-size: 26px; color: var(--ink); font-weight: 650; font-variation-settings: "ROND" 100; }
+  .pcard .acts { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pcard .acts .btn { height: 46px; padding: 0 10px; box-shadow: none; }
+
+  /* Why */
+  .why-box { display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; align-items: center; padding: 56px; border-radius: var(--r-2xl); background: linear-gradient(135deg, #2b409b, #3a51ab); color: #d5dcf3; overflow: hidden; position: relative; }
+  .why-box h2 { color: #fff; }
+  .why-box .lead { color: #c5cfec; }
+  .why-box .arch { width: 100%; height: 420px; border-radius: 210px 210px var(--r-xl) var(--r-xl); overflow: hidden; }
+  .why-box .arch img { width: 100%; height: 100%; object-fit: cover; }
+  .why-grid { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .why-grid div { padding: 22px; border-radius: var(--r-lg); background: rgb(255 255 255 / 0.08); }
+  .why-grid svg { width: 52px; height: 52px; }
+  .why-grid h3 { margin-top: 14px; font-size: 18px; color: #fff; }
+  .why-grid p { margin-top: 4px; font-size: 14.5px; line-height: 1.5; }
+  .why-box .link { margin-top: 28px; color: var(--sun); }
+
+  /* Recommend */
+  .rec-box { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: 40px 48px; border-radius: var(--r-2xl); background: #fff; }
+  .rec-box .left { display: flex; gap: 24px; align-items: center; }
+  .rec-box svg.ic { width: 84px; height: 84px; }
+  .rec-box h2 { font-size: 30px; }
+  .rec-box p { margin-top: 4px; }
+  .rec-form { display: flex; gap: 10px; }
+  .select { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 60px; min-width: 190px; padding: 0 18px 0 24px; border-radius: 999px; background: var(--page); font-size: 15px; color: var(--ink); font-weight: 500; }
+  .select small { display: block; font-size: 12px; color: var(--muted); line-height: 1; margin-bottom: 4px; font-weight: 400; }
+  .select span { line-height: 1.1; }
+  .select svg { width: 16px; height: 16px; transform: rotate(90deg); color: var(--muted); }
+  .rec-form .btn { height: 60px; }
+
+  /* Knowledge */
+  .news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .news article { padding: 10px 10px 24px; border-radius: var(--r-xl); background: #fff; }
+  .news img { width: 100%; height: 200px; object-fit: cover; border-radius: 22px; }
+  .news .meta { margin: 18px 14px 0; font-size: 13px; color: var(--muted); }
+  .news h3 { margin: 6px 14px 0; font-size: 18px; line-height: 1.32; }
+
+  /* FAQ + contact */
+  .faq-wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; }
+  .faq-box { padding: 48px; border-radius: var(--r-2xl); background: #fff; }
+  .faq { margin-top: 28px; display: grid; gap: 10px; }
+  .faq div { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 18px 18px 18px 24px; border-radius: 22px; background: var(--page); font-size: 16.5px; font-weight: 500; color: var(--ink); }
+  .faq span { width: 32px; height: 32px; border-radius: 50%; background: #fff; display: grid; place-items: center; color: var(--navy); flex-shrink: 0; }
+  .faq svg { width: 16px; height: 16px; }
+  .contact { padding: 12px; border-radius: var(--r-2xl); background: #fff; }
+  .contact img { width: 100%; height: 250px; object-fit: cover; border-radius: 30px; }
+  .contact .body { padding: 24px 28px 24px; }
+  .contact h3 { font-size: 24px; }
+  .contact ul { list-style: none; margin-top: 16px; display: grid; gap: 12px; font-size: 15px; }
+  .contact li { display: flex; gap: 12px; }
+  .contact li svg { width: 18px; height: 18px; color: var(--navy); margin-top: 3px; flex-shrink: 0; }
+  .contact .acts { margin-top: 22px; display: flex; gap: 10px; }
+
+  footer { margin-top: 56px; background: #fff; border-radius: var(--r-2xl) var(--r-2xl) 0 0; padding: 64px 0 32px; font-size: 14.5px; }
+  footer .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
+  footer .logo { height: 48px; }
+  footer h4 { font-size: 15.5px; margin-bottom: 14px; }
+  footer ul { list-style: none; display: grid; gap: 8px; }
+  footer .copy { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--muted); display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <img class="logo" src="/images/logo-horizontal.png" alt="Tiêm chủng Tâm Trí" />
+      <nav><template data-each="nav"><a>{{it}}</a></template></nav>
+      <div class="tools">
+        <a class="call"><span data-ui="phone"></span>0593 888 666</a>
+        <a class="btn btn-primary">Đặt lịch tiêm</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="hello"><img src="/images/logo-mark.png" alt="" />Hệ thống Y tế Sản – Nhi Tâm Trí</span>
+      <h1>Tận tâm đồng hành cùng bạn qua từng mũi tiêm</h1>
+      <p>Tiêm chủng cho bé, mẹ bầu và cả gia đình, có bác sĩ khám sàng lọc trước mỗi mũi tiêm.</p>
+      <div class="actions">
+        <a class="btn btn-primary">Đặt lịch tiêm</a>
+        <a class="btn btn-white">Tra cứu vắc xin</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="sunball"></div>
+      <div class="arch"><img src="/images/family.jpg" alt="" /></div>
+      <div class="chip one"><i data-icon="stethoscope"></i><div>Bác sĩ Sản – Nhi<small>Khám sàng lọc trước tiêm</small></div></div>
+      <div class="chip two"><i data-icon="reminder"></i><div>Nhắc lịch tiêm<small>Không lo trễ mũi tiếp theo</small></div></div>
+    </div>
+  </div>
+  <div class="hero-dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+</div>
+
+<section style="padding-top:24px">
+  <div class="wrap">
+    <div class="quick-grid">
+      <a class="quick-item"><i class="ic" data-icon="syringe" data-disc="#F3F6FD"></i><span class="go" data-ui="chevron"></span><h3>Tra cứu vắc xin</h3><p>Theo bệnh, tên vắc xin</p></a>
+      <a class="quick-item"><i class="ic" data-icon="package" data-disc="#F3F6FD"></i><span class="go" data-ui="chevron"></span><h3>Gói vắc xin</h3><p>Theo độ tuổi, đối tượng</p></a>
+      <a class="quick-item feature"><i class="ic" data-icon="calendar" data-disc="#ffffff"></i><span class="go" data-ui="chevron"></span><h3>Đặt lịch tiêm</h3><p>Xác nhận qua điện thoại</p></a>
+      <a class="quick-item"><i class="ic" data-icon="chat" data-disc="#F3F6FD"></i><span class="go" data-ui="chevron"></span><h3>Tư vấn</h3><p>Bác sĩ gọi lại cho bạn</p></a>
+    </div>
+    <div class="alert"><span class="tag"><span data-ui="alert"></span>Cảnh báo dịch</span>Sốt xuất huyết đang vào mùa cao điểm, trẻ em và người lớn nên chủ động phòng bệnh.<a class="link">Xem chi tiết<span data-ui="chevron"></span></a></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="finder-box">
+      <div class="head center" style="margin-bottom:28px">
+        <h2>Bạn cần tiêm phòng bệnh gì?</h2>
+        <div class="search"><span data-ui="search"></span>Tìm bệnh hoặc vắc xin…<span class="btn btn-primary">Tìm</span></div>
+        <div class="popular"><span style="color:var(--muted)">Tìm nhiều:</span><b>Cúm</b><b>HPV</b><b>Sốt xuất huyết</b><b>Phế cầu</b></div>
+      </div>
+      <div class="groups"><template data-each="groups"><span class="group {{i === 0 ? 'on' : ''}}"><i data-icon="{{it[1]}}" data-disc="{{i === 0 ? '#ffffff' : '#F3F6FD'}}"></i>{{it[0]}}</span></template></div>
+      <div class="divider"></div>
+      <p class="result-label">Vắc xin phòng <b>Phế cầu khuẩn</b></p>
+      <div class="cards"><template data-each="vaccines"><article class="vcard"><div class="top"><span class="meta">{{it.origin}}, {{it.maker}}</span><h3>{{it.name}}</h3><p>{{it.prevents}}</p></div><div class="bottom"><div class="price"><small>Giá mỗi liều</small><b>{{vnd(it.price)}}</b></div><a class="btn btn-primary btn-sm">Đặt lịch</a></div></article></template></div>
+      <div class="center"><a class="btn btn-soft">Xem tất cả vắc xin</a></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="pkg-box">
+      <div class="head">
+        <div><h2>Gói vắc xin trọn gói</h2><p class="lead" style="color:#7a6a1c">Lịch tiêm được bác sĩ sắp sẵn theo độ tuổi, không lo trễ mũi.</p></div>
+        <div class="seg"><b class="on">Theo độ tuổi</b><b>Theo đối tượng</b></div>
+      </div>
+      <div class="cards"><template data-each="packages"><article class="pcard">{{it.hot ? '<span class="badge">★ Phổ biến nhất</span>' : ''}}<i class="ic" data-icon="{{it.icon}}" data-disc="#FFF4C4"></i><span class="who">{{it.who}}</span><h3>{{it.name}}</h3><div class="stats"><span><b>{{it.doses}}</b>mũi tiêm</span><span><b>{{it.count}}</b>loại vắc xin</span></div><div class="price"><s>{{vnd(it.was)}}</s><b>{{vnd(it.price)}}</b></div><div class="acts"><a class="btn btn-soft">Chi tiết</a><a class="btn btn-primary">Đặt lịch</a></div></article></template></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="why-box">
+      <div class="arch"><img src="/images/interior-waiting.jpg" alt="" /></div>
+      <div>
+        <h2>Vì sao gia đình chọn Tâm Trí</h2>
+        <p class="lead">Cùng hệ thống Phòng khám Sản – Nhi và Nhà thuốc Tâm Trí.</p>
+        <div class="why-grid"><template data-each="why"><div><i data-icon="{{it[0]}}" data-disc="#ffffff"></i><h3>{{it[1]}}</h3><p>{{it[2]}}</p></div></template></div>
+        <a class="link">Tìm hiểu đội ngũ chuyên môn<span data-ui="chevron"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="rec-box">
+      <div class="left"><i class="ic" data-icon="advisor" data-disc="#FFF4C4"></i><div><h2>Chưa biết nên tiêm gì?</h2><p>Chọn độ tuổi và giới tính, chúng tôi gợi ý vắc xin phù hợp.</p></div></div>
+      <div class="rec-form">
+        <div class="select"><span><small>Độ tuổi</small>0 – 6 tháng</span><span data-ui="chevron"></span></div>
+        <div class="select"><span><small>Giới tính</small>Bé gái</span><span data-ui="chevron"></span></div>
+        <a class="btn btn-primary">Xem gợi ý</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><div><h2>Kiến thức tiêm chủng</h2><p class="lead">Bài viết được bác sĩ Tâm Trí kiểm duyệt.</p></div><a class="btn btn-white btn-sm">Xem tất cả bài viết</a></div>
+    <div class="news"><template data-each="articles"><article><img src="{{it.img}}" alt="" /><p class="meta">{{it.tag}}, {{it.date}}</p><h3>{{it.title}}</h3></article></template></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap faq-wrap">
+    <div class="faq-box">
+      <h2>Câu hỏi thường gặp</h2>
+      <div class="faq"><template data-each="faqs"><div>{{it}}<span>{{UI.plus}}</span></div></template></div>
+    </div>
+    <div class="contact">
+      <img src="/images/facade.jpg" alt="" />
+      <div class="body">
+        <h3>Tâm Trí Quy Nhơn</h3>
+        <ul><li>{{pin}}424 Nguyễn Thị Minh Khai, P. Quy Nhơn Nam, T. Gia Lai</li><li>{{clock}}7:30 – 20:00 hằng ngày</li><li>{{phone}}0593 888 666</li></ul>
+        <div class="acts"><a class="btn btn-primary btn-sm">Chỉ đường</a><a class="btn btn-soft btn-sm">Gọi tổng đài</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><img class="logo" src="/images/logo-horizontal.png" alt="" /><p style="margin-top:16px;max-width:300px">Tận tâm đồng hành cùng bạn. Thuộc hệ thống Y tế Tâm Trí, Quy Nhơn.</p></div>
+      <div><h4>Dịch vụ</h4><ul><li>Vắc xin phòng bệnh</li><li>Gói vắc xin</li><li>Tôi nên tiêm gì?</li><li>Bảng giá</li></ul></div>
+      <div><h4>Về Tâm Trí</h4><ul><li>Giới thiệu</li><li>Đội ngũ chuyên môn</li><li>Kiến thức tiêm chủng</li></ul></div>
+      <div><h4>Chính sách</h4><ul><li>Quy chế hoạt động</li><li>Bảo mật</li><li>Thanh toán</li></ul></div>
+    </div>
+    <div class="copy"><span>© 2026 Trung tâm Tiêm chủng Tâm Trí</span><span>Tổng đài 0593 888 666</span></div>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+  document.querySelector(".contact ul").innerHTML = document.querySelector(".contact ul").innerHTML.replace(/\{\{(\w+)\}\}/g, (_, k) => UI[k]);
+  renderTemplates();
+</script>
+<script src="icons.js"></script>
+</body>
+</html>
