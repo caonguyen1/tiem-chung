@@ -31,7 +31,7 @@
   .wrap { width: 100%; max-width: 1232px; margin: 0 auto; padding: 0 16px; }
   h1, h2, h3, h4 { color: var(--ink); font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
   h2 { font-size: 32px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: 999px; font-weight: 700; font-size: 15px; white-space: nowrap; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: 8px; font-weight: 700; font-size: 15px; white-space: nowrap; }
   .btn-sun { background: var(--navy); color: #fff; }
   .btn-white { background: #fff; color: var(--navy); }
   .btn-navy { background: var(--navy); color: #fff; }
@@ -54,12 +54,12 @@
   .mast { background: linear-gradient(100deg, #283c96 0%, #2f5bdc 60%, #3f7bff 100%); }
   .mast .wrap { display: flex; align-items: center; gap: 28px; height: 84px; }
   .mast .logo { height: 46px; }
-  .mast .search { flex: 1; display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 6px 0 20px; border-radius: 999px; background: #fff; color: var(--muted); font-size: 15px; }
+  .mast .search { flex: 1; display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 6px 0 20px; border-radius: 8px; background: #fff; color: var(--muted); font-size: 15px; }
   .mast .search svg { width: 20px; height: 20px; color: var(--navy); }
   .mast .search b { margin-left: auto; width: 40px; height: 40px; border-radius: 50%; background: var(--navy); display: grid; place-items: center; color: #fff; }
   .mast .search b svg { color: #fff; }
   .mast .acts { display: flex; gap: 10px; }
-  .mast .ghost { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 18px; border-radius: 999px; background: rgb(255 255 255 / 0.14); color: #fff; font-weight: 700; font-size: 15px; }
+  .mast .ghost { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 18px; border-radius: 8px; background: rgb(255 255 255 / 0.14); color: #fff; font-weight: 700; font-size: 15px; }
   .mast .ghost svg { width: 18px; height: 18px; }
   .menu { background: #fff; box-shadow: 0 6px 20px -16px rgb(28 42 102 / 0.5); }
   .menu .wrap { display: flex; gap: 34px; height: 52px; align-items: center; font-weight: 600; font-size: 15px; color: var(--ink); }
@@ -69,22 +69,22 @@
   .hero { padding: 24px 0 0; }
   .hero-grid { display: grid; grid-template-columns: 800px 1fr; gap: 20px; }
   .hero-grid .bn { box-shadow: 0 24px 50px -28px rgb(28 42 102 / 0.6); }
-  .hero-grid .bn { border-radius: 14px; }
+  .hero-grid .bn { border-radius: 10px; }
   .hero-grid .bn .dots { left: auto; right: 22px; transform: none; }
   .hero-grid .bn .pill.small { height: 30px; padding: 0 11px 0 4px; font-size: 12.5px; }
   .hero-grid .bn .pill.small svg { width: 22px; height: 22px; }
   .hero-grid .bn .ctas { position: absolute; left: 44px; bottom: 30px; display: flex; gap: 10px; }
   .hero-grid .bn .ctas .cta { position: static; height: 48px; font-size: 16px; }
   .hero-grid .bn .ctas .cta.ghost { padding: 0 22px; background: rgb(255 255 255 / 0.12); color: #fff; box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.7); }
-  .dots { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); display: flex; gap: 6px; padding: 6px 10px; border-radius: 999px; background: rgb(0 0 0 / 0.18); z-index: 5; }
+  .dots { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); display: flex; gap: 6px; padding: 6px 10px; border-radius: 8px; background: rgb(0 0 0 / 0.18); z-index: 5; }
   .dots i { width: 8px; height: 8px; border-radius: 99px; background: rgb(255 255 255 / 0.6); }
   .dots i.on { width: 24px; background: #fff; }
-  .alerts { display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: 14px; background: #fff; }
+  .alerts { display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: 10px; background: #fff; }
   .alerts h3 { display: flex; align-items: center; gap: 8px; font-size: 17px; color: var(--orange); }
   .alerts h3 svg { width: 20px; height: 20px; }
   .acard { position: relative; flex: 1; display: flex; flex-direction: column; justify-content: end; padding: 18px; border-radius: 10px; color: #fff; overflow: hidden; }
   .acard .ico { position: absolute; right: 12px; top: 12px; width: 76px; height: 76px; }
-  .acard small { display: inline-block; width: fit-content; padding: 3px 10px; border-radius: 999px; background: rgb(255 255 255 / 0.22); font-size: 12px; font-weight: 700; }
+  .acard small { display: inline-block; width: fit-content; padding: 3px 10px; border-radius: 8px; background: rgb(255 255 255 / 0.22); font-size: 12px; font-weight: 700; }
   .acard b { display: block; margin-top: 8px; font-size: 18px; line-height: 1.25; }
   .acard span { font-size: 13.5px; opacity: 0.9; }
   .a1 { background: linear-gradient(140deg, #3f7bff, #283c96); }
@@ -112,7 +112,7 @@
 
   /* Finder */
   .finder { background: linear-gradient(180deg, var(--page) 0%, #fff 30%); }
-  .find-box { padding: 32px; border-radius: 14px; background: #fff; box-shadow: 0 20px 50px -34px rgb(28 42 102 / 0.5); }
+  .find-box { padding: 32px; border-radius: 10px; background: #fff; box-shadow: 0 20px 50px -34px rgb(28 42 102 / 0.5); }
   .groups { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; }
   .group { background: #fff; box-shadow: inset 0 0 0 1px var(--line); display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 6px 16px; border-radius: 12px; font-size: 14.5px; font-weight: 700; color: var(--ink); text-align: center; border: 2px solid transparent; }
   .group svg { width: 60px; height: 60px; }
@@ -123,7 +123,7 @@
   .vcard { display: flex; flex-direction: column; border-radius: 12px; background: #fff; border: 1px solid var(--line); overflow: hidden; }
   .vcard .art { position: relative; height: 150px; display: grid; place-items: center; }
   .vcard .art i, .vcard .art .vial-box { width: 58px; }
-  .vcard .art .flag { position: absolute; left: 12px; top: 12px; padding: 3px 10px; border-radius: 999px; background: #fff; box-shadow: 0 2px 6px -2px rgb(28 42 102 / 0.2); font-size: 12px; font-weight: 700; color: var(--ink); }
+  .vcard .art .flag { position: absolute; left: 12px; top: 12px; padding: 3px 10px; border-radius: 8px; background: #fff; box-shadow: 0 2px 6px -2px rgb(28 42 102 / 0.2); font-size: 12px; font-weight: 700; color: var(--ink); }
   .vcard .info { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
   .vcard h3 { font-size: 19px; }
   .vcard p { margin-top: 4px; font-size: 14px; line-height: 1.45; }
@@ -137,8 +137,8 @@
   .pkg .wrap { position: relative; }
   .pkg h2 { color: #fff; }
   .pkg .head p { color: #c5cfec; margin-top: 4px; }
-  .seg { display: inline-flex; padding: 5px; border-radius: 999px; background: rgb(255 255 255 / 0.14); }
-  .seg b { padding: 9px 20px; border-radius: 999px; font-size: 15px; font-weight: 600; color: #fff; }
+  .seg { display: inline-flex; padding: 5px; border-radius: 8px; background: rgb(255 255 255 / 0.14); }
+  .seg b { padding: 9px 20px; border-radius: 8px; font-size: 15px; font-weight: 600; color: #fff; }
   .seg b.on { background: #fff; color: var(--navy); }
   .pcard { position: relative; display: flex; flex-direction: column; border-radius: 12px; background: #fff; overflow: hidden; }
   .pcard .top { position: relative; padding: 18px 18px 16px; display: flex; gap: 12px; align-items: center; }
@@ -147,18 +147,18 @@
   .pcard h3 { font-size: 16.5px; white-space: nowrap; }
   .pcard .badge { position: absolute; top: 0; right: 18px; padding: 6px 10px 8px; border-radius: 0 0 12px 12px; background: var(--navy); color: var(--sun); font-size: 12px; font-weight: 800; }
   .pcard .stats { margin: 0 18px; display: flex; gap: 8px; }
-  .pcard .stats span { flex: 1; padding: 8px 12px; border-radius: 14px; background: var(--page); font-size: 12.5px; line-height: 1.3; color: var(--muted); }
+  .pcard .stats span { flex: 1; padding: 8px 12px; border-radius: 10px; background: var(--page); font-size: 12.5px; line-height: 1.3; color: var(--muted); }
   .pcard .stats b { display: block; font-size: 18px; color: var(--ink); }
   .pcard .price { margin: 16px 18px 0; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
   .pcard .price b { font-size: 24px; font-weight: 800; color: var(--navy); letter-spacing: -0.01em; }
   .pcard .price s { font-size: 13.5px; color: var(--muted); }
-  .pcard .price em { font-style: normal; padding: 2px 8px; border-radius: 999px; background: #ffe6dc; color: var(--orange); font-size: 12px; font-weight: 800; }
+  .pcard .price em { font-style: normal; padding: 2px 8px; border-radius: 8px; background: #ffe6dc; color: var(--orange); font-size: 12px; font-weight: 800; }
   .pcard .acts { margin: 16px 18px 18px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 8px; }
   .pcard .acts .btn { height: 44px; padding: 0 10px; }
   .pcard.hot { box-shadow: 0 0 0 3px #9fc0ff; }
 
   /* Why */
-  .why-box { display: grid; grid-template-columns: 360px 1fr; gap: 32px; align-items: center; padding: 36px; border-radius: 14px; background: #fff; }
+  .why-box { display: grid; grid-template-columns: 360px 1fr; gap: 32px; align-items: center; padding: 36px; border-radius: 10px; background: #fff; }
   .why-box h2 { font-size: 34px; }
   .why-box p.lead { margin-top: 10px; color: var(--muted); }
   .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
@@ -168,12 +168,12 @@
   .why-grid p { margin-top: 4px; font-size: 14px; line-height: 1.45; }
 
   /* Recommend */
-  .rec-box { position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; padding: 30px 36px; border-radius: 14px; background: linear-gradient(110deg, #1c2a66, #283c96 55%, #2f5bdc); color: #fff; overflow: hidden; }
+  .rec-box { position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; padding: 30px 36px; border-radius: 10px; background: linear-gradient(110deg, #1c2a66, #283c96 55%, #2f5bdc); color: #fff; overflow: hidden; }
   .rec-box h2 { color: #fff; font-size: 26px; }
   .rec-box p { opacity: 0.9; }
   .rec-box svg.ic { width: 76px; height: 76px; }
   .rec-form { display: flex; gap: 10px; }
-  .select { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 54px; min-width: 180px; padding: 0 16px 0 20px; border-radius: 999px; background: #fff; color: var(--ink); font-weight: 600; font-size: 15px; }
+  .select { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 54px; min-width: 180px; padding: 0 16px 0 20px; border-radius: 8px; background: #fff; color: var(--ink); font-weight: 600; font-size: 15px; }
   .select small { display: block; font-size: 11.5px; color: var(--muted); line-height: 1; margin-bottom: 3px; font-weight: 500; }
   .select span { line-height: 1.1; }
   .select svg { width: 16px; height: 16px; transform: rotate(90deg); color: var(--muted); }
@@ -184,7 +184,7 @@
   .news article { border-radius: 12px; background: #fff; overflow: hidden; border: 1px solid var(--line); }
   .news .img { position: relative; }
   .news img { width: 100%; height: 180px; object-fit: cover; }
-  .news .tag { position: absolute; left: 12px; bottom: 12px; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 800; }
+  .news .tag { position: absolute; left: 12px; bottom: 12px; padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 800; }
   .news .body { padding: 16px 18px 20px; }
   .news .meta { font-size: 13px; color: var(--muted); }
   .news h3 { margin-top: 6px; font-size: 17px; line-height: 1.35; }
@@ -197,7 +197,7 @@
   .faq div.open p { display: block; }
   .faq span { width: 32px; height: 32px; border-radius: 50%; background: #eef3ff; display: grid; place-items: center; color: var(--navy); flex-shrink: 0; }
   .faq svg { width: 16px; height: 16px; }
-  .contact { border-radius: 14px; background: linear-gradient(150deg, #283c96, #2f5bdc); color: #d5dcf3; overflow: hidden; }
+  .contact { border-radius: 10px; background: linear-gradient(150deg, #283c96, #2f5bdc); color: #d5dcf3; overflow: hidden; }
   .contact img { width: 100%; height: 210px; object-fit: cover; }
   .contact .body { padding: 24px 26px 26px; }
   .contact h3 { color: #fff; font-size: 22px; }
