@@ -132,9 +132,13 @@
   .center { margin-top: 28px; display: flex; justify-content: center; }
 
   /* Packages */
-  .pkg { background: linear-gradient(120deg, #283c96, #2f5bdc 60%, #3f7bff); position: relative; overflow: hidden; }
+  .pkg { background: linear-gradient(120deg, #283c96, #2f5bdc 60%, #3f7bff); position: relative; overflow: hidden; padding: 96px 0; }
+  .wave-top, .wave-bottom { position: absolute; z-index: 1; left: 0; width: 100%; height: 40px; pointer-events: none; }
+  .wave-top { top: -1px; }
+  .wave-bottom { bottom: -1px; }
+  footer > .wrap { position: relative; z-index: 2; }
   .pkg::before { content: ""; position: absolute; inset: -50%; background: repeating-conic-gradient(from 0deg at 85% 20%, rgb(255 255 255 / 0.05) 0 6deg, transparent 6deg 18deg); }
-  .pkg .wrap { position: relative; }
+  .pkg .wrap { position: relative; z-index: 2; }
   .pkg h2 { color: #fff; }
   .pkg .head p { color: #c5cfec; margin-top: 4px; }
   .seg { display: inline-flex; padding: 5px; border-radius: 8px; background: rgb(255 255 255 / 0.14); }
@@ -215,7 +219,7 @@
       radial-gradient(circle at 88% 0%, rgb(255 255 255 / 0.22), transparent 42%),
       radial-gradient(rgb(255 255 255 / 0.1) 1px, transparent 1.6px) 0 0 / 14px 14px; }
 
-  footer { background: #1c2a66; color: #aeb9e0; padding: 56px 0 28px; font-size: 14.5px; }
+  footer { position: relative; background: #1c2a66; color: #aeb9e0; padding: 84px 0 28px; font-size: 14.5px; }
   footer .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
   footer .logo { height: 48px; }
   footer h4 { color: #fff; font-size: 15.5px; margin-bottom: 14px; }
@@ -294,7 +298,10 @@
   </div>
 </div></section>
 
-<section class="pkg tex"><div class="wrap">
+<section class="pkg tex">
+  <svg class="wave-top" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 0H1440V14C1180 34 960 6 720 18S240 34 0 12Z" fill="#fff"/></svg>
+  <svg class="wave-bottom" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 40H1440V26C1200 8 980 36 720 24S220 8 0 26Z" fill="#eef3ff"/></svg>
+<div class="wrap">
   <div class="head"><div><h2>Gói vắc xin trọn gói</h2><p>Lịch tiêm bác sĩ sắp sẵn, không lo trễ mũi.</p></div><div class="seg"><b class="on">Theo độ tuổi</b><b>Theo đối tượng</b></div></div>
   <div class="cards"><template data-each="packages"><article class="pcard {{it.hot ? 'hot' : ''}}">{{it.hot ? '<span class="badge">Phổ biến nhất</span>' : ''}}<div class="top"><i data-icon="{{it.icon}}" data-disc="#F2F4FB"></i><div><small>{{it.who}}</small><h3>{{it.name}}</h3></div></div><div class="stats"><span><b>{{it.doses}}</b>mũi tiêm</span><span><b>{{it.count}}</b>loại vắc xin</span></div><div class="price"><b>{{vnd(it.price)}}</b><s>{{vnd(it.was)}}</s><em>-{{Math.round((it.was - it.price) / it.was * 100)}}%</em></div><div class="acts"><a class="btn btn-line">Chi tiết</a><a class="btn btn-sun">Đặt lịch</a></div></article></template></div>
   <div class="center"><a class="btn btn-white">Xem tất cả gói vắc xin</a></div>
@@ -339,7 +346,9 @@
   </div>
 </div></section>
 
-<footer><div class="wrap">
+<footer>
+  <svg class="wave-top" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 0H1440V14C1180 34 960 6 720 18S240 34 0 12Z" fill="#eef3ff"/></svg>
+<div class="wrap">
   <div class="cols">
     <div><img class="logo" src="/images/logo-horizontal-white.png" alt="" /><p style="margin-top:16px;max-width:300px">Tận tâm đồng hành cùng bạn. Thuộc hệ thống Y tế Tâm Trí, Quy Nhơn.</p></div>
     <div><h4>Dịch vụ</h4><ul><li>Vắc xin phòng bệnh</li><li>Gói vắc xin</li><li>Tôi nên tiêm gì?</li><li>Bảng giá</li></ul></div>
