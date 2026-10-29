@@ -135,9 +135,9 @@
 
   /* Packages */
   .pkg { background: linear-gradient(120deg, #283c96, #2f5bdc 60%, #3f7bff); position: relative; overflow: hidden; padding: 96px 0; }
-  .wave-top, .wave-bottom { position: absolute; z-index: 1; left: 0; width: 100%; height: 40px; pointer-events: none; }
-  .wave-top { top: -1px; }
-  .wave-bottom { bottom: -1px; }
+  .wave-top, .wave-bottom { position: absolute; z-index: 1; left: 0; width: 100%; height: 42px; pointer-events: none; }
+  .wave-top { top: -2px; }
+  .wave-bottom { bottom: -2px; }
   footer > .wrap { position: relative; z-index: 2; }
   .pkg::before { content: ""; position: absolute; inset: -50%; background: repeating-conic-gradient(from 0deg at 85% 20%, rgb(255 255 255 / 0.05) 0 6deg, transparent 6deg 18deg); }
   .pkg .wrap { position: relative; z-index: 2; }
@@ -332,8 +332,8 @@
     .mast .search { height: 38px; padding-left: 12px; font-size: 13px; }
     .mast .search b { width: 32px; height: 32px; }
     .mast .search b svg { width: 16px; height: 16px; }
-    section { padding: 28px 0; }
-    .hero { padding-top: 12px; }
+    section { padding: 20px 0; }
+    .hero { padding-top: 10px; }
     .hero-grid { gap: 8px; }
     .hero-grid .bn { aspect-ratio: auto; height: 310px; }
     .hero-grid .bn .desc,
@@ -356,7 +356,7 @@
     .hero-grid .bn .dots i { width: 6px; height: 6px; }
     .hero-grid .bn .dots i.on { width: 16px; }
     .alerts { display: block; overflow: visible; padding: 0; background: transparent; }
-    .alert-rail { display: flex; gap: 8px; overflow-x: auto; padding: 0 0 8px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .alert-rail { display: flex; gap: 8px; overflow-x: auto; padding: 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
     .alerts h3 { font-size: 15px; }
     .alerts h3 svg { width: 17px; height: 17px; }
     .acard { flex: 0 0 82%; min-height: 118px; padding: 10px; border-radius: 8px; scroll-snap-align: start; }
@@ -366,7 +366,8 @@
     .acard > span:last-child { font-size: 11px; }
     .acard > span:last-child { display: none; }
     .usp { display: none; }
-    .quick { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 8px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .quick-section { padding-top: 10px; }
+    .quick { display: flex; gap: 8px; overflow-x: auto; padding: 0 0 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
     .quick::-webkit-scrollbar,
     .groups::-webkit-scrollbar,
     .finder .cards::-webkit-scrollbar,
@@ -374,22 +375,23 @@
     .news::-webkit-scrollbar,
     .why-grid::-webkit-scrollbar,
     .alert-rail::-webkit-scrollbar { display: none; }
-    .qt { flex: 0 0 132px; min-height: 64px; gap: 8px; padding: 8px; border-radius: 0; background: transparent; color: var(--ink); scroll-snap-align: start; }
+    .qt { flex: 0 0 138px; min-height: 64px; gap: 8px; padding: 10px; border: 1px solid #e8edfb; border-radius: 10px; background: #fff; color: var(--ink); scroll-snap-align: start; }
     .qt::after { display: none; }
+    .quick .tex::before { display: none; }
     .qt svg { width: 34px; height: 34px; }
     .qt b { font-size: 12px; }
     .qt span { display: none; }
-    .q2, .q4 { box-shadow: none; }
-    .head { gap: 8px; margin-bottom: 14px; }
+    .q1, .q3, .q2, .q4 { background: #fff; color: var(--ink); box-shadow: none; }
+    .head { gap: 8px; margin-bottom: 10px; }
     .head h2 { gap: 7px; font-size: 20px; }
     .head h2 .mark { width: 5px; height: 22px; }
     .head > div > p { display: none; }
-    .finder { background: #fff; }
+    .finder { padding-top: 14px; background: #fff; }
     .find-box { padding: 0; background: transparent; box-shadow: none; }
-    .groups { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 8px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .groups { display: flex; gap: 8px; overflow-x: auto; padding: 0 0 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
     .group { flex: 0 0 76px; gap: 4px; padding: 8px 4px; border-width: 1px; border-radius: 8px; font-size: 10px; scroll-snap-align: start; }
     .group svg { width: 32px; height: 32px; }
-    .result-label { margin: 16px 0 10px; gap: 8px; font-size: 12px; }
+    .result-label { margin: 8px 0; gap: 8px; font-size: 12px; }
     .finder .cards, .pkg .cards, .news, .why-grid { display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 10px; scroll-snap-type: x mandatory; scrollbar-width: none; }
     .finder .vcard { flex: 0 0 70%; max-width: 260px; scroll-snap-align: start; }
     .pkg .pcard { flex: 0 0 78%; max-width: 290px; scroll-snap-align: start; }
@@ -426,11 +428,12 @@
     .pcard .price em { padding: 2px 4px; }
     .pcard .acts { margin: 8px; gap: 4px; }
     .pcard .acts .btn { height: 32px; padding: 0 4px; font-size: 10px; }
-    .why-box { gap: 14px; padding: 0; background: transparent; }
+    .why-section { background: var(--page); }
+    .why-box { gap: 14px; padding: 16px; border-radius: 12px; background: #fff; }
     .why-box h2 { font-size: 22px; }
     .why-box p.lead { margin-top: 6px; font-size: 12px; }
     .why-box .btn { margin-top: 12px !important; }
-    .why-grid div { padding: 12px; border-radius: 9px; }
+    .why-grid div { padding: 12px; border: 1px solid #e8edfb; border-radius: 10px; background: #fff; }
     .why-grid svg { width: 36px; height: 36px; }
     .why-grid h3 { margin-top: 5px; font-size: 13px; }
     .why-grid p { display: none; }
@@ -524,7 +527,7 @@
   <div class="usp"><template data-each="why"><div><i data-icon="{{it[0]}}" data-disc="#F2F4FB"></i><p><b>{{it[1]}}</b><span>{{it[2]}}</span></p></div></template></div>
 </div></div>
 
-<section style="padding-bottom:0"><div class="wrap">
+<section class="quick-section" style="padding-bottom:0"><div class="wrap">
   <div class="quick">
     <a class="qt q1 tex"><i data-icon="syringe" data-disc="#ffffff"></i><p><b>Tra cứu vắc xin</b><span>Theo bệnh, tên vắc xin</span></p></a>
     <a class="qt q2"><i data-icon="package" data-disc="#F2F4FB"></i><p><b>Gói vắc xin</b><span>Theo độ tuổi, đối tượng</span></p></a>
@@ -543,15 +546,15 @@
 </div></section>
 
 <section class="pkg tex">
-  <svg class="wave-top" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 0H1440V14C1180 34 960 6 720 18S240 34 0 12Z" fill="#fff"/></svg>
-  <svg class="wave-bottom" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 40H1440V26C1200 8 980 36 720 24S220 8 0 26Z" fill="#eef3ff"/></svg>
+  <svg class="wave-top" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 -2H1440V14C1180 34 960 6 720 18S240 34 0 12Z" fill="#fff"/></svg>
+  <svg class="wave-bottom" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 42H1440V26C1200 8 980 36 720 24S220 8 0 26Z" fill="#eef3ff"/></svg>
 <div class="wrap">
   <div class="head"><div><h2>Gói vắc xin</h2><p>Lịch tiêm bác sĩ sắp sẵn, không lo trễ mũi.</p></div><div class="seg"><b class="on">Theo độ tuổi</b><b>Theo đối tượng</b></div></div>
   <div class="cards"><template data-each="packages"><article class="pcard {{it.hot ? 'hot' : ''}}">{{it.hot ? '<span class="badge">Phổ biến nhất</span>' : ''}}<div class="top"><i data-icon="{{it.icon}}" data-disc="#F2F4FB"></i><div><small>{{it.who}}</small><h3>{{it.name}}</h3></div></div><div class="stats"><span><b>{{it.doses}}</b>mũi tiêm</span><span><b>{{it.count}}</b>loại vắc xin</span></div><div class="price"><b>{{vnd(it.price)}}</b><s>{{vnd(it.was)}}</s><em>-{{Math.round((it.was - it.price) / it.was * 100)}}%</em></div><div class="acts"><a class="btn btn-line">Chi tiết</a><a class="btn btn-sun">Đặt lịch</a></div></article></template></div>
   <div class="center"><a class="btn btn-white">Xem tất cả gói vắc xin</a></div>
 </div></section>
 
-<section><div class="wrap">
+<section class="why-section"><div class="wrap">
   <div class="why-box">
     <div><h2>Vì sao gia đình chọn Tâm Trí?</h2><p class="lead">Cùng hệ thống Phòng khám Sản – Nhi và Nhà thuốc Tâm Trí.</p><a class="btn btn-navy" style="margin-top:22px">Tìm hiểu đội ngũ chuyên môn</a></div>
     <div class="why-grid"><template data-each="why"><div><i data-icon="{{it[0]}}"></i><h3>{{it[1]}}</h3><p>{{it[2]}}</p></div></template></div>
