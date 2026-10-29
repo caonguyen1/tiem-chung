@@ -61,6 +61,7 @@
   .mast .acts { display: flex; gap: 10px; }
   .mast .ghost { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 18px; border-radius: 8px; background: rgb(255 255 255 / 0.14); color: #fff; font-weight: 700; font-size: 15px; }
   .mast .ghost svg { width: 18px; height: 18px; }
+  .menu-toggle { display: none; }
   .menu { background: #fff; box-shadow: 0 6px 20px -16px rgb(28 42 102 / 0.5); }
   .menu .wrap { display: flex; gap: 34px; height: 52px; align-items: center; font-weight: 600; font-size: 15px; color: var(--ink); }
   .menu .hot { color: var(--blue); }
@@ -80,6 +81,7 @@
   .dots i { width: 8px; height: 8px; border-radius: 99px; background: rgb(255 255 255 / 0.6); }
   .dots i.on { width: 24px; background: #fff; }
   .alerts { display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: 10px; background: #fff; }
+  .alert-rail { display: contents; }
   .alerts h3 { display: flex; align-items: center; gap: 8px; font-size: 17px; color: var(--orange); }
   .alerts h3 svg { width: 20px; height: 20px; }
   .acard { position: relative; flex: 1; display: flex; flex-direction: column; justify-content: end; padding: 18px; border-radius: 10px; color: #fff; overflow: hidden; }
@@ -225,6 +227,243 @@
   footer h4 { color: #fff; font-size: 15.5px; margin-bottom: 14px; }
   footer ul { list-style: none; display: grid; gap: 8px; }
   footer .copy { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / 0.12); font-size: 13.5px; display: flex; justify-content: space-between; }
+
+  @media (max-width: 900px) {
+    .topbar { display: none; }
+    .wrap { padding-right: 20px; padding-left: 20px; }
+    .mast .wrap { height: auto; min-height: 72px; padding-top: 10px; padding-bottom: 10px; flex-wrap: wrap; gap: 10px 12px; }
+    .mast .logo { height: 38px; }
+    .mast .search { order: 3; flex-basis: 100%; height: 42px; }
+    .mast .acts { margin-left: auto; gap: 8px; }
+    .mast .ghost { height: 40px; padding: 0 12px; }
+    .mast .acts > .btn { height: 40px; padding: 0 14px; }
+    .menu-toggle { display: grid; place-items: center; flex: 0 0 38px; width: 38px; height: 38px; border: 0; border-radius: 9px; background: rgb(255 255 255 / 0.14); color: #fff; }
+    .menu-toggle svg { width: 22px; height: 22px; }
+    .menu { display: none; }
+    .menu.open { display: block; }
+    .menu .wrap { height: auto; padding-top: 8px; padding-bottom: 8px; display: grid; gap: 0; font-size: 14px; }
+    .menu .wrap a { padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .menu .wrap a:last-child { border-bottom: 0; }
+    section { padding: 40px 0; }
+    .hero { padding-top: 16px; }
+    .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .hero-grid .bn { width: 100%; height: auto; aspect-ratio: 800 / 420; }
+    .hero-grid .bn .copy { top: 24px; left: 28px; right: 28px; width: auto !important; }
+    .hero-grid .bn .t1 { font-size: 28px !important; }
+    .hero-grid .bn .t2 { font-size: 48px !important; }
+    .hero-grid .bn .desc { font-size: 14px !important; }
+    .hero-grid .bn .photo,
+    .hero-grid .bn .vial,
+    .hero-grid .bn .sticker,
+    .hero-grid .bn .bokeh { display: none; }
+    .hero-grid .bn .ctas { left: 28px; bottom: 24px; }
+    .alerts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 12px; }
+    .alerts h3 { grid-column: 1 / -1; }
+    .acard { min-height: 144px; padding: 14px; }
+    .acard .ico { width: 48px; height: 48px; }
+    .acard b { font-size: 15px; }
+    .usp { margin-top: 12px; padding: 8px; grid-template-columns: repeat(2, 1fr); }
+    .usp div { padding: 8px 10px; }
+    .usp div:nth-child(3) { border-left: 0; }
+    .usp svg { width: 40px; height: 40px; }
+    .quick { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .qt { min-height: 88px; padding: 14px; gap: 10px; }
+    .qt svg { width: 46px; height: 46px; }
+    .qt b { font-size: 16px; }
+    .find-box { padding: 20px; }
+    .groups { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    .group { gap: 6px; padding: 12px 4px; font-size: 13px; }
+    .group svg { width: 48px; height: 48px; }
+    .cards, .news { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .vcard .art { height: 120px; }
+    .vcard .info { padding: 12px; }
+    .vcard h3 { font-size: 16px; }
+    .vcard .bottom { gap: 6px; }
+    .vcard .price { font-size: 16px; }
+    .pkg { padding: 64px 0; }
+    .pcard .top { padding: 14px 12px 12px; gap: 8px; }
+    .pcard .top svg { width: 42px; height: 42px; }
+    .pcard h3 { white-space: normal; font-size: 15px; }
+    .pcard .stats { margin: 0 12px; gap: 6px; }
+    .pcard .stats span { padding: 7px; }
+    .pcard .stats b { font-size: 16px; }
+    .pcard .price { margin: 12px 12px 0; gap: 6px; }
+    .pcard .price b { font-size: 19px; }
+    .pcard .acts { margin: 12px; gap: 6px; }
+    .pcard .acts .btn { height: 38px; padding: 0 6px; font-size: 12px; }
+    .why-box { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+    .why-box h2 { font-size: 28px; }
+    .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .why-grid div { padding: 16px 14px; }
+    .why-grid svg { width: 44px; height: 44px; }
+    .why-grid h3 { margin-top: 8px; font-size: 15px; }
+    .rec-box { grid-template-columns: auto 1fr; gap: 12px; padding: 20px; }
+    .rec-box svg.ic { width: 52px; height: 52px; }
+    .rec-box h2 { font-size: 22px; }
+    .rec-form { grid-column: 1 / -1; flex-wrap: wrap; }
+    .select { min-width: 0; flex: 1; height: 48px; padding: 0 12px; }
+    .rec-form .btn { height: 48px; }
+    .news img { height: 140px; }
+    .news .body { padding: 12px; }
+    .news h3 { font-size: 15px; }
+    .faq-wrap { grid-template-columns: 1fr; gap: 20px; }
+    .faq div { padding: 13px 14px; font-size: 14px; }
+    .contact img { height: 160px; }
+    .contact .body { padding: 18px; }
+    footer { padding: 56px 0 20px; }
+    footer .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 20px; }
+    footer .copy { margin-top: 26px; padding-top: 16px; gap: 8px; }
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 14px; }
+    .wrap { padding-right: 16px; padding-left: 16px; }
+    h2 { font-size: 23px; }
+    .btn { height: 42px; padding: 0 14px; font-size: 13px; }
+    .btn-sm { height: 36px; padding: 0 10px; font-size: 12px; }
+    .link { font-size: 12px; white-space: nowrap; }
+    .link svg { width: 13px; height: 13px; }
+    .mast .wrap { min-height: 60px; padding-top: 8px; padding-bottom: 8px; gap: 8px; }
+    .menu-toggle { flex-basis: 34px; width: 34px; height: 34px; }
+    .menu-toggle svg { width: 20px; height: 20px; }
+    .mast .logo { height: 30px; max-width: 120px; object-fit: contain; object-position: left center; }
+    .mast .ghost { display: none; }
+    .mast .acts > .btn { height: 36px; padding: 0 10px; font-size: 12px; }
+    .mast .search { height: 38px; padding-left: 12px; font-size: 13px; }
+    .mast .search b { width: 32px; height: 32px; }
+    .mast .search b svg { width: 16px; height: 16px; }
+    section { padding: 28px 0; }
+    .hero { padding-top: 12px; }
+    .hero-grid { gap: 8px; }
+    .hero-grid .bn { aspect-ratio: auto; height: 310px; }
+    .hero-grid .bn .desc,
+    .hero-grid .bn .pills { display: none; }
+    .hero-grid .bn .copy { top: 16px; left: 16px; right: 16px; }
+    .hero-grid .bn .kicker { height: 26px; padding-right: 8px; font-size: 10px; }
+    .hero-grid .bn .kicker img { width: 20px; height: 20px; }
+    .hero-grid .bn h2 { margin-top: 10px; }
+    .hero-grid .bn .t1 { font-size: 20px !important; }
+    .hero-grid .bn .t2 { margin-top: 3px; font-size: 40px !important; }
+    .hero-grid .bn .desc { margin-top: 8px; font-size: 12px !important; }
+    .hero-grid .bn .pills { margin-top: 8px; gap: 5px !important; }
+    .hero-grid .bn .pill.small { height: 26px; padding-right: 7px; font-size: 10px; }
+    .hero-grid .bn .pill.small svg { width: 18px; height: 18px; }
+    .hero-grid .bn .ctas { left: 16px; right: 16px; bottom: 16px; gap: 8px; }
+    .hero-grid .bn .ctas .cta { height: 40px; padding: 0 10px; font-size: 12px; gap: 6px; }
+    .hero-grid .bn .ctas .cta i { width: 28px; height: 28px; }
+    .hero-grid .bn .ctas .cta.ghost { padding: 0 10px; }
+    .hero-grid .bn .dots { right: 12px; bottom: 8px; padding: 5px 7px; }
+    .hero-grid .bn .dots i { width: 6px; height: 6px; }
+    .hero-grid .bn .dots i.on { width: 16px; }
+    .alerts { display: block; overflow: visible; padding: 0; background: transparent; }
+    .alert-rail { display: flex; gap: 8px; overflow-x: auto; padding: 0 0 8px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .alerts h3 { font-size: 15px; }
+    .alerts h3 svg { width: 17px; height: 17px; }
+    .acard { flex: 0 0 82%; min-height: 118px; padding: 10px; border-radius: 8px; scroll-snap-align: start; }
+    .acard .ico { top: 8px; right: 8px; width: 36px; height: 36px; }
+    .acard small { padding: 2px 6px; font-size: 10px; }
+    .acard b { margin-top: 5px; font-size: 13px; }
+    .acard > span:last-child { font-size: 11px; }
+    .acard > span:last-child { display: none; }
+    .usp { display: none; }
+    .quick { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 8px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .quick::-webkit-scrollbar,
+    .groups::-webkit-scrollbar,
+    .finder .cards::-webkit-scrollbar,
+    .pkg .cards::-webkit-scrollbar,
+    .news::-webkit-scrollbar,
+    .why-grid::-webkit-scrollbar,
+    .alert-rail::-webkit-scrollbar { display: none; }
+    .qt { flex: 0 0 132px; min-height: 64px; gap: 8px; padding: 8px; border-radius: 0; background: transparent; color: var(--ink); scroll-snap-align: start; }
+    .qt::after { display: none; }
+    .qt svg { width: 34px; height: 34px; }
+    .qt b { font-size: 12px; }
+    .qt span { display: none; }
+    .q2, .q4 { box-shadow: none; }
+    .head { gap: 8px; margin-bottom: 14px; }
+    .head h2 { gap: 7px; font-size: 20px; }
+    .head h2 .mark { width: 5px; height: 22px; }
+    .head > div > p { display: none; }
+    .finder { background: #fff; }
+    .find-box { padding: 0; background: transparent; box-shadow: none; }
+    .groups { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 8px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .group { flex: 0 0 76px; gap: 4px; padding: 8px 4px; border-width: 1px; border-radius: 8px; font-size: 10px; scroll-snap-align: start; }
+    .group svg { width: 32px; height: 32px; }
+    .result-label { margin: 16px 0 10px; gap: 8px; font-size: 12px; }
+    .finder .cards, .pkg .cards, .news, .why-grid { display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 10px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .finder .vcard { flex: 0 0 70%; max-width: 260px; scroll-snap-align: start; }
+    .pkg .pcard { flex: 0 0 78%; max-width: 290px; scroll-snap-align: start; }
+    .news article { flex: 0 0 72%; max-width: 270px; scroll-snap-align: start; }
+    .why-grid > div { flex: 0 0 72%; max-width: 270px; scroll-snap-align: start; }
+    .vcard { border-radius: 9px; }
+    .vcard .art { height: 92px; }
+    .vcard .art i, .vcard .art .vial-box { width: 44px; }
+    .vcard .art .flag { top: 7px; left: 7px; padding: 2px 6px; font-size: 9px; }
+    .vcard .info { padding: 9px; }
+    .vcard h3 { font-size: 13px; }
+    .vcard p { font-size: 11px; }
+    .vcard p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+    .vcard .bottom { align-items: flex-start; flex-direction: column; padding-top: 8px; }
+    .vcard .price { font-size: 14px; }
+    .center { margin-top: 16px; }
+    .pkg { padding: 48px 0; }
+    .pkg .head { align-items: flex-start; flex-direction: column; }
+    .pkg .head p { margin-top: 2px; font-size: 12px; }
+    .seg { padding: 3px; }
+    .seg b { padding: 7px 10px; font-size: 12px; }
+    .pcard { border-radius: 9px; }
+    .pcard .top { padding: 10px 8px; gap: 6px; align-items: flex-start; }
+    .pcard .top svg { width: 32px; height: 32px; }
+    .pcard .top small { font-size: 10px; }
+    .pcard h3 { font-size: 12px; }
+    .pcard .badge { right: 8px; padding: 4px 6px; font-size: 9px; }
+    .pcard .stats { margin: 0 8px; gap: 4px; }
+    .pcard .stats span { padding: 5px; font-size: 9px; }
+    .pcard .stats b { font-size: 13px; }
+    .pcard .price { margin: 8px 8px 0; gap: 4px; }
+    .pcard .price b { font-size: 15px; }
+    .pcard .price s, .pcard .price em { font-size: 9px; }
+    .pcard .price em { padding: 2px 4px; }
+    .pcard .acts { margin: 8px; gap: 4px; }
+    .pcard .acts .btn { height: 32px; padding: 0 4px; font-size: 10px; }
+    .why-box { gap: 14px; padding: 0; background: transparent; }
+    .why-box h2 { font-size: 22px; }
+    .why-box p.lead { margin-top: 6px; font-size: 12px; }
+    .why-box .btn { margin-top: 12px !important; }
+    .why-grid div { padding: 12px; border-radius: 9px; }
+    .why-grid svg { width: 36px; height: 36px; }
+    .why-grid h3 { margin-top: 5px; font-size: 13px; }
+    .why-grid p { display: none; }
+    .rec-box { gap: 8px; padding: 14px; }
+    .rec-box svg.ic { width: 40px; height: 40px; }
+    .rec-box h2 { font-size: 18px; }
+    .rec-box p { font-size: 11px; }
+    .rec-form { gap: 6px; }
+    .select { height: 42px; padding: 0 8px; font-size: 12px; }
+    .select small { font-size: 9px; }
+    .select svg { width: 12px; height: 12px; }
+    .rec-form .btn { flex: 1 0 100%; height: 40px; }
+    .news img { height: 100px; }
+    .news .tag { left: 7px; bottom: 7px; padding: 3px 7px; font-size: 9px; }
+    .news .body { padding: 9px; }
+    .news .meta { font-size: 10px; }
+    .news h3 { margin-top: 4px; font-size: 12px; }
+    .faq-wrap { gap: 16px; }
+    .faq { gap: 7px; }
+    .faq div { gap: 10px; padding: 10px; font-size: 12px; }
+    .faq span { width: 26px; height: 26px; }
+    .contact img { height: 120px; }
+    .contact .body { padding: 14px; }
+    .contact h3 { font-size: 18px; }
+    .contact ul { margin-top: 10px; gap: 7px; font-size: 12px; }
+    .contact .acts { margin-top: 12px; gap: 7px; }
+    footer { padding: 44px 0 16px; font-size: 12px; }
+    footer .cols { gap: 18px 12px; }
+    footer .logo { height: 36px; }
+    footer h4 { margin-bottom: 8px; font-size: 13px; }
+    footer ul { gap: 5px; }
+    footer .copy { margin-top: 18px; padding-top: 12px; flex-direction: column; font-size: 10px; }
+  }
 </style>
 </head>
 <body>
@@ -234,6 +473,9 @@
   <span class="r"><i data-ui="phone" style="display:inline-block;width:14px;height:14px;color:#fadc00"></i>Tổng đài <b>0593 888 666</b></span>
 </div></div>
 <header class="mast tex"><div class="wrap">
+  <button class="menu-toggle" type="button" aria-label="Mở menu" aria-controls="main-menu" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
   <img class="logo" src="/images/logo-horizontal-white.png" alt="Tiêm chủng Tâm Trí" />
   <div class="search"><span data-ui="search"></span>Bạn cần tìm vắc xin gì?<b data-ui="search" style="padding:11px"></b></div>
   <div class="acts">
@@ -241,7 +483,7 @@
     <a class="btn btn-white">Đặt lịch tiêm</a>
   </div>
 </div></header>
-<nav class="menu"><div class="wrap">
+<nav class="menu" id="main-menu"><div class="wrap">
   <a>Vắc xin phòng bệnh</a><a>Gói vắc xin</a><a class="hot">Khuyến mãi</a><a>Tôi nên tiêm gì?</a><a>Kiến thức tiêm chủng</a><a>Đội ngũ chuyên môn</a><a>Về chúng tôi</a>
 </div></nav>
 
@@ -273,8 +515,10 @@
     </div>
     <aside class="alerts">
       <h3><span data-ui="alert"></span>Cảnh báo dịch</h3>
-      <a class="acard a1 tex"><span class="ico"><i data-icon="mosquito" data-disc="#ffffff"></i></span><small>Đang vào mùa</small><b>Sốt xuất huyết đang vào mùa cao điểm</b><span>Dấu hiệu nặng và cách phòng</span></a>
-      <a class="acard a2 tex"><span class="ico"><i data-icon="influenza" data-disc="#ffffff"></i></span><small>Giao mùa</small><b>Cúm mùa tăng khi thời tiết chuyển lạnh</b><span>Ai nên tiêm nhắc lại mỗi năm</span></a>
+      <div class="alert-rail">
+        <a class="acard a1 tex"><span class="ico"><i data-icon="mosquito" data-disc="#ffffff"></i></span><small>Đang vào mùa</small><b>Sốt xuất huyết đang vào mùa cao điểm</b><span>Dấu hiệu nặng và cách phòng</span></a>
+        <a class="acard a2 tex"><span class="ico"><i data-icon="influenza" data-disc="#ffffff"></i></span><small>Giao mùa</small><b>Cúm mùa tăng khi thời tiết chuyển lạnh</b><span>Ai nên tiêm nhắc lại mỗi năm</span></a>
+      </div>
     </aside>
   </div>
   <div class="usp"><template data-each="why"><div><i data-icon="{{it[0]}}" data-disc="#F2F4FB"></i><p><b>{{it[1]}}</b><span>{{it[2]}}</span></p></div></template></div>
@@ -290,7 +534,7 @@
 </div></section>
 
 <section class="finder"><div class="wrap">
-  <div class="head"><h2><span class="mark"></span>Vắc xin theo nhóm bệnh</h2><a class="link">Xem tất cả vắc xin<span data-ui="chevron"></span></a></div>
+  <div class="head"><h2><span class="mark"></span>Vắc xin theo bệnh</h2><a class="link">Tất cả vắc xin<span data-ui="chevron"></span></a></div>
   <div class="find-box">
     <div class="groups"><template data-each="groups"><span class="group {{i === 0 ? 'on' : ''}}" ><i data-icon="{{it[1]}}" data-disc="#F2F4FB"></i>{{it[0]}}</span></template></div>
     <p class="result-label"><span>Vắc xin phòng <b>Phế cầu khuẩn</b></span><span>4 vắc xin</span></p>
@@ -302,7 +546,7 @@
   <svg class="wave-top" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 0H1440V14C1180 34 960 6 720 18S240 34 0 12Z" fill="#fff"/></svg>
   <svg class="wave-bottom" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 40H1440V26C1200 8 980 36 720 24S220 8 0 26Z" fill="#eef3ff"/></svg>
 <div class="wrap">
-  <div class="head"><div><h2>Gói vắc xin trọn gói</h2><p>Lịch tiêm bác sĩ sắp sẵn, không lo trễ mũi.</p></div><div class="seg"><b class="on">Theo độ tuổi</b><b>Theo đối tượng</b></div></div>
+  <div class="head"><div><h2>Gói vắc xin</h2><p>Lịch tiêm bác sĩ sắp sẵn, không lo trễ mũi.</p></div><div class="seg"><b class="on">Theo độ tuổi</b><b>Theo đối tượng</b></div></div>
   <div class="cards"><template data-each="packages"><article class="pcard {{it.hot ? 'hot' : ''}}">{{it.hot ? '<span class="badge">Phổ biến nhất</span>' : ''}}<div class="top"><i data-icon="{{it.icon}}" data-disc="#F2F4FB"></i><div><small>{{it.who}}</small><h3>{{it.name}}</h3></div></div><div class="stats"><span><b>{{it.doses}}</b>mũi tiêm</span><span><b>{{it.count}}</b>loại vắc xin</span></div><div class="price"><b>{{vnd(it.price)}}</b><s>{{vnd(it.was)}}</s><em>-{{Math.round((it.was - it.price) / it.was * 100)}}%</em></div><div class="acts"><a class="btn btn-line">Chi tiết</a><a class="btn btn-sun">Đặt lịch</a></div></article></template></div>
   <div class="center"><a class="btn btn-white">Xem tất cả gói vắc xin</a></div>
 </div></section>
@@ -327,7 +571,7 @@
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
-  <div class="head"><h2><span class="mark"></span>Kiến thức tiêm chủng</h2><a class="link">Xem tất cả bài viết<span data-ui="chevron"></span></a></div>
+  <div class="head"><h2><span class="mark"></span>Kiến thức</h2><a class="link">Tất cả bài viết<span data-ui="chevron"></span></a></div>
   <div class="news"><template data-each="articles"><article><div class="img"><img src="{{it.img}}" alt="" /><span class="tag" style="background:#fff;color:#283c96">{{it.tag}}</span></div><div class="body"><p class="meta">{{it.date}}</p><h3>{{it.title}}</h3></div></article></template></div>
 </div></section>
 
@@ -362,6 +606,25 @@
 <script>
   document.querySelector(".contact ul").innerHTML = document.querySelector(".contact ul").innerHTML.replace(/\{\{(\w+)\}\}/g, (_, k) => UI[k]);
   renderTemplates();
+  const menuToggle = document.querySelector(".menu-toggle");
+  const menu = document.querySelector("#main-menu");
+  menuToggle.addEventListener("click", () => {
+    const isOpen = menu.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Đóng menu" : "Mở menu");
+  });
+  menu.querySelectorAll("a").forEach((item) => item.addEventListener("click", () => {
+    menu.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Mở menu");
+  }));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      menu.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Mở menu");
+    }
+  });
 </script>
 <script src="icons.js"></script>
 <script src="banner-c.js"></script>
