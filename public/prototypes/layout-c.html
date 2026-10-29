@@ -62,6 +62,7 @@
   .mast .ghost { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 18px; border-radius: 8px; background: rgb(255 255 255 / 0.14); color: #fff; font-weight: 700; font-size: 15px; }
   .mast .ghost svg { width: 18px; height: 18px; }
   .menu-toggle { display: none; }
+  .menu-close { display: none; }
   .menu { background: #fff; box-shadow: 0 6px 20px -16px rgb(28 42 102 / 0.5); }
   .menu .wrap { display: flex; gap: 34px; height: 52px; align-items: center; font-weight: 600; font-size: 15px; color: var(--ink); }
   .menu .hot { color: var(--blue); }
@@ -239,10 +240,15 @@
     .mast .acts > .btn { height: 40px; padding: 0 14px; }
     .menu-toggle { display: grid; place-items: center; flex: 0 0 38px; width: 38px; height: 38px; border: 0; border-radius: 9px; background: rgb(255 255 255 / 0.14); color: #fff; }
     .menu-toggle svg { width: 22px; height: 22px; }
-    .menu { display: none; }
-    .menu.open { display: block; }
-    .menu .wrap { height: auto; padding-top: 8px; padding-bottom: 8px; display: grid; gap: 0; font-size: 14px; }
-    .menu .wrap a { padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .menu { position: fixed; inset: 0; z-index: 1000; display: block; overflow: hidden; background: transparent; box-shadow: none; visibility: hidden; pointer-events: none; transition: visibility 0s linear 280ms; }
+    .menu::before { content: ""; position: absolute; inset: 0; z-index: 0; background: linear-gradient(110deg, rgb(20 31 79 / 0.78), rgb(40 60 150 / 0.48)); opacity: 0; transition: opacity 240ms ease; }
+    .menu.open { visibility: visible; pointer-events: auto; transition-delay: 0s; }
+    .menu.open::before { opacity: 1; }
+    .menu .wrap { position: absolute; z-index: 1; top: 0; bottom: 0; left: 0; width: min(300px, calc(100vw - 56px)); max-width: none; height: 100dvh; margin: 0; padding: 72px 20px 20px; display: flex; flex-direction: column; align-items: stretch; gap: 0; overflow-y: auto; background: #fff; box-shadow: 12px 0 36px rgb(15 29 78 / 0.18); font-size: 14px; transform: translateX(-100%); transition: transform 260ms ease; }
+    .menu.open .wrap { transform: translateX(0); }
+    .menu-close { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 10px; background: #eef3ff; color: var(--navy); }
+    .menu-close svg { width: 20px; height: 20px; }
+    .menu .wrap a { padding: 13px 0; border-bottom: 1px solid var(--line); }
     .menu .wrap a:last-child { border-bottom: 0; }
     section { padding: 40px 0; }
     .hero { padding-top: 16px; }
@@ -316,6 +322,7 @@
   }
 
   @media (max-width: 600px) {
+    :root { --mobile-space: 16px; }
     body { font-size: 14px; }
     .wrap { padding-right: 16px; padding-left: 16px; }
     h2 { font-size: 23px; }
@@ -332,20 +339,18 @@
     .mast .search { height: 38px; padding-left: 12px; font-size: 13px; }
     .mast .search b { width: 32px; height: 32px; }
     .mast .search b svg { width: 16px; height: 16px; }
-    section { padding: 20px 0; }
+    section { padding: var(--mobile-space) 0; }
     .hero { padding-top: 10px; }
-    .hero-grid { gap: 8px; }
+    .hero-grid { gap: var(--mobile-space); }
     .hero-grid .bn { aspect-ratio: auto; height: 310px; }
-    .hero-grid .bn .desc,
-    .hero-grid .bn .pills { display: none; }
     .hero-grid .bn .copy { top: 16px; left: 16px; right: 16px; }
     .hero-grid .bn .kicker { height: 26px; padding-right: 8px; font-size: 10px; }
     .hero-grid .bn .kicker img { width: 20px; height: 20px; }
     .hero-grid .bn h2 { margin-top: 10px; }
     .hero-grid .bn .t1 { font-size: 20px !important; }
     .hero-grid .bn .t2 { margin-top: 3px; font-size: 40px !important; }
-    .hero-grid .bn .desc { margin-top: 8px; font-size: 12px !important; }
-    .hero-grid .bn .pills { margin-top: 8px; gap: 5px !important; }
+    .hero-grid .bn .desc { display: block; max-width: 60%; margin-top: 8px; font-size: 12px !important; line-height: 1.35; }
+    .hero-grid .bn .pills { display: none; }
     .hero-grid .bn .pill.small { height: 26px; padding-right: 7px; font-size: 10px; }
     .hero-grid .bn .pill.small svg { width: 18px; height: 18px; }
     .hero-grid .bn .ctas { left: 16px; right: 16px; bottom: 16px; gap: 8px; }
@@ -355,9 +360,13 @@
     .hero-grid .bn .dots { right: 12px; bottom: 8px; padding: 5px 7px; }
     .hero-grid .bn .dots i { width: 6px; height: 6px; }
     .hero-grid .bn .dots i.on { width: 16px; }
+    .hero-grid .bn .photo { display: block; top: auto; right: 16px; bottom: 66px; width: 88px !important; height: 88px !important; border: 4px solid #fff; border-radius: 12px; box-shadow: 0 10px 22px rgb(16 31 86 / 0.28); }
+    .hero-grid .bn .vial,
+    .hero-grid .bn .sticker,
+    .hero-grid .bn .bokeh { display: none; }
     .alerts { display: block; overflow: visible; padding: 0; background: transparent; }
     .alert-rail { display: flex; gap: 8px; overflow-x: auto; padding: 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
-    .alerts h3 { font-size: 15px; }
+    .alerts h3 { margin-bottom: 8px; font-size: 15px; }
     .alerts h3 svg { width: 17px; height: 17px; }
     .acard { flex: 0 0 82%; min-height: 118px; padding: 10px; border-radius: 8px; scroll-snap-align: start; }
     .acard .ico { top: 8px; right: 8px; width: 36px; height: 36px; }
@@ -366,8 +375,8 @@
     .acard > span:last-child { font-size: 11px; }
     .acard > span:last-child { display: none; }
     .usp { display: none; }
-    .quick-section { padding-top: 10px; }
-    .quick { display: flex; gap: 8px; overflow-x: auto; padding: 0 0 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .quick-section { padding: var(--mobile-space) 0 0; }
+    .quick { display: flex; gap: 12px; overflow-x: auto; padding: 0 0 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
     .quick::-webkit-scrollbar,
     .groups::-webkit-scrollbar,
     .finder .cards::-webkit-scrollbar,
@@ -382,23 +391,25 @@
     .qt b { font-size: 12px; }
     .qt span { display: none; }
     .q1, .q3, .q2, .q4 { background: #fff; color: var(--ink); box-shadow: none; }
-    .head { gap: 8px; margin-bottom: 10px; }
+    .head { gap: 8px; margin-bottom: 12px; }
     .head h2 { gap: 7px; font-size: 20px; }
     .head h2 .mark { width: 5px; height: 22px; }
     .head > div > p { display: none; }
-    .finder { padding-top: 14px; background: #fff; }
+    .finder { padding: var(--mobile-space) 0; background: #fff; }
     .find-box { padding: 0; background: transparent; box-shadow: none; }
-    .groups { display: flex; gap: 8px; overflow-x: auto; padding: 0 0 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .groups { display: flex; gap: 12px; overflow-x: auto; padding: 0 0 4px; scroll-snap-type: x mandatory; scrollbar-width: none; }
     .group { flex: 0 0 76px; gap: 4px; padding: 8px 4px; border-width: 1px; border-radius: 8px; font-size: 10px; scroll-snap-align: start; }
     .group svg { width: 32px; height: 32px; }
-    .result-label { margin: 8px 0; gap: 8px; font-size: 12px; }
-    .finder .cards, .pkg .cards, .news, .why-grid { display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 10px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .result-label { margin: 12px 0; gap: 8px; font-size: 12px; }
+    .finder .cards, .pkg .cards, .news, .why-grid { display: flex; gap: 12px; overflow-x: auto; padding: 2px 2px 10px; scroll-snap-type: x mandatory; scrollbar-width: none; }
     .finder .vcard { flex: 0 0 70%; max-width: 260px; scroll-snap-align: start; }
     .pkg .pcard { flex: 0 0 78%; max-width: 290px; scroll-snap-align: start; }
     .news article { flex: 0 0 72%; max-width: 270px; scroll-snap-align: start; }
     .why-grid > div { flex: 0 0 72%; max-width: 270px; scroll-snap-align: start; }
     .vcard { border-radius: 9px; }
     .vcard .art { height: 92px; }
+    .vcard .art { overflow: hidden; }
+    .vcard .art > i > svg { width: auto !important; height: 84px; max-width: 44%; }
     .vcard .art i, .vcard .art .vial-box { width: 44px; }
     .vcard .art .flag { top: 7px; left: 7px; padding: 2px 6px; font-size: 9px; }
     .vcard .info { padding: 9px; }
@@ -408,7 +419,7 @@
     .vcard .bottom { align-items: flex-start; flex-direction: column; padding-top: 8px; }
     .vcard .price { font-size: 14px; }
     .center { margin-top: 16px; }
-    .pkg { padding: 48px 0; }
+    .pkg { padding: 32px 0; }
     .pkg .head { align-items: flex-start; flex-direction: column; }
     .pkg .head p { margin-top: 2px; font-size: 12px; }
     .seg { padding: 3px; }
@@ -451,7 +462,7 @@
     .news .body { padding: 9px; }
     .news .meta { font-size: 10px; }
     .news h3 { margin-top: 4px; font-size: 12px; }
-    .faq-wrap { gap: 16px; }
+    .faq-wrap { gap: var(--mobile-space); }
     .faq { gap: 7px; }
     .faq div { gap: 10px; padding: 10px; font-size: 12px; }
     .faq span { width: 26px; height: 26px; }
@@ -479,14 +490,15 @@
   <button class="menu-toggle" type="button" aria-label="Mở menu" aria-controls="main-menu" aria-expanded="false">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
-  <img class="logo" src="/images/logo-horizontal-white.png" alt="Tiêm chủng Tâm Trí" />
+  <img class="logo" src="../images/logo-horizontal-white.png" alt="Tiêm chủng Tâm Trí" />
   <div class="search"><span data-ui="search"></span>Bạn cần tìm vắc xin gì?<b data-ui="search" style="padding:11px"></b></div>
   <div class="acts">
     <a class="ghost"><span data-ui="phone"></span>Tư vấn</a>
     <a class="btn btn-white">Đặt lịch tiêm</a>
   </div>
 </div></header>
-<nav class="menu" id="main-menu"><div class="wrap">
+<nav class="menu" id="main-menu" aria-hidden="false"><div class="wrap">
+  <button class="menu-close" type="button" aria-label="Đóng menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   <a>Vắc xin phòng bệnh</a><a>Gói vắc xin</a><a class="hot">Khuyến mãi</a><a>Tôi nên tiêm gì?</a><a>Kiến thức tiêm chủng</a><a>Đội ngũ chuyên môn</a><a>Về chúng tôi</a>
 </div></nav>
 
@@ -497,7 +509,7 @@
       <span class="bokeh" style="width:180px;height:180px;right:-40px;bottom:-60px;background:rgb(250 220 0 / .35)"></span>
       <span class="bokeh" style="width:90px;height:90px;left:380px;top:-30px;background:rgb(255 255 255 / .14)"></span>
       <div class="copy" style="width:440px">
-        <span class="kicker"><img src="/images/logo-mark.png" alt="" />Hệ sinh thái y tế Sản – Nhi Tâm Trí</span>
+        <span class="kicker"><img src="../images/logo-mark.png" alt="" />Hệ sinh thái y tế Sản – Nhi Tâm Trí</span>
         <h2><span class="t1" style="font-size:33px">Trung tâm Tiêm chủng</span><span class="t2" style="font-size:60px">Tâm Trí</span></h2>
         <p class="desc" style="font-size:15px">Cùng hệ thống Phòng khám Sản – Nhi và Nhà thuốc Tâm Trí.</p>
         <div class="pills" style="gap:6px">
@@ -510,7 +522,7 @@
         <a class="cta" style="background:#fff;color:#283c96">Đặt lịch tiêm<i style="background:#283c96;color:#fff">›</i></a>
         <a class="cta ghost">Tra cứu vắc xin</a>
       </div>
-      <div class="photo" style="right:44px;top:50px;width:270px;height:270px"><img src="/images/facade.jpg" alt="Mặt tiền Trung tâm Tiêm chủng Tâm Trí" style="object-position:45% 60%" /></div>
+      <div class="photo" style="right:44px;top:50px;width:270px;height:270px"><img src="../images/facade.jpg" alt="Mặt tiền Trung tâm Tiêm chủng Tâm Trí" style="object-position:45% 60%" /></div>
       <i class="vial" data-vial="Hexaxim|#fadc00" style="right:290px;top:70px;width:58px;transform:rotate(-12deg)"></i>
       <i class="vial" data-vial="Prevenar|#5ea0ff" style="right:30px;top:226px;width:70px;transform:rotate(10deg)"></i>
       <div class="sticker" style="right:236px;top:282px"><span>Mở cửa<b style="font-size:19px">7:30–20:00</b>hằng ngày</span></div>
@@ -527,7 +539,7 @@
   <div class="usp"><template data-each="why"><div><i data-icon="{{it[0]}}" data-disc="#F2F4FB"></i><p><b>{{it[1]}}</b><span>{{it[2]}}</span></p></div></template></div>
 </div></div>
 
-<section class="quick-section" style="padding-bottom:0"><div class="wrap">
+<section class="quick-section"><div class="wrap">
   <div class="quick">
     <a class="qt q1 tex"><i data-icon="syringe" data-disc="#ffffff"></i><p><b>Tra cứu vắc xin</b><span>Theo bệnh, tên vắc xin</span></p></a>
     <a class="qt q2"><i data-icon="package" data-disc="#F2F4FB"></i><p><b>Gói vắc xin</b><span>Theo độ tuổi, đối tượng</span></p></a>
@@ -561,7 +573,7 @@
   </div>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
+<section><div class="wrap">
   <div class="rec-box tex">
     <i class="ic" data-icon="advisor" data-disc="#ffffff"></i>
     <div><h2>Chưa biết nên tiêm gì?</h2><p>Chọn độ tuổi và giới tính, chúng tôi gợi ý vắc xin phù hợp.</p></div>
@@ -573,18 +585,18 @@
   </div>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
+<section><div class="wrap">
   <div class="head"><h2><span class="mark"></span>Kiến thức</h2><a class="link">Tất cả bài viết<span data-ui="chevron"></span></a></div>
   <div class="news"><template data-each="articles"><article><div class="img"><img src="{{it.img}}" alt="" /><span class="tag" style="background:#fff;color:#283c96">{{it.tag}}</span></div><div class="body"><p class="meta">{{it.date}}</p><h3>{{it.title}}</h3></div></article></template></div>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap faq-wrap">
+<section><div class="wrap faq-wrap">
   <div>
     <div class="head"><h2><span class="mark"></span>Câu hỏi thường gặp</h2></div>
     <div class="faq"><template data-each="faqs"><div>{{it}}<span>{{UI.plus}}</span></div></template></div>
   </div>
   <div class="contact tex">
-    <img src="/images/facade.jpg" alt="" />
+    <img src="../images/facade.jpg" alt="" />
     <div class="body">
       <h3>Tâm Trí Quy Nhơn</h3>
       <ul><li>{{pin}}424 Nguyễn Thị Minh Khai, P. Quy Nhơn Nam, T. Gia Lai</li><li>{{clock}}7:30 – 20:00 hằng ngày</li><li>{{phone}}0593 888 666</li></ul>
@@ -597,7 +609,7 @@
   <svg class="wave-top" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 0H1440V14C1180 34 960 6 720 18S240 34 0 12Z" fill="#eef3ff"/></svg>
 <div class="wrap">
   <div class="cols">
-    <div><img class="logo" src="/images/logo-horizontal-white.png" alt="" /><p style="margin-top:16px;max-width:300px">Tận tâm đồng hành cùng bạn. Thuộc hệ thống Y tế Tâm Trí, Quy Nhơn.</p></div>
+    <div><img class="logo" src="../images/logo-horizontal-white.png" alt="" /><p style="margin-top:16px;max-width:300px">Tận tâm đồng hành cùng bạn. Thuộc hệ thống Y tế Tâm Trí, Quy Nhơn.</p></div>
     <div><h4>Dịch vụ</h4><ul><li>Vắc xin phòng bệnh</li><li>Gói vắc xin</li><li>Tôi nên tiêm gì?</li><li>Bảng giá</li></ul></div>
     <div><h4>Về Tâm Trí</h4><ul><li>Giới thiệu</li><li>Đội ngũ chuyên môn</li><li>Kiến thức tiêm chủng</li></ul></div>
     <div><h4>Chính sách</h4><ul><li>Quy chế hoạt động</li><li>Bảo mật</li><li>Thanh toán</li></ul></div>
@@ -611,22 +623,25 @@
   renderTemplates();
   const menuToggle = document.querySelector(".menu-toggle");
   const menu = document.querySelector("#main-menu");
-  menuToggle.addEventListener("click", () => {
-    const isOpen = menu.classList.toggle("open");
+  const menuClose = document.querySelector(".menu-close");
+  const mobileMenu = window.matchMedia("(max-width: 900px)");
+  const setMenuOpen = (isOpen) => {
+    menu.classList.toggle("open", isOpen);
     menuToggle.setAttribute("aria-expanded", String(isOpen));
     menuToggle.setAttribute("aria-label", isOpen ? "Đóng menu" : "Mở menu");
+    menu.setAttribute("aria-hidden", String(mobileMenu.matches && !isOpen));
+    document.body.style.overflow = isOpen ? "hidden" : "";
+  };
+  setMenuOpen(false);
+  mobileMenu.addEventListener("change", () => setMenuOpen(false));
+  menuToggle.addEventListener("click", () => setMenuOpen(!menu.classList.contains("open")));
+  menuClose.addEventListener("click", () => setMenuOpen(false));
+  menu.addEventListener("click", (event) => {
+    if (event.target === menu) setMenuOpen(false);
   });
-  menu.querySelectorAll("a").forEach((item) => item.addEventListener("click", () => {
-    menu.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Mở menu");
-  }));
+  menu.querySelectorAll("a").forEach((item) => item.addEventListener("click", () => setMenuOpen(false)));
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      menu.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Mở menu");
-    }
+    if (event.key === "Escape") setMenuOpen(false);
   });
 </script>
 <script src="icons.js"></script>

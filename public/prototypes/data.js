@@ -31,10 +31,10 @@ const DATA = {
     ["reminder", "Nhắc lịch tiêm", "Hỗ trợ nhắc lịch các mũi tiếp theo."],
   ],
   articles: [
-    { title: "Những phản ứng thường gặp sau tiêm và cách chăm sóc tại nhà", excerpt: "Sốt nhẹ, sưng đau chỗ tiêm có đáng lo? Cách chăm sóc bé trong 24–48 giờ đầu và khi nào cần quay lại cơ sở y tế.", img: "/images/interior-waiting.jpg", tag: "Nhi", date: "18/10/2026" },
-    { title: "Khám sàng lọc trước tiêm chủng: những thông tin ba mẹ cần biết", img: "/images/interior-exam-room.jpg", tag: "Mẹ & Bé", date: "20/10/2026" },
-    { title: "Lịch tiêm chủng cho bé từ 0 đến 24 tháng ba mẹ cần nắm", img: "/images/family.jpg", tag: "Mẹ & Bé", date: "08/10/2026" },
-    { title: "Chuẩn bị mang thai: nên tiêm những vắc xin nào và trước bao lâu?", img: "/images/interior-reception.jpg", tag: "Sức khỏe giới tính", date: "15/10/2026" },
+    { title: "Những phản ứng thường gặp sau tiêm và cách chăm sóc tại nhà", excerpt: "Sốt nhẹ, sưng đau chỗ tiêm có đáng lo? Cách chăm sóc bé trong 24–48 giờ đầu và khi nào cần quay lại cơ sở y tế.", img: "../images/interior-waiting.jpg", tag: "Nhi", date: "18/10/2026" },
+    { title: "Khám sàng lọc trước tiêm chủng: những thông tin ba mẹ cần biết", img: "../images/interior-exam-room.jpg", tag: "Mẹ & Bé", date: "20/10/2026" },
+    { title: "Lịch tiêm chủng cho bé từ 0 đến 24 tháng ba mẹ cần nắm", img: "../images/family.jpg", tag: "Mẹ & Bé", date: "08/10/2026" },
+    { title: "Chuẩn bị mang thai: nên tiêm những vắc xin nào và trước bao lâu?", img: "../images/interior-reception.jpg", tag: "Sức khỏe giới tính", date: "15/10/2026" },
   ],
   faqs: [
     "Trẻ cần chuẩn bị gì trước khi đi tiêm?",
