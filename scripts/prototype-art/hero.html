@@ -7,13 +7,13 @@
 <link rel="stylesheet" href="art.css" />
 <link rel="stylesheet" href="../../public/prototypes/banner-c.css" />
 <style>
-  /* PC 800×420 (xuất 2x), mobile 343×480 (xuất 3x), bản mobile đủ nội dung như PC. Nút bấm và chấm chuyển slide là HTML đặt
+  /* PC 800×420 (xuất 2x), mobile 343×440 (xuất 3x), bản mobile đủ nội dung như PC. Nút bấm và chấm chuyển slide là HTML đặt
      lên ảnh ở trang, nên góc dưới bên trái (và góc trên bên phải bản mobile) để trống. */
   .bn { border-radius: 0; font-family: inherit; }
   .bn .pill.small { height: 30px; padding: 0 11px 0 4px; font-size: 12.5px; }
   .bn .pill.small svg { width: 22px; height: 22px; }
 
-  .mb .bn { width: 343px; height: 480px; }
+  .mb .bn { width: 343px; height: 440px; }
   .mb .bn .copy { top: 16px; left: 16px; right: 16px; width: auto !important; }
   .mb .bn .kicker { height: 26px; padding-right: 10px; font-size: 11px; }
   .mb .bn .kicker img { width: 20px; height: 20px; }
@@ -23,11 +23,13 @@
   .mb .bn .desc { max-width: 300px; margin-top: 8px; font-size: 13px !important; line-height: 1.4; }
   .mb .bn .pills { flex-direction: column; align-items: flex-start; gap: 6px !important; margin-top: 14px; }
   .mb .bn .pill.small { height: 26px; padding-right: 9px; font-size: 11px; }
-  .mb .bn .pill.small svg { width: 20px; height: 20px; }
-  .mb .bn .photo { top: 244px !important; right: 18px !important; width: 164px !important; height: 164px !important; border-width: 6px; }
-  .mb .bn .v1 { top: 214px !important; right: 6px !important; width: 38px !important; }
-  .mb .bn .v2 { top: 338px !important; right: 0 !important; width: 44px !important; }
-  .mb .bn .sticker { top: 330px !important; right: auto !important; left: 80px; width: 86px; height: 86px; font-size: 10px; }
+  .mb .bn .pill.small svg { width: 20px; height: 20px; flex-shrink: 0; }
+  /* Chip dài xuống 2 dòng để cột chip hẹp, chừa chỗ cho ảnh tròn bên phải. */
+  .mb .bn .pill.small:nth-child(3) { height: auto; max-width: 116px; padding-top: 5px; padding-bottom: 5px; line-height: 1.2; }
+  .mb .bn .photo { top: 184px !important; right: 12px !important; width: 160px !important; height: 160px !important; border-width: 6px; }
+  .mb .bn .v1 { top: 168px !important; right: 2px !important; width: 36px !important; }
+  .mb .bn .v2 { top: 280px !important; right: 0 !important; width: 42px !important; }
+  .mb .bn .sticker { top: 284px !important; right: auto !important; left: 92px; width: 86px; height: 86px; font-size: 10px; }
   .mb .bn .sticker b { font-size: 15px !important; }
 </style>
 </head>

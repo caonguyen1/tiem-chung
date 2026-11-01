@@ -77,7 +77,7 @@ Khách muốn banner là **ảnh hoàn chỉnh**, admin tải lên và thay đư
 
 | Ảnh | Desktop | Mobile | Ghi chú |
 |---|---|---|---|
-| Banner chính (slider) | 1600×840 (khung 800×420) | 1029×1440 (khung 343×480) | Nút và chấm chuyển slide là HTML đặt lên ảnh |
+| Banner chính (slider) | 1600×840 (khung 800×420) | 1029×1320 (khung 343×440) | Nút và chấm chuyển slide là HTML đặt lên ảnh |
 | Banner ưu đãi phụ | 2400×800 (3:1) | 1080×1320 (khung 360×440) | Cả ảnh là một link |
 | Popup chào mừng/quảng cáo | 1080×1080 | dùng chung | Tự mở khi vào trang, có nút đóng, Esc, bấm ra ngoài để đóng |
 

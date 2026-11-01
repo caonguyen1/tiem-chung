@@ -23,7 +23,7 @@ shot() { # file query width height target [scale]
 }
 
 shot "$here/hero.html" v=pc 800 420 "$out/hero-pc.jpg"
-shot "$here/hero.html" v=mb 343 480 "$out/hero-mb.jpg" 3
+shot "$here/hero.html" v=mb 343 440 "$out/hero-mb.jpg" 3
 shot "$here/offer.html" v=pc 1200 400 "$out/offer-pc.jpg"
 shot "$here/offer.html" v=mb 360 440 "$out/offer-mb.jpg" 3
 shot "$here/welcome.html" v=1 540 540 "$out/welcome.jpg"
