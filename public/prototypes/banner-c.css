@@ -24,7 +24,7 @@
 .bn .ribbon { position: absolute; padding: 8px 18px; font-weight: 800; font-size: 15px; border-radius: 12px; box-shadow: 0 10px 20px -10px rgb(0 0 0 / 0.5); }
 
 /* 1. Gói vắc xin cho bé — xanh dương sáng */
-.bn-pkg .bg { background: radial-gradient(120% 120% at 75% 30%, #3f7bff 0%, #2a52d6 38%, #283c96 75%, #1b2a70 100%); }
+.bn-pkg .bg { background: linear-gradient(120deg, #1c2a66 0%, #283c96 50%, #324cbd 100%); }
 .bn-pkg .kicker { background: rgb(255 255 255 / 0.16); color: #fff; }
 .bn-pkg .t2 { color: #fadc00; text-shadow: 0 4px 0 #1b2a70; }
 .bn-pkg .cta { background: #fff; color: #283c96; }
