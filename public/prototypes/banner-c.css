@@ -1,6 +1,6 @@
 ﻿/* Bộ banner phương án C: nền màu đậm nhiều lớp, chữ lớn, hình sản phẩm và nhãn dán.
    Mọi chữ đều là Google Sans Flex. Khung thiết kế 800×420, xuất ảnh ở 2x. */
-.bn { position: relative; width: 800px; height: 420px; overflow: hidden; border-radius: 12px; font-family: "Google Sans Flex", system-ui, sans-serif; color: #fff; isolation: isolate; }
+.bn { position: relative; width: 800px; height: 420px; overflow: hidden; border-radius: 12px; font-family: "SVN-Aptima", "Google Sans Flex", system-ui, sans-serif; color: #fff; isolation: isolate; }
 .bn * { box-sizing: border-box; }
 .bn .bg { position: absolute; inset: 0; z-index: -2; }
 .bn .rays { position: absolute; inset: -40%; z-index: -1; background: repeating-conic-gradient(from 0deg at 72% 45%, rgb(255 255 255 / 0.07) 0 6deg, transparent 6deg 18deg); }

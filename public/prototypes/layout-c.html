@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" />
 <link rel="stylesheet" href="banner-c.css" />
 <style>
+  /* Font thương hiệu SVN-Aptima (khách gửi), Google Sans Flex làm dự phòng. */
+  @font-face { font-family: "SVN-Aptima"; src: url("../fonts/svn-aptima-regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "SVN-Aptima"; src: url("../fonts/svn-aptima-bold.ttf") format("truetype"); font-weight: 700 900; font-display: swap; }
   /* Phương án C: nhiều màu, nhiều lớp. Xanh Tâm Trí làm nền chính, vàng làm nút
      và điểm nhấn, thêm bảng màu pastel cho nhóm bệnh và thẻ sản phẩm. */
   :root {
@@ -25,7 +28,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: "Google Sans Flex", system-ui, sans-serif; color: var(--body); background: var(--page); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  body { font-family: "SVN-Aptima", "Google Sans Flex", system-ui, sans-serif; color: var(--body); background: var(--page); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
   img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
   svg { display: block; }
@@ -40,7 +43,7 @@
   .btn-sm { height: 40px; padding: 0 16px; font-size: 14px; }
   .link { display: inline-flex; align-items: center; gap: 4px; color: var(--blue); font-weight: 700; font-size: 15px; }
   .link svg { width: 16px; height: 16px; }
-  section { padding: 64px 0; }
+  section { padding: 32px 0; }
   .head { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
   .head h2 { display: flex; align-items: center; gap: 12px; }
   .head h2 .mark { width: 8px; height: 30px; border-radius: 8px; background: linear-gradient(var(--sun) 0 50%, var(--bright) 50%); }
@@ -167,7 +170,6 @@
   .pcard.hot { box-shadow: 0 0 0 3px var(--sun); }
 
   /* Banner ưu đãi phụ */
-  .offer-section { padding-bottom: 0; }
   .offer { display: block; border-radius: 10px; overflow: hidden; box-shadow: 0 20px 44px -30px rgb(28 42 102 / 0.5); }
   .offer img { width: 100%; aspect-ratio: 3 / 1; }
 
@@ -265,7 +267,7 @@
     .menu-close svg { width: 20px; height: 20px; }
     .menu .wrap a { padding: 13px 0; border-bottom: 1px solid var(--line); }
     .menu .wrap a:last-child { border-bottom: 0; }
-    section { padding: 40px 0; }
+    section { padding: 24px 0; }
     .hero { padding-top: 16px; }
     .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
     .hero-grid .bn { width: 100%; height: auto; aspect-ratio: 800 / 420; }
