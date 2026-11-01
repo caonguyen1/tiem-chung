@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<title>Banner ưu đãi gói vắc xin</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=block" />
+<link rel="stylesheet" href="art.css" />
+<style>
+  /* PC 1200×400, mobile 540×270, cả hai xuất ở 2x. */
+  .bg { position: absolute; inset: 0; background: linear-gradient(100deg, #fffcea 0%, #fff6c4 55%, #ffef94 100%); }
+  .swirl { position: absolute; left: 0; bottom: 0; width: 70%; height: 60%; }
+  .copy { position: absolute; z-index: 2; }
+  .kicker { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; background: var(--navy); color: #fff; font-weight: 700; }
+  .kicker svg { color: var(--sun); }
+  h1 { color: var(--navy); font-weight: 800; letter-spacing: -0.025em; line-height: 1.04; }
+  h1 span { display: block; }
+  h1 em { position: relative; font-style: normal; color: var(--navy-500); }
+  h1 em svg { position: absolute; left: -4%; bottom: -14%; width: 108%; height: 30%; overflow: visible; }
+  .desc { color: var(--ink); font-weight: 500; }
+  .desc b { color: var(--navy); }
+  .row { display: flex; align-items: center; }
+  .cta { display: inline-flex; align-items: center; border-radius: 999px; background: var(--navy); color: #fff; font-weight: 800; box-shadow: 0 10px 22px -12px rgb(28 42 102 / 0.8); }
+  .cta i { display: grid; place-items: center; border-radius: 50%; background: #fff; color: var(--navy); }
+  .feat { display: flex; align-items: center; gap: 10px; padding-left: 20px; margin-left: 20px; border-left: 2px solid rgb(40 60 150 / 0.18); color: var(--navy); font-weight: 600; line-height: 1.25; }
+  .feat i { display: grid; place-items: center; flex-shrink: 0; border-radius: 50%; background: #fff; }
+  .photo { position: absolute; top: 0; right: 0; height: 100%; }
+  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 78%;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M26 0H100V100H14C4 70 6 30 26 0Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+  .photo svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .badge { position: absolute; z-index: 3; display: grid; place-items: center; transform: rotate(-8deg); filter: drop-shadow(0 14px 18px rgb(28 42 102 / 0.35)); }
+  .badge svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .badge p { position: relative; text-align: center; color: #fff; font-weight: 700; line-height: 1; }
+  .badge b { display: block; color: var(--sun); font-weight: 900; letter-spacing: -0.03em; }
+  .spark { position: absolute; z-index: 2; }
+
+  .pc .copy { left: 64px; top: 52px; }
+  .pc .kicker { height: 38px; padding: 0 18px 0 14px; font-size: 16px; }
+  .pc .kicker svg { width: 20px; height: 20px; }
+  .pc h1 { margin-top: 18px; font-size: 56px; }
+  .pc h1 em { font-size: 64px; }
+  .pc .desc { margin-top: 16px; font-size: 19px; }
+  .pc .row { margin-top: 28px; }
+  .pc .cta { height: 56px; gap: 14px; padding: 0 8px 0 28px; font-size: 19px; }
+  .pc .cta i { width: 40px; height: 40px; }
+  .pc .cta svg { width: 20px; height: 20px; }
+  .pc .feat { font-size: 15px; }
+  .pc .feat i { width: 42px; height: 42px; }
+  .pc .feat svg { width: 22px; height: 22px; }
+  .pc .photo { width: 500px; }
+  .pc .badge { left: 640px; top: 196px; width: 170px; height: 170px; }
+  .pc .badge p { font-size: 20px; }
+  .pc .badge b { margin-top: 4px; font-size: 62px; }
+  .pc .s1 { left: 492px; top: 30px; width: 44px; }
+  .pc .s2 { left: 612px; top: 196px; width: 36px; }
+
+  .mb .copy { left: 28px; top: 28px; }
+  .mb .kicker { height: 26px; padding: 0 12px 0 9px; font-size: 11.5px; gap: 6px; }
+  .mb .kicker svg { width: 14px; height: 14px; }
+  .mb h1 { margin-top: 12px; font-size: 30px; }
+  .mb h1 em { font-size: 34px; }
+  .mb .desc, .mb .feat { display: none; }
+  .mb .row { margin-top: 28px; }
+  .mb .cta { height: 40px; gap: 10px; padding: 0 5px 0 18px; font-size: 14px; }
+  .mb .cta i { width: 30px; height: 30px; }
+  .mb .cta svg { width: 15px; height: 15px; }
+  .mb .photo { width: 236px; }
+  .mb .badge { left: 252px; top: 150px; width: 96px; height: 96px; }
+  .mb .badge p { font-size: 11px; }
+  .mb .badge b { margin-top: 2px; font-size: 34px; }
+  .mb .s1 { left: 268px; top: 16px; width: 26px; }
+  .mb .s2 { display: none; }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="bg"></div>
+  <svg class="swirl" viewBox="0 0 800 240" preserveAspectRatio="none"><path d="M0 120C180 60 320 200 520 150S760 60 800 90V240H0Z" fill="#fff" fill-opacity=".55"/><path d="M0 190C220 130 380 240 600 200S780 160 800 170V240H0Z" fill="#fff" fill-opacity=".6"/></svg>
+
+  <div class="copy">
+    <span class="kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg>Ưu đãi tháng 11</span>
+    <h1><span>Gói vắc xin cho bé</span><span>Tiết kiệm đến <em>8%<svg viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M2 14C30 6 70 4 98 9" stroke="#FADC00" stroke-width="5" stroke-linecap="round" fill="none"/></svg></em></span></h1>
+    <p class="desc">Đăng ký trọn gói, <b>bác sĩ sắp sẵn lịch</b> và nhắc từng mũi.</p>
+    <div class="row">
+      <span class="cta">Xem ưu đãi<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></i></span>
+      <span class="feat"><i><svg viewBox="0 0 24 24" fill="none" stroke="#283C96" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="12" cy="15.5" r="2" fill="#FADC00" stroke="none"/></svg></i>Lịch tiêm do<br />bác sĩ sắp xếp</span>
+      <span class="feat"><i><svg viewBox="0 0 24 24" fill="none" stroke="#283C96" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/><circle cx="18" cy="5" r="2.6" fill="#FADC00" stroke="none"/></svg></i>Nhắc lịch<br />từng mũi</span>
+    </div>
+  </div>
+
+  <div class="photo">
+    <img src="../../public/images/family.jpg" alt="" />
+    <!-- Mép trái của ảnh cắt cong bằng mask, rồi kẻ viền trắng theo đúng đường cong. -->
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <path d="M26 -1C6 30 4 70 14 101" stroke="#fff" stroke-width="1.6" fill="none" vector-effect="non-scaling-stroke" style="stroke-width:7px"/>
+      <path d="M40 101C60 88 80 92 101 80V101Z" fill="#e3e8f6"/>
+      <path d="M40 101C60 88 80 92 101 80" stroke="#fff" fill="none" vector-effect="non-scaling-stroke" style="stroke-width:5px"/>
+    </svg>
+  </div>
+
+  <div class="badge">
+    <svg viewBox="0 0 100 100"><path d="M50 2c5 0 8 5 13 6s10-2 14 1 3 9 6 13 9 5 10 10-3 9-3 14 4 9 3 14-7 7-10 10-2 10-6 13-9 0-14 1-8 6-13 6-8-5-13-6-10 2-14-1-3-9-6-13-9-5-10-10 3-9 3-14-4-9-3-14 7-7 10-10 2-10 6-13 9 0 14-1 8-6 13-6Z" fill="#283C96"/></svg>
+    <p>Giảm đến<b>8%</b></p>
+  </div>
+  <svg class="spark s1" viewBox="0 0 40 40"><path d="M8 30 18 14M20 34 32 24M4 18l8-2" stroke="#FADC00" stroke-width="4" stroke-linecap="round"/></svg>
+  <svg class="spark s2" viewBox="0 0 40 40"><path d="M6 10l14 8M10 26l12-2M22 4l2 10" stroke="#FADC00" stroke-width="4" stroke-linecap="round"/></svg>
+</div>
+<script>document.body.className = new URLSearchParams(location.search).get("v") || "pc";</script>
+</body>
+</html>

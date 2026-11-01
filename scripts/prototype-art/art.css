@@ -1,0 +1,15 @@
+/* Dùng chung cho ảnh banner/popup của bản xem trước layout C (render bằng render.sh). */
+:root {
+  --navy: #283c96;
+  --navy-500: #324cbd;
+  --navy-900: #1c2a66;
+  --sun: #fadc00;
+  --brand-50: #f2f4fb;
+  --brand-100: #e3e8f6;
+  --ink: #1c2a66;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body { font-family: "Google Sans Flex", system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+.banner { position: relative; width: 100%; height: 100%; overflow: hidden; }
