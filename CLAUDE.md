@@ -7,6 +7,7 @@ Website và admin cho Trung tâm Tiêm chủng Tâm Trí (Quy Nhơn, Gia Lai).
 - Spec page & chức năng (20 page frontend, 13 module admin): `docs/requirements/website-pages-and-features.pdf`
 - Hồ sơ công ty, thương hiệu, USP, các điểm còn cần khách xác nhận: `docs/company/README.md`
 - File gốc khách gửi (logo, sổ tiêm chủng, phối cảnh, danh mục vắc xin): `docs/company/source/`
+- **Hệ giao diện đã duyệt (layout C):** `docs/design/layout-c.md`. Mọi trang trong phải theo tài liệu này (màu, font, khoảng cách, thẻ, banner ảnh). Khi làm trang mới hoặc chuyển trang chủ sang layout C, tài liệu này được ưu tiên hơn các mô tả trang chủ cũ bên dưới.
 
 ## Stack & lệnh
 
@@ -29,6 +30,7 @@ Website và admin cho Trung tâm Tiêm chủng Tâm Trí (Quy Nhơn, Gia Lai).
 
 - VNVC, Long Châu chỉ là tham khảo **chức năng**. Không sao chép UI/UX, bố cục hay màu sắc của họ.
 - Màu thương hiệu: xanh `#283C96`, vàng `#FADC00`. Slogan: "Tận tâm đồng hành cùng bạn".
-- Font web: Google Sans Flex.
+- Font web: SVN-Aptima (`public/fonts/`, khách gửi 2026-11-01), Google Sans Flex làm dự phòng. Bản Next.js hiện tại vẫn dùng Google Sans Flex cho tới khi chuyển sang layout C.
+- Banner là ảnh, mỗi banner có ảnh desktop và ảnh mobile riêng; bản mobile phải có đủ thông tin và hình ảnh như bản desktop (chi tiết trong `docs/design/layout-c.md`).
 - Thông tin liên hệ, địa chỉ, tổng đài, giờ mở cửa, bác sĩ là dữ liệu do admin quản lý. Không hardcode vào code; dùng dữ liệu tạm có sẵn trong `docs/company/README.md`.
 - Toàn bộ nội dung hiển thị viết bằng tiếng Việt.
