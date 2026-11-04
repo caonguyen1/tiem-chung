@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=block" />
 <link rel="stylesheet" href="art.css" />
 <style>
-  /* PC 1200×400 (xuất 2x), mobile 360×440 (xuất 3x). */
+  /* PC 1200×400 (xuất 2x), mobile 360×200 (xuất 3x). */
   .bg { position: absolute; inset: 0; background: linear-gradient(100deg, #fffcea 0%, #fff6c4 55%, #ffef94 100%); }
   .swirl { position: absolute; left: 0; bottom: 0; width: 70%; height: 60%; }
   .copy { position: absolute; z-index: 2; }
@@ -53,30 +53,31 @@
   .pc .s1 { left: 492px; top: 30px; width: 44px; }
   .pc .s2 { left: 612px; top: 196px; width: 36px; }
 
-  /* Mobile đủ nội dung như PC: chữ ở trên, ảnh gia đình ở dưới với mép trên cong. */
+  /* Mobile khung ngang 360×200 (góp ý 2026-11-03: không dùng khung đứng), vẫn đủ nội dung như PC:
+     chữ bên trái, ảnh gia đình mép cong bên phải, nhãn giảm giá đè lên mép ảnh. */
   .pc .only-mb, .mb .only-pc { display: none; }
-  .mb .copy { left: 20px; right: 20px; top: 22px; }
-  .mb .kicker { height: 26px; padding: 0 12px 0 9px; font-size: 11.5px; gap: 6px; }
-  .mb .kicker svg { width: 14px; height: 14px; }
-  .mb h1 { margin-top: 10px; font-size: 30px; }
-  .mb h1 em { font-size: 34px; }
-  .mb .desc { margin-top: 10px; font-size: 13.5px; }
-  .mb .row { margin-top: 14px; display: grid; grid-template-columns: auto 1fr; align-items: center; row-gap: 12px; }
-  .mb .cta { grid-column: 1 / -1; justify-self: start; height: 40px; gap: 10px; padding: 0 5px 0 18px; font-size: 14px; }
-  .mb .cta i { width: 30px; height: 30px; }
-  .mb .cta svg { width: 15px; height: 15px; }
-  .mb .feat { gap: 8px; font-size: 12px; }
-  .mb .cta + .feat { margin-left: 0; padding-left: 0; border-left: 0; }
-  .mb .feat i { width: 32px; height: 32px; }
-  .mb .feat svg { width: 17px; height: 17px; }
-  .mb .photo { top: 266px; bottom: 0; left: 0; width: 100%; height: auto; }
-  .mb .photo img { object-position: 50% 45%;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 22C30 4 70 0 100 14V100H0Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
-  .mb .badge { left: 14px; top: 340px; width: 92px; height: 92px; }
-  .mb .badge p { font-size: 11px; }
-  .mb .badge b { margin-top: 2px; font-size: 32px; }
-  .mb .s1 { left: 300px; top: 20px; width: 28px; }
-  .mb .s2 { display: none; }
+  .mb .photo svg.only-pc { display: block; }
+  .mb .photo svg.only-mb { display: none; }
+  .mb .copy { left: 14px; top: 13px; width: 214px; }
+  .mb .kicker { height: 19px; padding: 0 8px 0 6px; font-size: 9px; gap: 4px; }
+  .mb .kicker svg { width: 11px; height: 11px; }
+  .mb h1 { margin-top: 7px; font-size: 17px; }
+  .mb h1 em { font-size: 20px; }
+  .mb h1 em svg { bottom: -10%; }
+  .mb .desc { margin-top: 6px; font-size: 9.5px; line-height: 1.35; }
+  .mb .row { margin-top: 8px; display: grid; grid-template-columns: auto auto; justify-content: start; align-items: center; column-gap: 10px; row-gap: 7px; }
+  .mb .cta { grid-column: 1 / -1; justify-self: start; height: 25px; gap: 6px; padding: 0 3px 0 11px; font-size: 10.5px; }
+  .mb .cta i { width: 19px; height: 19px; }
+  .mb .cta svg { width: 10px; height: 10px; }
+  .mb .feat { gap: 5px; margin-left: 0; padding-left: 0; border-left: 0; font-size: 8.5px; }
+  .mb .feat + .feat { padding-left: 10px; border-left: 1.5px solid rgb(40 60 150 / 0.18); }
+  .mb .feat i { width: 20px; height: 20px; }
+  .mb .feat svg { width: 11px; height: 11px; }
+  .mb .photo { top: 0; right: 0; width: 140px; height: 100%; }
+  .mb .badge { left: 196px; top: 116px; width: 62px; height: 62px; }
+  .mb .badge p { font-size: 7.5px; }
+  .mb .badge b { margin-top: 1px; font-size: 21px; }
+  .mb .spark { display: none; }
 </style>
 </head>
 <body>

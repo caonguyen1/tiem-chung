@@ -4,13 +4,13 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex" />
-<title>Phương án C – Rực rỡ</title>
+<title>Trung tâm Tiêm chủng Tâm Trí – Tận tâm đồng hành cùng bạn</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" />
 <style>
   /* Font thương hiệu SVN-Aptima (khách gửi), Google Sans Flex làm dự phòng. */
-  @font-face { font-family: "SVN-Aptima"; src: url("../fonts/svn-aptima-regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
-  @font-face { font-family: "SVN-Aptima"; src: url("../fonts/svn-aptima-bold.ttf") format("truetype"); font-weight: 700 900; font-display: swap; }
+  @font-face { font-family: "SVN-Aptima"; src: url("/fonts/svn-aptima-regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "SVN-Aptima"; src: url("/fonts/svn-aptima-bold.ttf") format("truetype"); font-weight: 700 900; font-display: swap; }
   /* Phương án C: nhiều màu, nhiều lớp. Xanh Tâm Trí làm nền chính, vàng làm nút
      và điểm nhấn, thêm bảng màu pastel cho nhóm bệnh và thẻ sản phẩm. */
   :root {
@@ -34,11 +34,11 @@
   .wrap { width: 100%; max-width: 1232px; margin: 0 auto; padding: 0 16px; }
   h1, h2, h3, h4 { color: var(--ink); font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
   h2 { font-size: 32px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: 8px; font-weight: 700; font-size: 15px; white-space: nowrap; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: 999px; font-weight: 700; font-size: 15px; white-space: nowrap; }
   .btn-sun { background: var(--navy); color: #fff; }
   .btn-white { background: #fff; color: var(--navy); }
   .btn-navy { background: var(--navy); color: #fff; }
-  .btn-line { background: #fff; color: var(--navy); box-shadow: inset 0 0 0 1.5px #c9d4f3; }
+  .btn-line { background: #fff; color: var(--navy); box-shadow: inset 0 0 0 1.5px var(--navy); }
   .btn-sm { height: 40px; padding: 0 16px; font-size: 14px; }
   .link { display: inline-flex; align-items: center; gap: 4px; color: var(--blue); font-weight: 700; font-size: 15px; }
   .link svg { width: 16px; height: 16px; }
@@ -47,28 +47,28 @@
   .head h2 { display: flex; align-items: center; gap: 12px; }
   .head h2 .mark { width: 8px; height: 30px; border-radius: 8px; background: linear-gradient(var(--sun) 0 50%, var(--bright) 50%); }
 
-  /* Header */
-  .topbar { background: #1c2a66; color: #c5cfec; font-size: 13.5px; }
-  .topbar .wrap { display: flex; gap: 28px; height: 36px; align-items: center; }
-  .topbar span { display: inline-flex; gap: 6px; align-items: center; }
-  .topbar svg { width: 14px; height: 14px; color: var(--sun); }
-  .topbar b { color: #fff; }
-  .topbar .r { margin-left: auto; }
-  .mast { background: linear-gradient(100deg, #1c2a66 0%, #283c96 50%, #4258c8 100%); }
-  .mast .wrap { display: flex; align-items: center; gap: 28px; height: 84px; }
-  .mast .logo { height: 46px; }
-  .mast .search { flex: 1; display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 6px 0 20px; border-radius: 8px; background: #fff; color: var(--muted); font-size: 15px; }
-  .mast .search svg { width: 20px; height: 20px; color: var(--navy); }
-  .mast .search b { margin-left: auto; width: 40px; height: 40px; border-radius: 50%; background: var(--navy); display: grid; place-items: center; color: #fff; }
-  .mast .search b svg { color: #fff; }
-  .mast .acts { display: flex; gap: 10px; }
-  .mast .ghost { display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 18px; border-radius: 8px; background: rgb(255 255 255 / 0.14); color: #fff; font-weight: 700; font-size: 15px; }
-  .mast .ghost svg { width: 18px; height: 18px; }
+  /* Header: một hàng nền trắng (góp ý 2026-11-03), chữ xanh logo; tìm kiếm là icon mở ô tìm kiếm gọn. */
+  .mast { position: relative; z-index: 20; background: linear-gradient(180deg, #ffffff 0%, #f5f8ff 100%); box-shadow: 0 1px 0 var(--line), 0 10px 24px -22px rgb(28 42 102 / 0.5); }
+  .mast > .wrap { display: flex; align-items: center; gap: 24px; height: 72px; }
+  .mast .logo { height: 44px; flex-shrink: 0; }
+  .mast .acts { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+  .icon-btn { display: grid; place-items: center; width: 42px; height: 42px; border: 0; border-radius: 50%; background: #eef3ff; color: var(--navy); cursor: pointer; }
+  .icon-btn svg { width: 19px; height: 19px; }
+  .icon-btn[aria-expanded="true"] { background: var(--navy); color: #fff; }
+  .mast .acts .btn { height: 42px; padding: 0 20px; }
+  .search-panel { background: #fff; box-shadow: 0 1px 0 var(--line); }
+  .search-panel[hidden] { display: none; }
+  .search-panel .wrap { padding-top: 12px; padding-bottom: 12px; }
+  .search-panel .search { display: flex; align-items: center; gap: 10px; max-width: 560px; height: 44px; margin: 0 auto; padding: 0 6px 0 18px; border-radius: 999px; background: #f5f8ff; box-shadow: inset 0 0 0 1px var(--line); color: var(--muted); font-size: 15px; }
+  .search-panel .search > span svg { width: 18px; height: 18px; color: var(--navy); }
+  .search-panel .search b { margin-left: auto; height: 34px; padding: 0 16px; display: grid; place-items: center; border-radius: 999px; background: var(--navy); color: #fff; font-size: 14px; }
   .menu-toggle { display: none; }
   .menu-close { display: none; }
-  .menu { background: #fff; box-shadow: 0 6px 20px -16px rgb(28 42 102 / 0.5); }
-  .menu .wrap { display: flex; gap: 34px; height: 52px; align-items: center; font-weight: 600; font-size: 15px; color: var(--ink); }
-  .menu .hot { color: var(--blue); }
+  @media (min-width: 901px) {
+    .mast .menu { flex: 1; }
+    .mast .menu .wrap { display: flex; justify-content: center; gap: 22px; max-width: none; padding: 0; font-weight: 700; font-size: 14.5px; color: var(--navy); white-space: nowrap; }
+    .mast .menu .hot { color: var(--orange); }
+  }
 
   /* Hero row */
   .hero { padding: 24px 0 0; }
@@ -78,9 +78,9 @@
   .hero-bn { position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 24px 50px -28px rgb(28 42 102 / 0.6); }
   .hero-bn img { width: 100%; aspect-ratio: 800 / 420; }
   .hero-bn .ctas { position: absolute; left: 5.5%; bottom: 7.2%; display: flex; gap: 10px; }
-  .hero-bn .cta { display: inline-flex; align-items: center; gap: 12px; height: 48px; padding: 0 8px 0 26px; border-radius: 8px; background: #fff; color: var(--navy); font-size: 16px; font-weight: 800; box-shadow: 0 14px 28px -12px rgb(0 0 0 / 0.55), inset 0 -3px 0 rgb(0 0 0 / 0.12); }
-  .hero-bn .cta i { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: var(--navy); color: #fff; font-style: normal; font-size: 18px; }
-  .hero-bn .cta.ghost { padding: 0 22px; background: rgb(255 255 255 / 0.12); color: #fff; box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.7); }
+  .hero-bn .cta { display: inline-flex; align-items: center; justify-content: center; gap: 12px; height: 48px; padding: 0 7px 0 24px; border-radius: 999px; background: var(--navy); color: #fff; font-size: 16px; font-weight: 700; box-shadow: 0 12px 24px -12px rgb(40 60 150 / 0.7); }
+  .hero-bn .cta i { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: #fff; color: var(--navy); font-style: normal; font-size: 18px; }
+  .hero-bn .cta.ghost { padding: 0 26px; background: #fff; color: var(--navy); box-shadow: inset 0 0 0 1.5px var(--navy), 0 12px 24px -16px rgb(40 60 150 / 0.5); }
   .hero-bn .dots { left: auto; right: 22px; transform: none; }
   .dots { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); display: flex; gap: 6px; padding: 6px 10px; border-radius: 8px; background: rgb(0 0 0 / 0.18); z-index: 5; }
   .dots i { width: 8px; height: 8px; border-radius: 99px; background: rgb(255 255 255 / 0.6); }
@@ -141,18 +141,17 @@
   .center { margin-top: 28px; display: flex; justify-content: center; }
 
   /* Packages */
-  .pkg { background: linear-gradient(120deg, #1c2a66, #283c96 50%, #4a62cf); position: relative; overflow: hidden; padding: 104px 0 136px; }
+  .pkg { background: #edf3ff; position: relative; overflow: hidden; padding: 88px 0 48px; }
   .wave-top, .wave-bottom { position: absolute; z-index: 1; left: 0; width: 100%; height: 48px; pointer-events: none; }
   .wave-top { top: -2px; }
   .wave-bottom { bottom: -2px; }
   footer > .wrap { position: relative; z-index: 2; }
   .pkg .wrap { position: relative; z-index: 2; }
-  .pkg h2 { color: #fff; }
-  .pkg .head p { color: #c5cfec; margin-top: 4px; }
-  .seg { display: inline-flex; padding: 5px; border-radius: 8px; background: rgb(255 255 255 / 0.14); }
-  .seg b { padding: 9px 20px; border-radius: 8px; font-size: 15px; font-weight: 600; color: #fff; }
-  .seg b.on { background: #fff; color: var(--navy); }
-  .pcard { position: relative; display: flex; flex-direction: column; border-radius: 12px; background: #fff; overflow: hidden; }
+  .pkg .head p { color: var(--muted); margin-top: 4px; }
+  .seg { display: inline-flex; padding: 5px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
+  .seg b { padding: 9px 20px; border-radius: 999px; font-size: 15px; font-weight: 600; color: var(--muted); }
+  .seg b.on { background: var(--navy); color: #fff; }
+  .pcard { position: relative; display: flex; flex-direction: column; border-radius: 12px; background: #fff; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line), 0 14px 30px -24px rgb(28 42 102 / 0.55); }
   .pcard .top { position: relative; padding: 18px 18px 16px; display: flex; gap: 12px; align-items: center; }
   .pcard .top svg { width: 56px; height: 56px; flex-shrink: 0; }
   .pcard .top small { display: block; font-size: 13px; font-weight: 700; color: var(--blue); }
@@ -194,16 +193,16 @@
   .why-grid p { margin-top: 4px; font-size: 14px; line-height: 1.45; }
 
   /* Recommend */
-  .rec-box { position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center; padding: 30px 36px; border-radius: 10px; background: linear-gradient(110deg, #1c2a66, #283c96 50%, #4a62cf); color: #fff; overflow: hidden; }
-  .rec-box h2 { color: #fff; font-size: 26px; }
+  .rec-box { position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: 22px; align-items: center; padding: 18px 28px; border-radius: 10px; background: linear-gradient(110deg, #1c2a66, #283c96 50%, #4a62cf); color: #fff; overflow: hidden; }
+  .rec-box h2 { color: #fff; font-size: 23px; }
   .rec-box p { opacity: 0.9; }
-  .rec-box svg.ic { width: 76px; height: 76px; }
+  .rec-box svg.ic { width: 56px; height: 56px; }
   .rec-form { display: flex; gap: 10px; }
-  .select { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 54px; min-width: 180px; padding: 0 16px 0 20px; border-radius: 8px; background: #fff; color: var(--ink); font-weight: 600; font-size: 15px; }
+  .select { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 46px; min-width: 180px; padding: 0 16px 0 20px; border-radius: 8px; background: #fff; color: var(--ink); font-weight: 600; font-size: 15px; }
   .select small { display: block; font-size: 11.5px; color: var(--muted); line-height: 1; margin-bottom: 3px; font-weight: 500; }
   .select span { line-height: 1.1; }
   .select svg { width: 16px; height: 16px; transform: rotate(90deg); color: var(--muted); }
-  .rec-form .btn { height: 54px; }
+  .rec-form .btn { height: 46px; color: var(--sun); box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.85); }
 
   /* Knowledge */
   .news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -223,15 +222,21 @@
   .faq div.open p { display: block; }
   .faq span { width: 32px; height: 32px; border-radius: 50%; background: #eef3ff; display: grid; place-items: center; color: var(--navy); flex-shrink: 0; }
   .faq svg { width: 16px; height: 16px; }
-  .contact { border-radius: 10px; background: linear-gradient(150deg, #1c2a66, #283c96 45%, #4a62cf); color: #d5dcf3; overflow: hidden; }
-  .contact img { width: 100%; aspect-ratio: 12 / 5; object-fit: cover; }
+  /* Thông tin cơ sở: thẻ trắng, không ảnh tòa nhà (góp ý 2026-11-03); tổng đài theo nhánh và mạng xã hội. */
+  .contact { border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); color: var(--body); }
   .contact .body { padding: 24px 26px 26px; }
-  .contact h3 { color: #fff; font-size: 22px; }
-  .contact ul { list-style: none; margin-top: 14px; display: grid; gap: 10px; font-size: 15px; }
+  .contact h3 { font-size: 22px; }
+  .contact ul { list-style: none; margin-top: 12px; display: grid; gap: 8px; font-size: 15px; }
   .contact li { display: flex; gap: 10px; }
-  .contact li svg { width: 18px; height: 18px; color: var(--sun); margin-top: 3px; flex-shrink: 0; }
-  .contact .acts { margin-top: 20px; display: flex; gap: 10px; }
-  .contact .btn-line { background: rgb(255 255 255 / 0.14); color: #fff; box-shadow: none; }
+  .contact li svg { width: 18px; height: 18px; color: var(--navy); margin-top: 3px; flex-shrink: 0; }
+  .lbl { margin-top: 20px; color: var(--ink); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+  .lines { margin-top: 10px; display: grid; gap: 10px; padding-top: 0; }
+  .lines p { color: var(--ink); font-size: 15px; line-height: 1.4; }
+  .lines b { display: block; color: var(--blue); font-weight: 700; }
+  .social { margin-top: 10px; display: flex; gap: 10px; }
+  .social a { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: var(--navy); color: #fff; }
+  .social svg { width: 22px; height: 22px; }
+  .contact .acts { margin-top: 22px; display: flex; gap: 10px; }
 
 
   /* Hoa văn cho box xanh: chỉ còn lưới chấm (khách bỏ đường cong và hiệu ứng ánh sáng). */
@@ -242,20 +247,21 @@
   footer { position: relative; background: #1c2a66; color: #aeb9e0; padding: 84px 0 28px; font-size: 14.5px; }
   footer .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
   footer .logo { height: 48px; }
+  footer .f-hot { margin-top: 14px; color: #dbe3fb; }
+  footer .f-hot b { color: var(--sun); }
+  footer .social a { background: rgb(255 255 255 / 0.12); }
   footer h4 { color: #fff; font-size: 15.5px; margin-bottom: 14px; }
   footer ul { list-style: none; display: grid; gap: 8px; }
   footer .copy { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / 0.12); font-size: 13.5px; display: flex; justify-content: space-between; }
+  @media (max-width: 600px) { .lines p { font-size: 13.5px; } .social a { width: 36px; height: 36px; } }
 
   @media (max-width: 900px) {
-    .topbar { display: none; }
     .wrap { padding-right: 20px; padding-left: 20px; }
-    .mast .wrap { height: auto; min-height: 72px; padding-top: 10px; padding-bottom: 10px; flex-wrap: wrap; gap: 10px 12px; }
+    .mast > .wrap { height: 64px; gap: 10px; }
     .mast .logo { height: 38px; }
-    .mast .search { order: 3; flex-basis: 100%; height: 42px; }
-    .mast .acts { margin-left: auto; gap: 8px; }
-    .mast .ghost { height: 40px; padding: 0 12px; }
+    .mast .acts { gap: 8px; }
     .mast .acts > .btn { height: 40px; padding: 0 14px; }
-    .menu-toggle { display: grid; place-items: center; flex: 0 0 38px; width: 38px; height: 38px; border: 0; border-radius: 9px; background: rgb(255 255 255 / 0.14); color: #fff; }
+    .menu-toggle { display: grid; place-items: center; flex: 0 0 38px; width: 38px; height: 38px; border: 0; border-radius: 50%; background: #eef3ff; color: var(--navy); }
     .menu-toggle svg { width: 22px; height: 22px; }
     .menu { position: fixed; inset: 0; z-index: 1000; display: block; overflow: hidden; background: transparent; box-shadow: none; visibility: hidden; pointer-events: none; transition: visibility 0s linear 280ms; }
     .menu::before { content: ""; position: absolute; inset: 0; z-index: 0; background: linear-gradient(110deg, rgb(20 31 79 / 0.78), rgb(40 60 150 / 0.48)); opacity: 0; transition: opacity 240ms ease; }
@@ -293,7 +299,7 @@
     .vcard h3 { font-size: 16px; }
     .vcard .bottom { gap: 6px; }
     .vcard .price { font-size: 16px; }
-    .pkg { padding: 80px 0 112px; }
+    .pkg { padding: 72px 0 40px; }
     .pcard .top { padding: 14px 12px 12px; gap: 8px; }
     .pcard .top svg { width: 42px; height: 42px; }
     .pcard h3 { white-space: normal; font-size: 15px; }
@@ -337,15 +343,14 @@
     .btn-sm { height: 36px; padding: 0 12px; font-size: 13px; }
     .link { font-size: 13px; white-space: nowrap; }
     .link svg { width: 14px; height: 14px; }
-    .mast .wrap { min-height: 60px; padding-top: 8px; padding-bottom: 8px; gap: 8px; }
+    .mast > .wrap { height: 58px; gap: 8px; }
     .menu-toggle { flex-basis: 34px; width: 34px; height: 34px; }
     .menu-toggle svg { width: 20px; height: 20px; }
     .mast .logo { height: 30px; max-width: 120px; object-fit: contain; object-position: left center; }
-    .mast .ghost { display: none; }
+    .icon-btn { width: 36px; height: 36px; }
+    .icon-btn svg { width: 17px; height: 17px; }
     .mast .acts > .btn { height: 36px; padding: 0 12px; font-size: 13px; }
-    .mast .search { height: 40px; padding-left: 12px; font-size: 13.5px; }
-    .mast .search b { width: 32px; height: 32px; }
-    .mast .search b svg { width: 16px; height: 16px; }
+    .search-panel .search { height: 40px; padding-left: 14px; font-size: 13.5px; }
 
     /* Nhịp dọc */
     section { padding: calc(var(--space) / 2) 0; }
@@ -370,7 +375,7 @@
 
     .hero-bn img { aspect-ratio: 343 / 440; }
     .hero-bn .ctas { left: 16px; right: 16px; bottom: 16px; gap: 8px; }
-    .hero-bn .cta { height: 42px; padding: 0 6px 0 14px; font-size: 13.5px; gap: 8px; }
+    .hero-bn .cta { flex: 1; height: 42px; padding: 0 6px 0 14px; font-size: 13.5px; gap: 8px; }
     .hero-bn .cta i { width: 30px; height: 30px; }
     .hero-bn .cta.ghost { padding: 0 14px; }
     .hero-bn .dots { top: 20px; right: 16px; bottom: auto; padding: 5px 7px; }
@@ -412,7 +417,7 @@
     .vcard .price { font-size: 16px; }
 
     /* Gói vắc xin: chừa đủ chỗ cho hai đường cong */
-    .pkg { padding: 52px 0 76px; }
+    .pkg { padding: 48px 0 calc(var(--space) / 2); }
     .wave-top, .wave-bottom { height: 28px; }
     .pkg .head { align-items: flex-start; flex-direction: column; }
     .seg { padding: 4px; }
@@ -435,7 +440,7 @@
 
     /* Banner ưu đãi */
     .offer-section { padding-bottom: calc(var(--space) / 2); }
-    .offer img { aspect-ratio: 360 / 440; }
+    .offer img { aspect-ratio: 360 / 200; }
 
     /* Vì sao chọn Tâm Trí */
     .why-box { gap: var(--gap); padding: 16px; }
@@ -495,34 +500,31 @@
 </style>
 </head>
 <body>
-<div class="topbar"><div class="wrap">
-  <span><i data-ui="pin" style="display:inline-block;width:14px;height:14px;color:#fadc00"></i>424 Nguyễn Thị Minh Khai, Quy Nhơn</span>
-  <span><i data-ui="clock" style="display:inline-block;width:14px;height:14px;color:#fadc00"></i>Mở cửa 7:30 – 20:00 hằng ngày</span>
-  <span class="r"><i data-ui="phone" style="display:inline-block;width:14px;height:14px;color:#fadc00"></i>Tổng đài <b>0593 888 666</b></span>
-</div></div>
-<header class="mast tex"><div class="wrap">
+<header class="mast"><div class="wrap">
   <button class="menu-toggle" type="button" aria-label="Mở menu" aria-controls="main-menu" aria-expanded="false">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
-  <img class="logo" src="../images/logo-horizontal-white.png" alt="Tiêm chủng Tâm Trí" />
-  <div class="search"><span data-ui="search"></span>Bạn cần tìm vắc xin gì?<b data-ui="search" style="padding:11px"></b></div>
+  <img class="logo" src="/images/logo-horizontal.png" alt="Tiêm chủng Tâm Trí" />
+  <nav class="menu" id="main-menu" aria-hidden="false"><div class="wrap">
+    <button class="menu-close" type="button" aria-label="Đóng menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    <a>Vắc xin</a><a>Gói vắc xin</a><a class="hot">Khuyến mãi</a><a>Tôi nên tiêm gì?</a><a>Kiến thức</a><a>Đội ngũ chuyên môn</a><a>Về chúng tôi</a>
+  </div></nav>
   <div class="acts">
-    <a class="ghost"><span data-ui="phone"></span>Tư vấn</a>
-    <a class="btn btn-white">Đặt lịch tiêm</a>
+    <button class="icon-btn search-toggle" type="button" aria-label="Tìm kiếm" aria-controls="search-panel" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+    <a class="btn btn-navy">Đặt lịch hẹn</a>
   </div>
 </div></header>
-<nav class="menu" id="main-menu" aria-hidden="false"><div class="wrap">
-  <button class="menu-close" type="button" aria-label="Đóng menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
-  <a>Vắc xin phòng bệnh</a><a>Gói vắc xin</a><a class="hot">Khuyến mãi</a><a>Tôi nên tiêm gì?</a><a>Kiến thức tiêm chủng</a><a>Đội ngũ chuyên môn</a><a>Về chúng tôi</a>
-</div></nav>
+<div class="search-panel" id="search-panel" hidden><div class="wrap">
+  <label class="search"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>Bạn cần tìm vắc xin gì?<b>Tìm</b></label>
+</div></div>
 
 <div class="hero"><div class="wrap">
   <div class="hero-grid">
     <div class="hero-bn">
-      <picture><source media="(max-width: 600px)" srcset="art/hero-mb.jpg" /><img src="art/hero-pc.jpg" alt="Trung tâm Tiêm chủng Tâm Trí – hệ sinh thái y tế Sản – Nhi, mở cửa 7:30–20:00 hằng ngày" /></picture>
+      <picture><source media="(max-width: 600px)" srcset="/prototypes/art/hero-mb.jpg" /><img src="/prototypes/art/hero-pc.jpg" alt="Trung tâm Tiêm chủng Tâm Trí: bác sĩ khám sàng lọc trước tiêm, vắc xin chính hãng rõ nguồn gốc, theo dõi và nhắc lịch sau tiêm" /></picture>
       <div class="ctas">
+        <a class="cta ghost">Tư vấn</a>
         <a class="cta">Đặt lịch tiêm<i>›</i></a>
-        <a class="cta ghost" href="#tra-cuu-vac-xin">Tra cứu vắc xin</a>
       </div>
       <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
     </div>
@@ -550,7 +552,7 @@
 </div></section>
 
 <section class="finder" id="tra-cuu-vac-xin"><div class="wrap">
-  <div class="head"><h2><span class="mark"></span>Vắc xin theo bệnh</h2><a class="link" href="/vac-xin" title="Trang Danh mục vắc xin">Tất cả vắc xin<span data-ui="chevron"></span></a></div>
+  <div class="head"><h2><span class="mark"></span>Vắc xin theo bệnh</h2><a class="link" title="Trang Danh mục vắc xin (sắp có)">Tất cả vắc xin<span data-ui="chevron"></span></a></div>
   <div class="find-box">
     <div class="groups"><template data-each="groups"><span class="group {{i === 0 ? 'on' : ''}}" ><i data-icon="{{it[1]}}" data-disc="#F2F4FB"></i>{{it[0]}}</span></template></div>
     <p class="result-label"><span>Vắc xin phòng <b>Phế cầu khuẩn</b></span><span>4 vắc xin</span></p>
@@ -558,18 +560,17 @@
   </div>
 </div></section>
 
-<section class="pkg tex">
+<section class="pkg">
   <svg class="wave-top" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 -2H1440V14C1180 34 960 6 720 18S240 34 0 12Z" fill="#fff"/></svg>
-  <svg class="wave-bottom" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 42H1440V26C1200 8 980 36 720 24S220 8 0 26Z" fill="#eef3ff"/></svg>
 <div class="wrap">
-  <div class="head"><div><h2>Gói vắc xin</h2><p>Lịch tiêm bác sĩ sắp sẵn, không lo trễ mũi.</p></div><div class="seg"><b class="on">Theo độ tuổi</b><b>Theo đối tượng</b></div></div>
+  <div class="head"><div><h2><span class="mark"></span>Gói vắc xin</h2><p>Lịch tiêm bác sĩ sắp sẵn, không lo trễ mũi.</p></div><div class="seg"><b class="on">Theo độ tuổi</b><b>Theo đối tượng</b></div></div>
   <div class="cards"><template data-each="packages"><article class="pcard {{it.hot ? 'hot' : ''}}">{{it.hot ? '<span class="badge">Phổ biến nhất</span>' : ''}}<div class="top"><i data-icon="{{it.icon}}" data-disc="#F2F4FB"></i><div><small>{{it.who}}</small><h3>{{it.name}}</h3></div></div><div class="stats"><span><b>{{it.doses}}</b>mũi tiêm</span><span><b>{{it.count}}</b>loại vắc xin</span></div><div class="price"><b>{{vnd(it.price)}}</b><s>{{vnd(it.was)}}</s><em>-{{Math.round((it.was - it.price) / it.was * 100)}}%</em></div><div class="acts"><a class="btn btn-line">Chi tiết</a><a class="btn btn-sun">Đặt lịch</a></div></article></template></div>
-  <div class="center"><a class="btn btn-white">Xem tất cả gói vắc xin</a></div>
+  <div class="center"><a class="btn btn-line">Xem tất cả gói vắc xin</a></div>
 </div></section>
 
 <!-- Banner ưu đãi phụ: ảnh do admin tải lên, PC 2400×800 và mobile 1080×1320, kèm link đích. Ảnh mẫu xuất từ scripts/prototype-art. -->
 <section class="offer-section"><div class="wrap">
-  <a class="offer"><picture><source media="(max-width: 600px)" srcset="art/offer-mb.jpg" /><img src="art/offer-pc.jpg" alt="Ưu đãi tháng 11: gói vắc xin cho bé tiết kiệm đến 8%" /></picture></a>
+  <a class="offer"><picture><source media="(max-width: 600px)" srcset="/prototypes/art/offer-mb.jpg" /><img src="/prototypes/art/offer-pc.jpg" alt="Ưu đãi tháng 11: gói vắc xin cho bé tiết kiệm đến 8%" /></picture></a>
 </div></section>
 
 <section class="why-section"><div class="wrap">
@@ -582,11 +583,11 @@
 <section><div class="wrap">
   <div class="rec-box tex">
     <i class="ic" data-icon="advisor" data-disc="#ffffff"></i>
-    <div><h2>Chưa biết nên tiêm gì?</h2><p>Chọn độ tuổi và giới tính, chúng tôi gợi ý vắc xin phù hợp.</p></div>
+    <div><h2>Bạn chưa biết tiêm gì?</h2><p>Chọn độ tuổi và giới tính, chúng tôi gợi ý vắc xin phù hợp.</p></div>
     <div class="rec-form">
       <div class="select"><span><small>Độ tuổi</small>0 – 6 tháng</span><span data-ui="chevron"></span></div>
       <div class="select"><span><small>Giới tính</small>Bé gái</span><span data-ui="chevron"></span></div>
-      <a class="btn btn-white">Xem gợi ý</a>
+      <a class="btn btn-navy">Xem gợi ý</a>
     </div>
   </div>
 </div></section>
@@ -601,12 +602,23 @@
     <div class="head"><h2><span class="mark"></span>Câu hỏi thường gặp</h2><a class="link">Xem thêm câu hỏi<span data-ui="chevron"></span></a></div>
     <div class="faq"><template data-each="faqs" data-limit="3"><div>{{it}}<span>{{UI.plus}}</span></div></template></div>
   </div>
-  <div class="contact tex">
-    <img src="../images/facade.jpg" alt="" />
+  <div class="contact">
     <div class="body">
-      <h3>Tâm Trí Quy Nhơn</h3>
-      <ul><li>{{pin}}424 Nguyễn Thị Minh Khai, P. Quy Nhơn Nam, T. Gia Lai</li><li>{{clock}}7:30 – 20:00 hằng ngày</li><li>{{phone}}0593 888 666</li></ul>
-      <div class="acts"><a class="btn btn-white btn-sm">Chỉ đường</a><a class="btn btn-line btn-sm">Gọi tổng đài</a></div>
+      <h3>Trung tâm Tiêm chủng Tâm Trí</h3>
+      <ul><li>{{pin}}424 Nguyễn Thị Minh Khai, P. Quy Nhơn Nam, T. Gia Lai</li><li>{{clock}}Mở cửa 7:30 – 20:00 hằng ngày</li></ul>
+      <p class="lbl">TỔNG ĐÀI (7:30 – 20:00)</p>
+      <div class="lines">
+        <p>Tư vấn và đặt hẹn<b>*3979 (nhánh 1)</b></p>
+        <p>Góp ý chất lượng dịch vụ và hỗ trợ khác<b>*3979 (nhánh 0)</b></p>
+      </div>
+      <p class="lbl">KẾT NỐI VỚI CHÚNG TÔI</p>
+      <div class="social">
+        <a aria-label="Facebook"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 21v-7.2h2.4l.4-2.8h-2.8V9.2c0-.8.3-1.4 1.4-1.4h1.5V5.3c-.3 0-1.2-.1-2.2-.1-2.2 0-3.6 1.3-3.6 3.7V11H8.2v2.8h2.4V21Z"/></svg></a>
+        <a aria-label="Zalo"><svg viewBox="0 0 24 24"><text x="12" y="15" text-anchor="middle" font-size="8" font-weight="700" font-family="Arial, sans-serif" fill="currentColor">Zalo</text></svg></a>
+        <a aria-label="TikTok"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.6 4c.3 2 1.6 3.4 3.6 3.6v2.7c-1.3 0-2.5-.4-3.6-1.1v5.4a5 5 0 1 1-5-5h.5v2.8h-.5a2.2 2.2 0 1 0 2.2 2.2V4Z"/></svg></a>
+        <a aria-label="YouTube"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.2 8.1c-.2-.9-.9-1.5-1.8-1.7C17.8 6 12 6 12 6s-5.8 0-7.4.4c-.9.2-1.6.8-1.8 1.7C2.4 9.6 2.4 12 2.4 12s0 2.4.4 3.9c.2.9.9 1.5 1.8 1.7 1.6.4 7.4.4 7.4.4s5.8 0 7.4-.4c.9-.2 1.6-.8 1.8-1.7.4-1.5.4-3.9.4-3.9s0-2.4-.4-3.9ZM10.2 14.6V9.4l4.6 2.6Z"/></svg></a>
+      </div>
+      <div class="acts"><a class="btn btn-line btn-sm">Gọi tổng đài</a><a class="btn btn-navy btn-sm">Chỉ đường</a></div>
     </div>
   </div>
 </div></section>
@@ -615,23 +627,31 @@
   <svg class="wave-top" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 0H1440V14C1180 34 960 6 720 18S240 34 0 12Z" fill="#eef3ff"/></svg>
 <div class="wrap">
   <div class="cols">
-    <div><img class="logo" src="../images/logo-horizontal-white.png" alt="" /><p style="margin-top:16px;max-width:300px">Tận tâm đồng hành cùng bạn. Thuộc hệ thống Y tế Tâm Trí, Quy Nhơn.</p></div>
+    <div><img class="logo" src="/images/logo-horizontal-white.png" alt="" /><p style="margin-top:16px;max-width:300px">Tận tâm đồng hành cùng bạn. Thuộc hệ thống Y tế Tâm Trí, Quy Nhơn.</p>
+      <p class="f-hot">Tổng đài <b>*3979</b> (7:30 – 20:00)</p>
+      <div class="social">
+        <a aria-label="Facebook"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M13.5 21v-7.2h2.4l.4-2.8h-2.8V9.2c0-.8.3-1.4 1.4-1.4h1.5V5.3c-.3 0-1.2-.1-2.2-.1-2.2 0-3.6 1.3-3.6 3.7V11H8.2v2.8h2.4V21Z"/></svg></a>
+        <a aria-label="Zalo"><svg viewBox="0 0 24 24"><text x="12" y="15" text-anchor="middle" font-size="8" font-weight="700" font-family="Arial, sans-serif" fill="currentColor">Zalo</text></svg></a>
+        <a aria-label="TikTok"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.6 4c.3 2 1.6 3.4 3.6 3.6v2.7c-1.3 0-2.5-.4-3.6-1.1v5.4a5 5 0 1 1-5-5h.5v2.8h-.5a2.2 2.2 0 1 0 2.2 2.2V4Z"/></svg></a>
+        <a aria-label="YouTube"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M21.2 8.1c-.2-.9-.9-1.5-1.8-1.7C17.8 6 12 6 12 6s-5.8 0-7.4.4c-.9.2-1.6.8-1.8 1.7C2.4 9.6 2.4 12 2.4 12s0 2.4.4 3.9c.2.9.9 1.5 1.8 1.7 1.6.4 7.4.4 7.4.4s5.8 0 7.4-.4c.9-.2 1.6-.8 1.8-1.7.4-1.5.4-3.9.4-3.9s0-2.4-.4-3.9ZM10.2 14.6V9.4l4.6 2.6Z"/></svg></a>
+      </div>
+    </div>
     <div><h4>Dịch vụ</h4><ul><li>Vắc xin phòng bệnh</li><li>Gói vắc xin</li><li>Tôi nên tiêm gì?</li><li>Bảng giá</li></ul></div>
     <div><h4>Về Tâm Trí</h4><ul><li>Giới thiệu</li><li>Đội ngũ chuyên môn</li><li>Kiến thức tiêm chủng</li></ul></div>
     <div><h4>Chính sách</h4><ul><li>Quy chế hoạt động</li><li>Bảo mật</li><li>Thanh toán</li></ul></div>
   </div>
-  <div class="copy"><span>© 2026 Trung tâm Tiêm chủng Tâm Trí</span><span>Tổng đài 0593 888 666</span></div>
+  <div class="copy"><span>© 2026 Trung tâm Tiêm chủng Tâm Trí</span><span>424 Nguyễn Thị Minh Khai, Quy Nhơn, Gia Lai</span></div>
 </div></footer>
 
 <!-- Popup quảng cáo: tự mở khi khách vào trang. Ảnh vuông 1080×1080, link đích và bật/tắt do admin quản lý. -->
 <div class="promo" role="dialog" aria-modal="true" aria-label="Thông báo từ Tâm Trí" data-export-hide hidden>
   <div class="promo-box">
     <button class="promo-close" type="button" aria-label="Đóng"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
-    <a class="promo-art"><img src="art/welcome.jpg" alt="Trung tâm Tiêm chủng Tâm Trí Quy Nhơn chính thức đón khách, mở cửa 7:30–20:00 hằng ngày" /></a>
+    <a class="promo-art"><img src="/prototypes/art/welcome.jpg" alt="Trung tâm Tiêm chủng Tâm Trí Quy Nhơn chính thức đón khách, mở cửa 7:30–20:00 hằng ngày" /></a>
   </div>
 </div>
 
-<script src="data.js"></script>
+<script src="/prototypes/data.js"></script>
 <script>
   document.querySelector(".contact ul").innerHTML = document.querySelector(".contact ul").innerHTML.replace(/\{\{(\w+)\}\}/g, (_, k) => UI[k]);
   renderTemplates();
@@ -654,6 +674,12 @@
     if (event.target === menu) setMenuOpen(false);
   });
   menu.querySelectorAll("a").forEach((item) => item.addEventListener("click", () => setMenuOpen(false)));
+  const searchToggle = document.querySelector(".search-toggle");
+  const searchPanel = document.querySelector("#search-panel");
+  searchToggle.addEventListener("click", () => {
+    searchPanel.hidden = !searchPanel.hidden;
+    searchToggle.setAttribute("aria-expanded", String(!searchPanel.hidden));
+  });
   const promo = document.querySelector(".promo");
   const closePromo = () => (promo.hidden = true);
   setTimeout(() => (promo.hidden = false), 600);
@@ -668,7 +694,7 @@
     }
   });
 </script>
-<script src="icons.js"></script>
-<script src="banner-c.js"></script>
+<script src="/prototypes/icons.js"></script>
+<script src="/prototypes/banner-c.js"></script>
 </body>
 </html>

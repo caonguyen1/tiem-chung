@@ -20,6 +20,14 @@ const nextConfig: NextConfig = {
     output: "export",
     images: { unoptimized: true },
   }),
+  // Khách đã chọn layout C (2026-11-04): trang chủ "/" hiển thị bản layout C
+  // (public/prototypes/layout-c.html); trang chủ Next.js cũ chuyển sang /trang-chu-cu
+  // để khách so sánh. Bỏ rewrite này khi layout C được dựng lại bằng component.
+  ...(!isDemoExport && {
+    async rewrites() {
+      return { beforeFiles: [{ source: "/", destination: "/prototypes/layout-c.html" }] };
+    },
+  }),
 };
 
 export default nextConfig;

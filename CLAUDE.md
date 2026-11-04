@@ -8,6 +8,7 @@ Website và admin cho Trung tâm Tiêm chủng Tâm Trí (Quy Nhơn, Gia Lai).
 - Hồ sơ công ty, thương hiệu, USP, các điểm còn cần khách xác nhận: `docs/company/README.md`
 - File gốc khách gửi (logo, sổ tiêm chủng, phối cảnh, danh mục vắc xin): `docs/company/source/`
 - **Hệ giao diện đã duyệt (layout C):** `docs/design/layout-c.md`. Mọi trang trong phải theo tài liệu này (màu, font, khoảng cách, thẻ, banner ảnh). Khi làm trang mới hoặc chuyển trang chủ sang layout C, tài liệu này được ưu tiên hơn các mô tả trang chủ cũ bên dưới.
+- **Trang chủ đang chạy (từ 2026-11-04):** `/` là bản HTML layout C (`public/prototypes/layout-c.html`, rewrite trong `next.config.ts`). Trang chủ Next.js cũ nằm ở `src/app/trang-chu-cu/page.tsx` (link `/trang-chu-cu`) để khách so sánh. Khi dựng lại layout C bằng component thì bỏ rewrite và đưa trang về `src/app/page.tsx`.
 
 ## Stack & lệnh
 

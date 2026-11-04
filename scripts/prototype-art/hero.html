@@ -5,54 +5,76 @@
 <title>Banner chính – Trung tâm Tiêm chủng Tâm Trí</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=block" />
 <link rel="stylesheet" href="art.css" />
-<link rel="stylesheet" href="../../public/prototypes/banner-c.css" />
 <style>
-  /* PC 800×420 (xuất 2x), mobile 343×440 (xuất 3x), bản mobile đủ nội dung như PC. Nút bấm và chấm chuyển slide là HTML đặt
-     lên ảnh ở trang, nên góc dưới bên trái (và góc trên bên phải bản mobile) để trống. */
-  .bn { border-radius: 0; font-family: inherit; }
-  .bn .pill.small { height: 30px; padding: 0 11px 0 4px; font-size: 12.5px; }
-  .bn .pill.small svg { width: 22px; height: 22px; }
+  /* Góp ý 2026-11-03: ảnh tòa nhà, chỉ tiêu đề và 3 lợi thế. PC 800×420 (xuất 2x), mobile 343×440 (xuất 3x).
+     Hai nút "Tư vấn" và "Đặt lịch tiêm" là HTML đặt lên ảnh ở trang, nên ảnh chừa trống góc dưới bên trái
+     (PC) và dải đáy (mobile); chấm chuyển slide nằm góc dưới phải (PC) và góc trên phải (mobile). */
+  .bg { position: absolute; inset: 0; background: linear-gradient(100deg, #ffffff 0%, #f4f7ff 48%, #e3eafc 100%); }
+  .photo { position: absolute; overflow: hidden; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .photo svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .copy { position: absolute; z-index: 2; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--navy); font-weight: 700; letter-spacing: 0.02em; }
+  .brand img { border-radius: 50%; background: #fff; box-shadow: 0 6px 16px -10px rgb(28 42 102 / 0.6); }
+  h1 { color: var(--navy); font-weight: 700; line-height: 1; text-transform: uppercase; }
+  h1 span { display: block; }
+  h1 .top { letter-spacing: 0.02em; color: var(--ink); }
+  h1 .name { letter-spacing: 0.01em; }
+  .bar { display: block; border-radius: 4px; background: var(--sun); }
+  ul { list-style: none; display: grid; }
+  li { display: flex; align-items: center; color: var(--ink); font-weight: 700; line-height: 1.25; }
+  li svg { flex-shrink: 0; }
 
-  .mb .bn { width: 343px; height: 440px; }
-  .mb .bn .copy { top: 16px; left: 16px; right: 16px; width: auto !important; }
-  .mb .bn .kicker { height: 26px; padding-right: 10px; font-size: 11px; }
-  .mb .bn .kicker img { width: 20px; height: 20px; }
-  .mb .bn h2 { margin-top: 12px; }
-  .mb .bn .t1 { font-size: 21px !important; }
-  .mb .bn .t2 { margin-top: 4px; font-size: 40px !important; }
-  .mb .bn .desc { max-width: 300px; margin-top: 8px; font-size: 13px !important; line-height: 1.4; }
-  .mb .bn .pills { flex-direction: column; align-items: flex-start; gap: 6px !important; margin-top: 14px; }
-  .mb .bn .pill.small { height: 26px; padding-right: 9px; font-size: 11px; }
-  .mb .bn .pill.small svg { width: 20px; height: 20px; flex-shrink: 0; }
-  /* Chip dài xuống 2 dòng để cột chip hẹp, chừa chỗ cho ảnh tròn bên phải. */
-  .mb .bn .pill.small:nth-child(3) { height: auto; max-width: 116px; padding-top: 5px; padding-bottom: 5px; line-height: 1.2; }
-  .mb .bn .photo { top: 184px !important; right: 12px !important; width: 160px !important; height: 160px !important; border-width: 6px; }
-  .mb .bn .v1 { top: 168px !important; right: 2px !important; width: 36px !important; }
-  .mb .bn .v2 { top: 280px !important; right: 0 !important; width: 42px !important; }
-  .mb .bn .sticker { top: 284px !important; right: auto !important; left: 92px; width: 86px; height: 86px; font-size: 10px; }
-  .mb .bn .sticker b { font-size: 15px !important; }
+  .pc .bg { }
+  .pc .photo { top: 0; right: 0; width: 420px; height: 100%; }
+  .pc .photo img { object-position: 42% 62%;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M22 0H100V100H8C0 66 4 28 22 0Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+  .pc .copy { left: 44px; top: 40px; width: 380px; }
+  .pc .brand { font-size: 13px; }
+  .pc .brand img { width: 34px; height: 34px; padding: 3px; }
+  .pc h1 { margin-top: 12px; }
+  .pc h1 .top { font-size: 27px; }
+  .pc h1 .name { margin-top: 6px; font-size: 62px; }
+  .pc .bar { width: 72px; height: 6px; margin-top: 12px; }
+  .pc ul { margin-top: 20px; gap: 10px; }
+  .pc li { gap: 12px; font-size: 16.5px; }
+  .pc li svg { width: 36px; height: 36px; }
+
+  .mb .photo { top: 0; left: 0; width: 100%; height: 196px; }
+  .mb .photo img { object-position: 40% 58%;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H100V86C70 100 30 100 0 88Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+  .mb .copy { left: 18px; right: 18px; top: 200px; }
+  .mb .brand { display: none; }
+  .mb h1 .top { font-size: 17px; }
+  .mb h1 .name { margin-top: 4px; font-size: 38px; }
+  .mb .bar { width: 48px; height: 4px; margin-top: 8px; }
+  .mb ul { margin-top: 12px; gap: 7px; }
+  .mb li { gap: 9px; font-size: 13px; }
+  .mb li svg { width: 26px; height: 26px; }
+
+  .pc .only-mb, .mb .only-pc { display: none; }
 </style>
 </head>
 <body>
-<div class="bn bn-pkg">
+<div class="banner">
   <div class="bg"></div>
-  <div class="copy" style="width:440px">
-    <span class="kicker"><img src="../../public/images/logo-mark.png" alt="" />Hệ sinh thái y tế Sản – Nhi Tâm Trí</span>
-    <h2><span class="t1" style="font-size:33px">Trung tâm Tiêm chủng</span><span class="t2" style="font-size:60px">Tâm Trí</span></h2>
-    <p class="desc" style="font-size:15px">Cùng hệ thống Phòng khám Sản – Nhi và Nhà thuốc Tâm Trí.</p>
-    <div class="pills" style="gap:6px">
-      <span class="pill small"><i data-icon="pregnancy"></i>Bác sĩ Sản khoa</span>
-      <span class="pill small"><i data-icon="baby"></i>Bác sĩ Nhi khoa</span>
-      <span class="pill small"><i data-icon="stethoscope"></i>Khám sàng lọc trước tiêm</span>
-    </div>
+  <div class="photo">
+    <img src="../../public/images/facade.jpg" alt="" />
+    <!-- Viền trắng chạy theo mép cong của ảnh. -->
+    <svg class="only-pc" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M22 -1C4 28 0 66 8 101" stroke="#fff" fill="none" vector-effect="non-scaling-stroke" style="stroke-width:6px"/></svg>
+    <svg class="only-mb" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M-1 88C30 100 70 100 101 86" stroke="#fff" fill="none" vector-effect="non-scaling-stroke" style="stroke-width:4px"/></svg>
   </div>
-  <div class="photo" style="right:44px;top:50px;width:270px;height:270px"><img src="../../public/images/facade.jpg" alt="" style="object-position:45% 60%" /></div>
-  <i class="vial v1" data-vial="Hexaxim|#fadc00" style="right:290px;top:70px;width:58px;transform:rotate(-12deg)"></i>
-  <i class="vial v2" data-vial="Prevenar|#4a62cf" style="right:30px;top:226px;width:70px;transform:rotate(10deg)"></i>
-  <div class="sticker" style="right:236px;top:282px"><span>Mở cửa<b style="font-size:19px">7:30–20:00</b>hằng ngày</span></div>
+  <div class="copy">
+    <h1><span class="top">Trung tâm Tiêm chủng</span><span class="name">Tâm Trí</span></h1>
+    <span class="bar"></span>
+    <ul>
+      <li><i data-icon="stethoscope"></i>Bác sĩ khám sàng lọc trước tiêm</li>
+      <li><i data-icon="shield"></i>Vắc xin chính hãng, rõ nguồn gốc</li>
+      <li><i data-icon="reminder"></i>Theo dõi và nhắc lịch sau tiêm</li>
+    </ul>
+  </div>
 </div>
 <script>document.body.className = new URLSearchParams(location.search).get("v") || "pc";</script>
 <script src="../../public/prototypes/icons.js"></script>
-<script src="../../public/prototypes/banner-c.js"></script>
 </body>
 </html>
