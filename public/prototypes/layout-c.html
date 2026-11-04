@@ -75,7 +75,7 @@
   .hero-grid { display: grid; grid-template-columns: 800px 1fr; gap: 20px; }
   /* Banner chính là ảnh (admin tải bản PC 1600×840 và mobile 1029×1320). Nút bấm và chấm
      chuyển slide là HTML đặt lên ảnh, ảnh chừa trống các vùng này. */
-  .hero-bn { position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 24px 50px -28px rgb(28 42 102 / 0.6); }
+  .hero-bn { position: relative; border-radius: 10px; overflow: hidden; }
   .hero-bn img { width: 100%; aspect-ratio: 800 / 420; }
   .hero-bn .ctas { position: absolute; left: 5.5%; bottom: 7.2%; display: flex; gap: 10px; }
   .hero-bn .cta { display: inline-flex; align-items: center; justify-content: center; gap: 12px; height: 48px; padding: 0 7px 0 24px; border-radius: 999px; background: var(--navy); color: #fff; font-size: 16px; font-weight: 700; box-shadow: 0 12px 24px -12px rgb(40 60 150 / 0.7); }
@@ -120,7 +120,7 @@
 
   /* Finder */
   .finder { scroll-margin-top: 12px; background: linear-gradient(180deg, var(--page) 0%, #fff 30%); }
-  .find-box { padding: 32px; border-radius: 10px; background: #fff; box-shadow: 0 20px 50px -34px rgb(28 42 102 / 0.5); }
+  .find-box { padding: 32px; border-radius: 10px; background: #fff; }
   .groups { display: grid; grid-template-columns: repeat(8, 1fr); gap: 12px; }
   .group { background: #fff; box-shadow: inset 0 0 0 1px var(--line); display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 6px 16px; border-radius: 12px; font-size: 14.5px; font-weight: 700; color: var(--ink); text-align: center; border: 2px solid transparent; }
   .group svg { width: 60px; height: 60px; }
@@ -153,7 +153,7 @@
   .seg { display: inline-flex; padding: 5px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
   .seg b { padding: 9px 20px; border-radius: 999px; font-size: 15px; font-weight: 600; color: var(--muted); }
   .seg b.on { background: var(--navy); color: #fff; }
-  .pcard { position: relative; display: flex; flex-direction: column; border-radius: 12px; background: #fff; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line), 0 14px 30px -24px rgb(28 42 102 / 0.55); }
+  .pcard { position: relative; display: flex; flex-direction: column; border-radius: 12px; background: #fff; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); }
   .pcard .top { position: relative; padding: 18px 18px 16px; display: flex; gap: 12px; align-items: center; }
   .pcard .top svg { width: 56px; height: 56px; flex-shrink: 0; }
   .pcard .top small { display: block; font-size: 13px; font-weight: 700; color: var(--blue); }
@@ -171,7 +171,7 @@
   .pcard.hot { box-shadow: 0 0 0 3px var(--sun); }
 
   /* Banner ưu đãi phụ */
-  .offer { display: block; border-radius: 10px; overflow: hidden; box-shadow: 0 20px 44px -30px rgb(28 42 102 / 0.5); }
+  .offer { display: block; border-radius: 10px; overflow: hidden; }
   .offer img { width: 100%; aspect-ratio: 3 / 1; }
 
   /* Popup quảng cáo */

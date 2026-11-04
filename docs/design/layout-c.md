@@ -33,6 +33,8 @@ Cập nhật: 2026-11-04. Khách đã duyệt bố cục trang chủ theo phươ
 
 **Font.** SVN-Aptima cho toàn bộ chữ (bản thường 400 và bản đậm 700; chỗ nào cần chữ đậm hơn cũng dùng 700). Google Sans Flex chỉ là font dự phòng. Font Aptima chỉ có 2 độ đậm, nên đừng thiết kế dựa vào 800/900.
 
+**Đổ bóng.** Khung lớn và thẻ (banner, khung section, thẻ vắc xin, thẻ gói, banner ưu đãi) không đổ bóng; tách khỏi nền bằng nền trắng hoặc viền mảnh `--line`. Chỉ nút và ô nhóm bệnh đang chọn được có bóng nhẹ.
+
 **Bo góc.** Khung lớn (banner, box section) 10px; thẻ 10–12px; **nút bo tròn hẳn** (góp ý 2026-11-03); nhãn/nút trong ảnh banner bo tròn hẳn.
 
 ## 2. Khung và khoảng cách
