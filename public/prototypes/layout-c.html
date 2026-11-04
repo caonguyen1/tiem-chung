@@ -141,7 +141,9 @@
   .center { margin-top: 28px; display: flex; justify-content: center; }
 
   /* Packages */
-  .pkg { background: #edf3ff; position: relative; overflow: hidden; padding: 88px 0 48px; }
+  .pkg { background: #edf3ff; position: relative; overflow: hidden; padding: 88px 0 96px; }
+  /* Section ngay dưới khối Gói vắc xin: nền trắng chuyển xanh nhạt, để đường cong trắng ở đáy khối Gói nổi rõ. */
+  .offer-section { background: linear-gradient(180deg, #ffffff 0%, #eef3ff 100%); }
   .wave-top, .wave-bottom { position: absolute; z-index: 1; left: 0; width: 100%; height: 48px; pointer-events: none; }
   .wave-top { top: -2px; }
   .wave-bottom { bottom: -2px; }
@@ -299,7 +301,7 @@
     .vcard h3 { font-size: 16px; }
     .vcard .bottom { gap: 6px; }
     .vcard .price { font-size: 16px; }
-    .pkg { padding: 72px 0 40px; }
+    .pkg { padding: 72px 0 80px; }
     .pcard .top { padding: 14px 12px 12px; gap: 8px; }
     .pcard .top svg { width: 42px; height: 42px; }
     .pcard h3 { white-space: normal; font-size: 15px; }
@@ -417,7 +419,7 @@
     .vcard .price { font-size: 16px; }
 
     /* Gói vắc xin: chừa đủ chỗ cho hai đường cong */
-    .pkg { padding: 48px 0 calc(var(--space) / 2); }
+    .pkg { padding: 48px 0 56px; }
     .wave-top, .wave-bottom { height: 28px; }
     .pkg .head { align-items: flex-start; flex-direction: column; }
     .seg { padding: 4px; }
@@ -562,6 +564,7 @@
 
 <section class="pkg">
   <svg class="wave-top" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 -2H1440V14C1180 34 960 6 720 18S240 34 0 12Z" fill="#fff"/></svg>
+  <svg class="wave-bottom" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0 42H1440V26C1200 8 980 36 720 24S220 8 0 26Z" fill="#fff"/></svg>
 <div class="wrap">
   <div class="head"><div><h2><span class="mark"></span>Gói vắc xin</h2><p>Lịch tiêm bác sĩ sắp sẵn, không lo trễ mũi.</p></div><div class="seg"><b class="on">Theo độ tuổi</b><b>Theo đối tượng</b></div></div>
   <div class="cards"><template data-each="packages"><article class="pcard {{it.hot ? 'hot' : ''}}">{{it.hot ? '<span class="badge">Phổ biến nhất</span>' : ''}}<div class="top"><i data-icon="{{it.icon}}" data-disc="#F2F4FB"></i><div><small>{{it.who}}</small><h3>{{it.name}}</h3></div></div><div class="stats"><span><b>{{it.doses}}</b>mũi tiêm</span><span><b>{{it.count}}</b>loại vắc xin</span></div><div class="price"><b>{{vnd(it.price)}}</b><s>{{vnd(it.was)}}</s><em>-{{Math.round((it.was - it.price) / it.was * 100)}}%</em></div><div class="acts"><a class="btn btn-line">Chi tiết</a><a class="btn btn-sun">Đặt lịch</a></div></article></template></div>
