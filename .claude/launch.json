@@ -4,7 +4,9 @@
     {
       "name": "web",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["dev", "--port", "3210"],
+      "runtimeArgs": [
+        "local"
+      ],
       "port": 3210
     }
   ]

@@ -14,7 +14,7 @@ Website và admin cho Trung tâm Tiêm chủng Tâm Trí (Quy Nhơn, Gia Lai).
 
 - Next.js 16 (App Router) + Tailwind CSS v4 + `lucide-react`, quản lý gói bằng pnpm. Đọc `AGENTS.md` trước khi dùng API Next.js.
 - **Chạy local (từ 2026-11-09 code chạy local với database, sau này chuyển lên server của khách):** cần Docker Desktop đang mở.
-  - Lần đầu: `pnpm local:setup` (tạo `.env` từ `.env.example`, bật Postgres, chạy migration, nhập dữ liệu mẫu). Sau đó mỗi lần chỉ cần `pnpm local` (bật database, migration, dev server cổng 3210).
+  - **Khi người dùng bảo "chạy local" (hoặc cần xem trang để kiểm tra):** gọi `preview_start` với `name: "web"` (`.claude/launch.json`), không chạy lệnh tay từng bước. Cấu hình này gọi `pnpm local` = `scripts/local.mjs`, tự làm hết: tạo `.env` nếu thiếu, mở Docker Desktop nếu chưa chạy và chờ, bật Postgres, chạy migration, nhập dữ liệu mẫu nếu database trống, rồi chạy dev server cổng 3210. Tab xem trước có thể mở trước khi server sẵn sàng; khi đó `navigate` lại `http://localhost:3210`. Trước khi `pnpm build` thì `preview_stop` server này.
   - Database: Postgres 17 trong `docker-compose.yml`, cổng máy 5436. `pnpm db:up` / `db:down`, `db:generate` (tạo migration sau khi sửa `src/db/schema.ts`), `db:migrate`, `db:seed` (xóa sạch rồi nhập lại dữ liệu mẫu, kể cả tài khoản admin lấy từ `ADMIN_EMAIL`/`ADMIN_PASSWORD`), `db:reset`, `db:studio`.
   - `.env` chứa mật khẩu, không commit; chỉ commit `.env.example`.
 - `pnpm dev --port 3210` để chạy dev, `pnpm lint` để kiểm tra, `pnpm build` để build production. Build cần database đang chạy vì trang được dựng sẵn từ dữ liệu.
