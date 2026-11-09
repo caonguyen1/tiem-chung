@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, SearchX } from "lucide-react";
+import { ChevronDown, ListFilter, SearchX } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import type { DiseaseGroup, Vaccine, VaccinePackage } from "@/content/types";
@@ -13,38 +13,38 @@ import { ButtonLink } from "../ui/button-link";
 import { PackageCard } from "./package-card";
 import { VaccineTile } from "./vaccine-tile";
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 9;
+const GROUPS_COLLAPSED = 6;
 type Sort = "popular" | "price-asc" | "price-desc";
 type Tab = "vaccines" | "packages";
+type Option = { value: string; label: string };
 
 type Props = {
   vaccines: Vaccine[];
   packages: VaccinePackage[];
   groups: DiseaseGroup[];
   ageGroups: AgeGroup[];
-  /** Pre-select a disease group (used by the group page). */
-  initialGroup?: string;
 };
 
 /**
- * Vaccine catalogue (spec page 2): tabs "Vắc xin lẻ" / "Gói vắc xin", disease icons, filters by
- * age, disease, origin and number of doses, sorting and "Xem thêm". Everything is filtered in
+ * Vaccine catalogue (spec page 2): tabs "Vắc xin lẻ" / "Gói vắc xin", a grid of disease groups
+ * (one row, "Xem tất cả danh mục" opens the rest), the list with sorting and "Xem thêm", and a
+ * sticky filter column on the left (age, disease, origin, doses). Everything is filtered in
  * the browser from the full list, so the page stays prerendered.
  */
-export function VaccineCatalog({ vaccines, packages, groups, ageGroups, initialGroup = "" }: Props) {
+export function VaccineCatalog({ vaccines, packages, groups, ageGroups }: Props) {
   const [tab, setTab] = useState<Tab>("vaccines");
   const [age, setAge] = useState("");
-  const [group, setGroup] = useState(initialGroup);
+  const [group, setGroup] = useState("");
   const [origin, setOrigin] = useState("");
   const [doses, setDoses] = useState("");
   const [sort, setSort] = useState<Sort>("popular");
   const [shown, setShown] = useState(PAGE_SIZE);
+  const [allGroups, setAllGroups] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const origins = useMemo(() => [...new Set(vaccines.map((vaccine) => vaccine.origin))].sort((a, b) => a.localeCompare(b, "vi")), [vaccines]);
-  const doseOptions = useMemo(
-    () => [...new Set(vaccines.flatMap((vaccine) => (vaccine.doseCount ? [vaccine.doseCount] : [])))].sort((a, b) => a - b),
-    [vaccines],
-  );
+  const doseOptions = useMemo(() => [...new Set(vaccines.flatMap((vaccine) => (vaccine.doseCount ? [vaccine.doseCount] : [])))].sort((a, b) => a - b), [vaccines]);
 
   const result = useMemo(() => {
     const filtered = vaccines.filter(
@@ -59,7 +59,7 @@ export function VaccineCatalog({ vaccines, packages, groups, ageGroups, initialG
     return filtered;
   }, [vaccines, age, group, origin, doses, sort]);
 
-  const filtersActive = Boolean(age || group || origin || doses);
+  const activeCount = [age, group, origin, doses].filter(Boolean).length;
   const reset = () => {
     setAge("");
     setGroup("");
@@ -67,7 +67,7 @@ export function VaccineCatalog({ vaccines, packages, groups, ageGroups, initialG
     setDoses("");
     setShown(PAGE_SIZE);
   };
-  const change = (setter: (value: string) => void) => (value: string) => {
+  const pick = (setter: (value: string) => void) => (value: string) => {
     setter(value);
     setShown(PAGE_SIZE);
   };
@@ -86,76 +86,130 @@ export function VaccineCatalog({ vaccines, packages, groups, ageGroups, initialG
 
         {tab === "vaccines" ? (
           <>
-            <ul className="no-scrollbar -mx-4 mt-4 flex gap-2 overflow-x-auto px-4 pb-1 tab:mx-0 tab:flex-wrap tab:overflow-visible tab:px-0 desk:mt-5 desk:gap-2.5">
-              {groups.map((item) => (
-                <li key={item.slug} className="shrink-0">
+            <ul className="mt-4 grid grid-cols-2 gap-2.5 tab:grid-cols-3 desk:mt-5 desk:grid-cols-6 desk:gap-3">
+              {groups.map((item, index) => (
+                <li key={item.slug} className={!allGroups && index >= GROUPS_COLLAPSED ? "hidden" : undefined}>
                   <AppLink
                     href={`/vac-xin/nhom-benh/${item.slug}`}
-                    className="flex items-center gap-2 rounded-full border border-line bg-white py-1 pr-3.5 pl-1 text-[13px] font-bold text-brand-800 hover:border-brand-bright tab:text-sm"
+                    className="flex h-full items-center gap-2.5 rounded-xl border border-line bg-white p-2 hover:border-brand-bright desk:p-2.5"
                   >
-                    <BrandIconByName name={item.icon} className="size-8" />
-                    {item.shortName}
+                    <BrandIconByName name={item.icon} className="size-11 shrink-0 desk:size-12" />
+                    <span className="min-w-0 text-[13px] leading-tight font-bold text-brand-800 desk:text-sm">{item.name}</span>
                   </AppLink>
                 </li>
               ))}
             </ul>
-
-            <div className="mt-4 grid grid-cols-2 gap-2.5 rounded-box bg-white p-3 tab:grid-cols-3 tab:p-4 desk:mt-5 desk:grid-cols-5 desk:gap-3">
-              <Filter label="Độ tuổi" value={age} onChange={change(setAge)} options={ageGroups.map((item) => ({ value: item.value, label: item.label }))} />
-              <Filter label="Phòng bệnh" value={group} onChange={change(setGroup)} options={groups.map((item) => ({ value: item.slug, label: item.name }))} />
-              <Filter label="Nơi sản xuất" value={origin} onChange={change(setOrigin)} options={origins.map((item) => ({ value: item, label: item }))} />
-              <Filter label="Số liều" value={doses} onChange={change(setDoses)} options={doseOptions.map((item) => ({ value: String(item), label: `${item} liều` }))} />
-              <label className="grid gap-1 text-xs font-bold text-subtle">
-                Sắp xếp
-                <SelectBox value={sort} onChange={(value) => setSort(value as Sort)}>
-                  <option value="popular">Được quan tâm</option>
-                  <option value="price-asc">Giá thấp</option>
-                  <option value="price-desc">Giá cao</option>
-                </SelectBox>
-              </label>
-            </div>
-
-            <div className="mt-3 flex items-center justify-between gap-3 text-sm text-subtle" aria-live="polite">
-              <span>
-                <b className="text-brand-800">{result.length}</b> vắc xin
-              </span>
-              {filtersActive && (
-                <button type="button" onClick={reset} className="font-bold text-link">
-                  Xóa bộ lọc
+            {groups.length > GROUPS_COLLAPSED && (
+              <div className="mt-3 text-center">
+                <button type="button" onClick={() => setAllGroups((value) => !value)} aria-expanded={allGroups} className="inline-flex items-center gap-1.5 text-[14px] font-bold text-link">
+                  {allGroups ? "Thu gọn danh mục" : "Xem tất cả danh mục"}
+                  <ChevronDown aria-hidden="true" className={`size-4 transition ${allGroups ? "rotate-180" : ""}`} />
                 </button>
-              )}
-            </div>
-
-            {result.length === 0 ? (
-              <div className="mt-3 grid place-items-center gap-2 rounded-box bg-white px-4 py-12 text-center">
-                <SearchX aria-hidden="true" className="size-10 text-brand-bright" />
-                <p className="font-bold text-brand-800">Chưa có vắc xin phù hợp với bộ lọc</p>
-                <p className="text-sm text-subtle">Thử bỏ bớt điều kiện lọc hoặc để bác sĩ tư vấn giúp bạn.</p>
-                <ButtonLink href={CONSULT_HASH} variant="secondary" className="mt-2">
-                  Yêu cầu tư vấn
-                </ButtonLink>
               </div>
-            ) : (
-              <ul className="mt-3 grid gap-3 tab:grid-cols-2 desk:grid-cols-4 desk:gap-4">
-                {result.slice(0, shown).map((vaccine) => (
-                  <li key={vaccine.slug}>
-                    <VaccineTile vaccine={vaccine} />
-                  </li>
-                ))}
-              </ul>
             )}
 
-            {result.length > shown && (
-              <div className="mt-5 text-center">
+            <div className="mt-5 grid grid-cols-1 gap-3 desk:grid-cols-[300px_minmax(0,1fr)] desk:items-start desk:gap-5">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5">
+                  <h2 className="text-xl font-bold text-brand-800 desk:text-2xl">
+                    Danh sách vắc xin <span className="text-base font-normal text-subtle">({result.length})</span>
+                  </h2>
+                  <div className="no-scrollbar -mx-4 flex items-center gap-2 overflow-x-auto px-4 tab:mx-0 tab:px-0" role="group" aria-label="Sắp xếp theo">
+                    <span className="shrink-0 text-sm text-subtle">Sắp xếp theo:</span>
+                    {(
+                      [
+                        ["popular", "Được quan tâm"],
+                        ["price-asc", "Giá thấp"],
+                        ["price-desc", "Giá cao"],
+                      ] as [Sort, string][]
+                    ).map(([value, label]) => (
+                      <button
+                        key={value}
+                        type="button"
+                        aria-pressed={sort === value}
+                        onClick={() => setSort(value)}
+                        className={`h-9 shrink-0 rounded-full px-4 text-[13.5px] font-bold ${sort === value ? "bg-brand-600 text-white" : "bg-white text-brand-600 ring-1 ring-brand-200 ring-inset hover:bg-brand-50"}`}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <button
                   type="button"
-                  onClick={() => setShown((count) => count + PAGE_SIZE)}
-                  className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 text-[15px] font-bold text-brand-600 ring-[1.5px] ring-brand-600 ring-inset hover:bg-brand-50"
+                  onClick={() => setFiltersOpen((open) => !open)}
+                  aria-expanded={filtersOpen}
+                  className="mt-3 flex h-11 w-full items-center justify-between rounded-xl bg-white px-4 text-[15px] font-bold text-brand-800 desk:hidden"
                 >
-                  Xem thêm {Math.min(PAGE_SIZE, result.length - shown)} vắc xin
+                  <span className="inline-flex items-center gap-2">
+                    <ListFilter aria-hidden="true" className="size-5" />
+                    Bộ lọc vắc xin{activeCount > 0 && ` (${activeCount})`}
+                  </span>
+                  <ChevronDown aria-hidden="true" className={`size-5 transition ${filtersOpen ? "rotate-180" : ""}`} />
                 </button>
+
+                {/* On phones the filter panel sits here, opened by the button above. */}
+                <div className={`mt-2 desk:hidden ${filtersOpen ? "" : "hidden"}`}>
+                  <FilterPanel
+                    ageGroups={ageGroups.map((item) => ({ value: item.value, label: item.label }))}
+                    groups={groups.map((item) => ({ value: item.slug, label: item.name }))}
+                    origins={origins.map((item) => ({ value: item, label: item }))}
+                    doseOptions={doseOptions.map((item) => ({ value: String(item), label: `${item} liều` }))}
+                    values={{ age, group, origin, doses }}
+                    onPick={{ age: pick(setAge), group: pick(setGroup), origin: pick(setOrigin), doses: pick(setDoses) }}
+                    activeCount={activeCount}
+                    onReset={reset}
+                    idPrefix="m"
+                  />
+                </div>
+
+                {result.length === 0 ? (
+                  <div className="mt-3 grid place-items-center gap-2 rounded-box bg-white px-4 py-12 text-center">
+                    <SearchX aria-hidden="true" className="size-10 text-brand-bright" />
+                    <p className="font-bold text-brand-800">Chưa có vắc xin phù hợp với bộ lọc</p>
+                    <p className="text-sm text-subtle">Thử bỏ bớt điều kiện lọc hoặc để bác sĩ tư vấn giúp bạn.</p>
+                    <ButtonLink href={CONSULT_HASH} variant="secondary" className="mt-2">
+                      Yêu cầu tư vấn
+                    </ButtonLink>
+                  </div>
+                ) : (
+                  <ul className="mt-3 grid gap-3 tab:grid-cols-2 desk:grid-cols-3 desk:gap-4">
+                    {result.slice(0, shown).map((vaccine) => (
+                      <li key={vaccine.slug}>
+                        <VaccineTile vaccine={vaccine} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {result.length > shown && (
+                  <div className="mt-5 text-center">
+                    <button
+                      type="button"
+                      onClick={() => setShown((count) => count + PAGE_SIZE)}
+                      className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 text-[15px] font-bold text-brand-600 ring-[1.5px] ring-brand-600 ring-inset hover:bg-brand-50"
+                    >
+                      Xem thêm {Math.min(PAGE_SIZE, result.length - shown)} vắc xin
+                    </button>
+                  </div>
+                )}
               </div>
-            )}
+
+              <aside aria-label="Bộ lọc vắc xin" className="hidden desk:sticky desk:top-4 desk:order-first desk:block">
+                <FilterPanel
+                  ageGroups={ageGroups.map((item) => ({ value: item.value, label: item.label }))}
+                  groups={groups.map((item) => ({ value: item.slug, label: item.name }))}
+                  origins={origins.map((item) => ({ value: item, label: item }))}
+                  doseOptions={doseOptions.map((item) => ({ value: String(item), label: `${item} liều` }))}
+                  values={{ age, group, origin, doses }}
+                  onPick={{ age: pick(setAge), group: pick(setGroup), origin: pick(setOrigin), doses: pick(setDoses) }}
+                  activeCount={activeCount}
+                  onReset={reset}
+                  idPrefix="d"
+                />
+              </aside>
+            </div>
           </>
         ) : (
           <ul className="mt-4 grid gap-3 tab:grid-cols-2 desk:mt-5 desk:grid-cols-4 desk:gap-4">
@@ -182,6 +236,74 @@ export function VaccineCatalog({ vaccines, packages, groups, ageGroups, initialG
   );
 }
 
+type FilterKey = "age" | "group" | "origin" | "doses";
+
+function FilterPanel({
+  ageGroups,
+  groups,
+  origins,
+  doseOptions,
+  values,
+  onPick,
+  activeCount,
+  onReset,
+  idPrefix,
+}: {
+  ageGroups: Option[];
+  groups: Option[];
+  origins: Option[];
+  doseOptions: Option[];
+  values: Record<FilterKey, string>;
+  onPick: Record<FilterKey, (value: string) => void>;
+  activeCount: number;
+  onReset: () => void;
+  idPrefix: string;
+}) {
+  const sections: { key: FilterKey; title: string; options: Option[] }[] = [
+    { key: "age", title: "Độ tuổi", options: ageGroups },
+    { key: "group", title: "Phòng bệnh", options: groups },
+    { key: "origin", title: "Nơi sản xuất", options: origins },
+    { key: "doses", title: "Số liều", options: doseOptions },
+  ];
+  return (
+    <div className="max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-box bg-white">
+      <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3.5">
+        <h3 className="inline-flex items-center gap-2 text-base font-bold text-brand-800 desk:text-lg">
+          <ListFilter aria-hidden="true" className="size-5" />
+          Bộ lọc vắc xin
+        </h3>
+        {activeCount > 0 && (
+          <button type="button" onClick={onReset} className="text-sm font-bold text-link">
+            Xóa lọc
+          </button>
+        )}
+      </div>
+      {sections.map((section) => (
+        <details key={section.key} open={section.key === "age"} className="group border-b border-line px-4 py-3 last:border-0">
+          <summary className="flex cursor-pointer list-none items-center justify-between text-[15px] font-bold text-brand-800 [&::-webkit-details-marker]:hidden">
+            {section.title}
+            <ChevronDown aria-hidden="true" className="size-4 text-subtle transition group-open:rotate-180" />
+          </summary>
+          <div role="radiogroup" aria-label={section.title} className="mt-2 grid gap-0.5">
+            {[{ value: "", label: "Tất cả" }, ...section.options].map((option) => (
+              <label key={option.value} className="flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-1.5 text-[14px] text-body hover:bg-surface-soft">
+                <input
+                  type="radio"
+                  name={`${idPrefix}-${section.key}`}
+                  checked={values[section.key] === option.value}
+                  onChange={() => onPick[section.key](option.value)}
+                  className="size-4 shrink-0 accent-brand-600"
+                />
+                {option.label}
+              </label>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+  );
+}
+
 function TabButton({ active, onClick, children }: { active: boolean; onClick: () => void; children: string }) {
   return (
     <button
@@ -193,36 +315,5 @@ function TabButton({ active, onClick, children }: { active: boolean; onClick: ()
     >
       {children}
     </button>
-  );
-}
-
-function Filter({ label, value, onChange, options }: { label: string; value: string; onChange: (value: string) => void; options: { value: string; label: string }[] }) {
-  return (
-    <label className="grid gap-1 text-xs font-bold text-subtle">
-      {label}
-      <SelectBox value={value} onChange={onChange}>
-        <option value="">Tất cả</option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </SelectBox>
-    </label>
-  );
-}
-
-function SelectBox({ value, onChange, children }: { value: string; onChange: (value: string) => void; children: React.ReactNode }) {
-  return (
-    <span className="relative block">
-      <select
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className="h-11 w-full appearance-none rounded-lg border border-line bg-surface-soft pr-9 pl-3 text-[14px] font-bold text-brand-800 outline-none focus:border-brand-bright"
-      >
-        {children}
-      </select>
-      <ChevronDown aria-hidden="true" className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-subtle" />
-    </span>
   );
 }
