@@ -15,7 +15,7 @@ import { getSiteSettings } from "@/lib/data/settings";
 export default async function SiteLayout({ children }: { children: ReactNode }) {
   const [settings, vaccines, packages, centers] = await Promise.all([getSiteSettings(), getVaccines(), getPackages(), getCenters()]);
   return (
-    <div className="flex min-h-full flex-col bg-surface">
+    <div className="isolate flex min-h-full flex-col bg-surface">
       <Header menu={settings.headerMenu} siteName={settings.shortName} />
       {children}
       <Footer />

@@ -14,7 +14,9 @@ import { PackageCard } from "./package-card";
 import { VaccineTile } from "./vaccine-tile";
 
 const PAGE_SIZE = 9;
-const GROUPS_COLLAPSED = 6;
+// Two rows are always shown: 2 columns on phones, 3 on tablets, 6 on desktop.
+const GROUPS_ROWS = 2;
+const FILTER_VISIBLE = 6;
 type Sort = "popular" | "price-asc" | "price-desc";
 type Tab = "vaccines" | "packages";
 type Option = { value: string; label: string };
@@ -88,7 +90,7 @@ export function VaccineCatalog({ vaccines, packages, groups, ageGroups }: Props)
           <>
             <ul className="mt-4 grid grid-cols-2 gap-2.5 tab:grid-cols-3 desk:mt-5 desk:grid-cols-6 desk:gap-3">
               {groups.map((item, index) => (
-                <li key={item.slug} className={!allGroups && index >= GROUPS_COLLAPSED ? "hidden" : undefined}>
+                <li key={item.slug} className={allGroups ? undefined : hiddenWhenCollapsed(index)}>
                   <AppLink
                     href={`/vac-xin/nhom-benh/${item.slug}`}
                     className="flex h-full items-center gap-2.5 rounded-xl border border-line bg-white p-2 hover:border-brand-bright desk:p-2.5"
@@ -99,8 +101,8 @@ export function VaccineCatalog({ vaccines, packages, groups, ageGroups }: Props)
                 </li>
               ))}
             </ul>
-            {groups.length > GROUPS_COLLAPSED && (
-              <div className="mt-3 text-center">
+            {groups.length > 2 * GROUPS_ROWS && (
+              <div className={`mt-3 text-center ${allGroups ? "" : moreButtonVisibility(groups.length)}`}>
                 <button type="button" onClick={() => setAllGroups((value) => !value)} aria-expanded={allGroups} className="inline-flex items-center gap-1.5 text-[14px] font-bold text-link">
                   {allGroups ? "Thu gọn danh mục" : "Xem tất cả danh mục"}
                   <ChevronDown aria-hidden="true" className={`size-4 transition ${allGroups ? "rotate-180" : ""}`} />
@@ -236,6 +238,21 @@ export function VaccineCatalog({ vaccines, packages, groups, ageGroups }: Props)
   );
 }
 
+/** Classes that hide a group tile beyond the second row at the breakpoints where it overflows. */
+function hiddenWhenCollapsed(index: number) {
+  if (index >= 6 * GROUPS_ROWS) return "hidden";
+  if (index >= 3 * GROUPS_ROWS) return "hidden desk:list-item";
+  if (index >= 2 * GROUPS_ROWS) return "max-tab:hidden";
+  return undefined;
+}
+
+/** "Xem tất cả danh mục" shows only at the breakpoints where some tile is hidden. */
+function moreButtonVisibility(count: number) {
+  if (count > 6 * GROUPS_ROWS) return "";
+  if (count > 3 * GROUPS_ROWS) return "desk:hidden";
+  return "tab:hidden";
+}
+
 type FilterKey = "age" | "group" | "origin" | "doses";
 
 function FilterPanel({
@@ -259,6 +276,7 @@ function FilterPanel({
   onReset: () => void;
   idPrefix: string;
 }) {
+  const [expanded, setExpanded] = useState<Record<FilterKey, boolean>>({ age: false, group: false, origin: false, doses: false });
   const sections: { key: FilterKey; title: string; options: Option[] }[] = [
     { key: "age", title: "Độ tuổi", options: ageGroups },
     { key: "group", title: "Phòng bệnh", options: groups },
@@ -285,7 +303,7 @@ function FilterPanel({
             <ChevronDown aria-hidden="true" className="size-4 text-subtle transition group-open:rotate-180" />
           </summary>
           <div role="radiogroup" aria-label={section.title} className="mt-2 grid gap-0.5">
-            {[{ value: "", label: "Tất cả" }, ...section.options].map((option) => (
+            {visibleOptions(section.options, values[section.key], expanded[section.key]).map((option) => (
               <label key={option.value} className="flex cursor-pointer items-center gap-2.5 rounded-lg px-1 py-1.5 text-[14px] text-body hover:bg-surface-soft">
                 <input
                   type="radio"
@@ -297,11 +315,30 @@ function FilterPanel({
                 {option.label}
               </label>
             ))}
+            {section.options.length + 1 > FILTER_VISIBLE && (
+              <button
+                type="button"
+                onClick={() => setExpanded((current) => ({ ...current, [section.key]: !current[section.key] }))}
+                className="mt-1 inline-flex items-center gap-1 px-1 py-1.5 text-left text-[14px] font-bold text-link"
+              >
+                {expanded[section.key] ? "Thu gọn" : "Xem thêm"}
+                <ChevronDown aria-hidden="true" className={`size-4 transition ${expanded[section.key] ? "rotate-180" : ""}`} />
+              </button>
+            )}
           </div>
         </details>
       ))}
     </div>
   );
+}
+
+/** "Tất cả" plus the first options; an option picked from further down stays visible. */
+function visibleOptions(options: Option[], selected: string, expanded: boolean): Option[] {
+  const all = [{ value: "", label: "Tất cả" }, ...options];
+  if (expanded) return all;
+  const head = all.slice(0, FILTER_VISIBLE);
+  const picked = all.find((option) => option.value === selected);
+  return picked && !head.includes(picked) ? [...head.slice(0, FILTER_VISIBLE - 1), picked] : head;
 }
 
 function TabButton({ active, onClick, children }: { active: boolean; onClick: () => void; children: string }) {
