@@ -15,8 +15,8 @@ export default async function FaqPage() {
   const faqs = await getFaqs();
   return (
     <main className="flex-1">
-      <PageHeader title="Câu hỏi thường gặp" description="Chưa thấy câu trả lời bạn cần? Gửi yêu cầu, bác sĩ sẽ gọi lại tư vấn." crumbs={[{ label: "Câu hỏi thường gặp" }]}>
-        <ButtonLink href={CONSULT_HASH} variant="onNavy">
+      <PageHeader art="faq" title="Câu hỏi thường gặp" description="Chưa thấy câu trả lời bạn cần? Gửi yêu cầu, bác sĩ sẽ gọi lại tư vấn." crumbs={[{ label: "Câu hỏi thường gặp" }]}>
+        <ButtonLink href={CONSULT_HASH} variant="primary">
           Yêu cầu tư vấn
         </ButtonLink>
       </PageHeader>

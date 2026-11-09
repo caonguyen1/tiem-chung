@@ -24,7 +24,7 @@ export default async function PolicyPage({ params }: PageProps<"/chinh-sach/[slu
 
   return (
     <main className="flex-1">
-      <PageHeader title={page.title} crumbs={[{ label: "Chính sách" }, { label: page.title }]} />
+      <PageHeader art="policy" title={page.title} crumbs={[{ label: "Chính sách" }, { label: page.title }]} />
       <section className="py-4 tab:py-6 desk:py-8">
         <div className="container-site grid gap-3 desk:grid-cols-[280px_minmax(0,1fr)] desk:items-start desk:gap-6">
           <nav aria-label="Chính sách" className="rounded-box bg-white p-2 desk:sticky desk:top-4 desk:p-3">

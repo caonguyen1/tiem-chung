@@ -13,7 +13,7 @@ export default async function VaccineCatalogPage() {
   const [vaccines, packages, groups, ageGroups] = await Promise.all([getVaccines(), getPackages(), getDiseaseGroups(), getAgeGroups()]);
   return (
     <main className="flex-1">
-      <PageHeader
+      <PageHeader art="vaccine"
         title="Vắc xin phòng bệnh"
         description="Vắc xin chính hãng, bác sĩ khám sàng lọc trước mỗi mũi tiêm. Chọn theo độ tuổi, loại bệnh hoặc xem các gói vắc xin."
         crumbs={[{ label: "Vắc xin phòng bệnh" }]}

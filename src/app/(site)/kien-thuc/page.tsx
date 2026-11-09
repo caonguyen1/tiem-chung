@@ -20,7 +20,7 @@ export default async function KnowledgePage() {
 
   return (
     <main className="flex-1">
-      <PageHeader title="Kiến thức tiêm chủng" description="Thông tin dễ hiểu về tiêm chủng và chăm sóc sức khỏe cho cả gia đình." crumbs={[{ label: "Kiến thức tiêm chủng" }]} />
+      <PageHeader art="knowledge" title="Kiến thức tiêm chủng" description="Thông tin dễ hiểu về tiêm chủng và chăm sóc sức khỏe cho cả gia đình." crumbs={[{ label: "Kiến thức tiêm chủng" }]} />
 
       {featured && (
         <section className="py-4 tab:py-6 desk:py-8">

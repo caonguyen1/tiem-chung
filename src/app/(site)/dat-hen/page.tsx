@@ -14,7 +14,7 @@ export default async function BookingRoute() {
   const [vaccines, packages, centers] = await Promise.all([getVaccines(), getPackages(), getCenters()]);
   return (
     <main className="flex-1">
-      <PageHeader title="Đặt hẹn tiêm chủng" description="Chọn vắc xin hoặc gói và ngày mong muốn. Tâm Trí sẽ gọi xác nhận lịch hẹn cho bạn." crumbs={[{ label: "Đặt hẹn" }]} />
+      <PageHeader art="booking" title="Đặt hẹn tiêm chủng" description="Chọn vắc xin hoặc gói và ngày mong muốn. Tâm Trí sẽ gọi xác nhận lịch hẹn cho bạn." crumbs={[{ label: "Đặt hẹn" }]} />
       <section className="py-4 tab:py-6 desk:py-8">
         <div className="container-site">
           <BookingPage vaccines={vaccines} packages={packages} centers={centers} />

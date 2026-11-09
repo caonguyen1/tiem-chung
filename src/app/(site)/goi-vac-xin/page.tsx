@@ -18,7 +18,7 @@ export default async function PackagesPage() {
   const byAudience = packages.filter((pkg) => pkg.kind === "audience");
   return (
     <main className="flex-1">
-      <PageHeader
+      <PageHeader art="package"
         title="Gói vắc xin"
         description="Lịch tiêm trọn gói do bác sĩ sắp xếp sẵn theo độ tuổi hoặc theo đối tượng, giá gói thấp hơn tổng giá tiêm lẻ."
         crumbs={[{ label: "Gói vắc xin" }]}

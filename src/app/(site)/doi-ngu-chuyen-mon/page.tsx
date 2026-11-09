@@ -13,7 +13,7 @@ export default async function DoctorsPage() {
   const doctors = await getDoctors();
   return (
     <main className="flex-1">
-      <PageHeader
+      <PageHeader art="team"
         title="Đội ngũ chuyên môn"
         description="Bác sĩ khám sàng lọc trước mỗi mũi tiêm và kiểm duyệt nội dung chuyên môn trên website."
         crumbs={[{ label: "Đội ngũ chuyên môn" }]}

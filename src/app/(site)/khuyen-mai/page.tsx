@@ -14,7 +14,7 @@ export default async function PromotionsPage() {
   const promotions = await getPromotions();
   return (
     <main className="flex-1">
-      <PageHeader title="Khuyến mãi" description="Các chương trình ưu đãi đang áp dụng tại Tâm Trí." crumbs={[{ label: "Khuyến mãi" }]} />
+      <PageHeader art="promo" title="Khuyến mãi" description="Các chương trình ưu đãi đang áp dụng tại Tâm Trí." crumbs={[{ label: "Khuyến mãi" }]} />
       <section className="py-4 tab:py-6 desk:py-8">
         <div className="container-site">
           {promotions.length === 0 ? (

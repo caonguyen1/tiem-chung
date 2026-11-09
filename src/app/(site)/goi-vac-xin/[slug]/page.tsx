@@ -26,7 +26,7 @@ export default async function PackageDetailPage({ params }: PageProps<"/goi-vac-
 
   return (
     <main className="flex-1">
-      <PageHeader title={pkg.name} description={pkg.description} crumbs={[{ label: "Gói vắc xin", href: "/goi-vac-xin" }, { label: pkg.name }]}>
+      <PageHeader art="icon" artIcon={pkg.icon} title={pkg.name} description={pkg.description} crumbs={[{ label: "Gói vắc xin", href: "/goi-vac-xin" }, { label: pkg.name }]}>
         <span className="inline-flex items-center gap-2 rounded-full bg-white py-1 pr-4 pl-1 text-sm font-bold text-brand-800">
           <BrandIconByName name={pkg.icon} className="size-8" />
           {pkg.audienceLabel}

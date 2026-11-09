@@ -16,7 +16,7 @@ export default async function PriceListPage() {
   const [vaccines, groups, packages] = await Promise.all([getVaccines(), getDiseaseGroups(), getPackages()]);
   return (
     <main className="flex-1">
-      <PageHeader title="Bảng giá tiêm chủng" description="Giá tham khảo; giá cuối cùng được xác nhận tại trung tâm sau khi bác sĩ khám sàng lọc." crumbs={[{ label: "Bảng giá" }]} />
+      <PageHeader art="package" title="Bảng giá tiêm chủng" description="Giá tham khảo; giá cuối cùng được xác nhận tại trung tâm sau khi bác sĩ khám sàng lọc." crumbs={[{ label: "Bảng giá" }]} />
 
       <section className="py-4 tab:py-6 desk:py-8">
         <div className="container-site grid gap-4">

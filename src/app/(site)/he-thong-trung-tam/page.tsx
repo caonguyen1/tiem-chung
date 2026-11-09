@@ -13,7 +13,7 @@ export default async function CentersPage() {
   const centers = await getCenters();
   return (
     <main className="flex-1">
-      <PageHeader title="Hệ thống trung tâm" description="Tìm trung tâm tiêm chủng Tâm Trí gần bạn." crumbs={[{ label: "Hệ thống trung tâm" }]} />
+      <PageHeader art="center" title="Hệ thống trung tâm" description="Tìm trung tâm tiêm chủng Tâm Trí gần bạn." crumbs={[{ label: "Hệ thống trung tâm" }]} />
       <section className="py-4 tab:py-6 desk:py-8">
         <div className="container-site">
           <CenterFinder centers={centers} />

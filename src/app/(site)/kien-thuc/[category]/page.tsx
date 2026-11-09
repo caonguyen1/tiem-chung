@@ -25,7 +25,7 @@ export default async function KnowledgeCategoryPage({ params }: PageProps<"/kien
 
   return (
     <main className="flex-1">
-      <PageHeader title={category.name} description={`${list.length} bài viết`} crumbs={[{ label: "Kiến thức tiêm chủng", href: "/kien-thuc" }, { label: category.name }]} />
+      <PageHeader art="knowledge" title={category.name} description={`${list.length} bài viết`} crumbs={[{ label: "Kiến thức tiêm chủng", href: "/kien-thuc" }, { label: category.name }]} />
       <section className="py-4 tab:py-6 desk:py-8">
         <div className="container-site">
           <ul className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 tab:mx-0 tab:flex-wrap tab:overflow-visible tab:px-0">

@@ -18,7 +18,7 @@ export default async function AboutPage() {
   const image = centers[0]?.image;
   return (
     <main className="flex-1">
-      <PageHeader title={`Giới thiệu ${settings.name}`} description={about.intro} crumbs={[{ label: "Giới thiệu" }]} />
+      <PageHeader art="about" title={`Giới thiệu ${settings.name}`} description={about.intro} crumbs={[{ label: "Giới thiệu" }]} />
 
       <section className="py-4 tab:py-6 desk:py-8">
         <div className="container-site grid gap-3 rounded-box bg-white p-4 tab:p-6 desk:grid-cols-2 desk:items-center desk:gap-10 desk:p-9">

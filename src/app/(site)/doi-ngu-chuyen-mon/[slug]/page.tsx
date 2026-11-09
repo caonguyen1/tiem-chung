@@ -27,7 +27,7 @@ export default async function DoctorPage({ params }: PageProps<"/doi-ngu-chuyen-
 
   return (
     <main className="flex-1">
-      <PageHeader title={fullName} description={doctor.specialty} crumbs={[{ label: "Đội ngũ chuyên môn", href: "/doi-ngu-chuyen-mon" }, { label: fullName }]} />
+      <PageHeader art="team" title={fullName} description={doctor.specialty} crumbs={[{ label: "Đội ngũ chuyên môn", href: "/doi-ngu-chuyen-mon" }, { label: fullName }]} />
       <section className="py-4 tab:py-6 desk:py-8">
         <div className="container-site grid gap-3 desk:grid-cols-[320px_minmax(0,1fr)] desk:items-start desk:gap-6">
           <div className="relative aspect-[4/5] overflow-hidden rounded-box bg-linear-160 from-surface-soft to-surface-deep">

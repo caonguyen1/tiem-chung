@@ -28,7 +28,7 @@ export default async function DiseaseGroupPage({ params }: PageProps<"/vac-xin/n
 
   return (
     <main className="flex-1">
-      <PageHeader
+      <PageHeader art="icon" artIcon={group.icon}
         title={`Vắc xin phòng ${group.name}`}
         description={`${list.length} loại vắc xin. Bác sĩ sẽ tư vấn loại và lịch tiêm phù hợp sau khi khám sàng lọc.`}
         crumbs={[{ label: "Vắc xin phòng bệnh", href: "/vac-xin" }, { label: group.name }]}

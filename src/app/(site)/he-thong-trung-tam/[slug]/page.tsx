@@ -28,7 +28,7 @@ export default async function CenterPage({ params }: PageProps<"/he-thong-trung-
 
   return (
     <main className="flex-1">
-      <PageHeader title={center.name} description={center.address} crumbs={[{ label: "Hệ thống trung tâm", href: "/he-thong-trung-tam" }, { label: center.name }]} />
+      <PageHeader art="center" title={center.name} description={center.address} crumbs={[{ label: "Hệ thống trung tâm", href: "/he-thong-trung-tam" }, { label: center.name }]} />
       <section className="py-4 tab:py-6 desk:py-8">
         <div className="container-site grid gap-3 desk:grid-cols-[minmax(0,1fr)_420px] desk:items-start desk:gap-5">
           <div className="grid gap-3">

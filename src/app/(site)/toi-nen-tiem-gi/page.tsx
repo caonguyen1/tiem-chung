@@ -24,7 +24,7 @@ export default async function RecommendPage() {
   const chatUrl = settings.social.find((item) => item.network === "zalo")?.href ?? "";
   return (
     <main className="flex-1">
-      <PageHeader title="Tôi nên tiêm gì?" description="Chọn độ tuổi và giới tính, chúng tôi gợi ý vắc xin và gói vắc xin phù hợp." crumbs={[{ label: "Tôi nên tiêm gì?" }]} />
+      <PageHeader art="recommend" title="Tôi nên tiêm gì?" description="Chọn độ tuổi và giới tính, chúng tôi gợi ý vắc xin và gói vắc xin phù hợp." crumbs={[{ label: "Tôi nên tiêm gì?" }]} />
       <section className="py-4 tab:py-6 desk:py-8">
         <div className="container-site">
           <RecommendTool ageGroups={ageGroups} rules={rules} vaccines={vaccines} packages={packages} centers={centers} articles={articles} chatUrl={chatUrl} />
