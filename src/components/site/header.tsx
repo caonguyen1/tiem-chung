@@ -40,7 +40,7 @@ export function Header({ menu, siteName }: { menu: NavItem[]; siteName: string }
 
   return (
     <header className="relative z-20 bg-linear-to-b from-white to-surface-soft shadow-[0_1px_0_var(--color-line)]">
-      <div className="container-site flex h-[58px] items-center gap-2 tab:h-16 tab:gap-2.5 desk:h-[72px] desk:gap-6">
+      <div className="container-site flex h-[58px] items-center gap-2 tab:h-16 tab:gap-2.5 desk:h-[72px] desk:gap-3 min-[1180px]:gap-6">
         <button
           type="button"
           onClick={() => setMenuOpen(true)}
@@ -69,7 +69,7 @@ export function Header({ menu, siteName }: { menu: NavItem[]; siteName: string }
             className={`absolute inset-0 bg-brand-900/70 transition-opacity duration-200 desk:hidden ${menuOpen ? "opacity-100" : "opacity-0"}`}
           />
           <div
-            className={`absolute inset-y-0 left-0 flex w-[min(300px,calc(100vw-56px))] flex-col overflow-y-auto bg-white px-5 pt-[72px] pb-5 shadow-[12px_0_36px_rgb(15_29_78/0.18)] transition-transform duration-[260ms] desk:static desk:w-auto desk:flex-row desk:justify-center desk:gap-[22px] desk:overflow-visible desk:bg-transparent desk:p-0 desk:shadow-none desk:transition-none ${menuOpen ? "translate-x-0" : "-translate-x-full desk:translate-x-0"}`}
+            className={`absolute inset-y-0 left-0 flex w-[min(300px,calc(100vw-56px))] flex-col overflow-y-auto bg-white px-5 pt-[72px] pb-5 shadow-[12px_0_36px_rgb(15_29_78/0.18)] transition-transform duration-[260ms] desk:static desk:w-auto desk:flex-row desk:justify-center desk:gap-3.5 min-[1180px]:gap-[22px] desk:overflow-visible desk:bg-transparent desk:p-0 desk:shadow-none desk:transition-none ${menuOpen ? "translate-x-0" : "-translate-x-full desk:translate-x-0"}`}
           >
             <button
               type="button"
@@ -83,7 +83,7 @@ export function Header({ menu, siteName }: { menu: NavItem[]; siteName: string }
               <AppLink
                 key={item.href}
                 href={item.href}
-                className={`border-b border-line py-3.5 text-sm font-bold last:border-0 desk:border-0 desk:py-0 desk:text-[14.5px] desk:whitespace-nowrap ${item.highlight ? "text-warn" : "text-brand-600"}`}
+                className={`border-b border-line py-3.5 text-sm font-bold last:border-0 desk:border-0 desk:py-0 desk:text-[13px] min-[1180px]:text-[14.5px] desk:whitespace-nowrap ${item.highlight ? "text-warn" : "text-brand-600"}`}
               >
                 {item.label}
               </AppLink>

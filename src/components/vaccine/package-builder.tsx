@@ -42,74 +42,74 @@ export function PackageBuilder({ pkg }: { pkg: PackageDetail }) {
     });
 
   return (
-    <div className="grid gap-3 desk:grid-cols-[minmax(0,1fr)_340px] desk:items-start desk:gap-5">
-      <div className="rounded-box bg-white p-3 tab:p-5 desk:p-6">
-        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-          <h2 className="text-xl font-bold text-brand-800 desk:text-2xl">Các mũi tiêm trong gói</h2>
-          <span className="text-sm text-subtle">
-            {pkg.vaccineCount} loại vắc xin, {pkg.doses} mũi
-          </span>
-        </div>
-        <p className="mb-3 rounded-lg bg-surface-soft px-3 py-2 text-[13px] text-body tab:text-sm">Bỏ chọn mũi đã tiêm để xem giá tạm tính. Bác sĩ sẽ kiểm tra sổ tiêm chủng và xác nhận lại khi bạn đến.</p>
-        <ul className="grid gap-2.5">
-          {pkg.items.map((item, itemIndex) => (
-            <li key={item.slug} className="rounded-xl border border-line p-3 tab:p-4">
-              <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
-                <div className="min-w-0">
-                  <AppLink href={`/vac-xin/${item.slug}`} className="text-base font-bold text-brand-800 hover:underline desk:text-lg">
-                    {item.name}
-                  </AppLink>
-                  <p className="text-[13px] text-subtle tab:text-sm">
-                    {item.origin} · {item.prevents}
-                  </p>
-                </div>
-                <span className="shrink-0 rounded-full bg-surface px-2.5 py-0.5 text-xs font-bold text-brand-600">{item.doses} mũi</span>
+    <div>
+      <p className="mb-3 rounded-lg bg-surface-soft px-3 py-2 text-[13px] text-body tab:text-sm">
+        Bỏ chọn mũi đã tiêm để xem giá tạm tính. Bác sĩ sẽ kiểm tra sổ tiêm chủng và xác nhận lại khi bạn đến.
+      </p>
+      <ul className="grid gap-2.5">
+        {pkg.items.map((item, itemIndex) => (
+          <li key={item.slug} className="rounded-xl border border-line p-3 tab:p-4">
+            <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
+              <div className="min-w-0">
+                <AppLink href={`/vac-xin/${item.slug}`} className="text-base font-bold text-brand-800 hover:underline desk:text-lg">
+                  {item.name}
+                </AppLink>
+                <p className="text-[13px] text-subtle tab:text-sm">
+                  {item.origin} · {item.prevents}
+                </p>
               </div>
-              <div className="mt-2.5 flex flex-wrap gap-2">
-                {Array.from({ length: item.doses }, (_, doseIndex) => {
-                  const key = `${itemIndex}:${doseIndex}`;
-                  const checked = selected.has(key);
-                  return (
-                    <label
-                      key={key}
-                      className={`flex h-10 cursor-pointer items-center gap-2 rounded-full border px-3.5 text-sm font-bold transition select-none ${checked ? "border-brand-600 bg-brand-600 text-white" : "border-line bg-white text-subtle line-through"}`}
-                    >
-                      <input type="checkbox" checked={checked} onChange={() => toggle(key)} className="sr-only" />
-                      <span aria-hidden="true" className={`grid size-4 place-items-center rounded-full ${checked ? "bg-white text-brand-600" : "border border-line"}`}>
-                        {checked && <Check className="size-3" strokeWidth={3} />}
-                      </span>
-                      Mũi {doseIndex + 1}
-                    </label>
-                  );
-                })}
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+              <span className="shrink-0 rounded-full bg-surface px-2.5 py-0.5 text-xs font-bold text-brand-600">{item.doses} mũi</span>
+            </div>
+            <div className="mt-2.5 flex flex-wrap gap-2">
+              {Array.from({ length: item.doses }, (_, doseIndex) => {
+                const key = `${itemIndex}:${doseIndex}`;
+                const checked = selected.has(key);
+                return (
+                  <label
+                    key={key}
+                    className={`flex h-10 cursor-pointer items-center gap-2 rounded-full border px-3.5 text-sm font-bold transition select-none ${checked ? "border-brand-600 bg-brand-600 text-white" : "border-line bg-white text-subtle line-through"}`}
+                  >
+                    <input type="checkbox" checked={checked} onChange={() => toggle(key)} className="sr-only" />
+                    <span aria-hidden="true" className={`grid size-4 place-items-center rounded-full ${checked ? "bg-white text-brand-600" : "border border-line"}`}>
+                      {checked && <Check className="size-3" strokeWidth={3} />}
+                    </span>
+                    Mũi {doseIndex + 1}
+                  </label>
+                );
+              })}
+            </div>
+          </li>
+        ))}
+      </ul>
 
-      <aside className="rounded-box bg-white p-4 tab:p-5 desk:sticky desk:top-4" aria-live="polite">
-        <p className="text-sm text-subtle">{partial ? "Giá tạm tính" : "Giá gói"}</p>
-        <div className="mt-1 flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
-          <span className="text-[30px] leading-none font-bold text-brand-600">{formatVnd(estimate)}</span>
-          <s className="text-sm text-subtle">{formatVnd(originalEstimate)}</s>
-          <span className="rounded-lg bg-warn-soft px-2 py-0.5 text-xs font-bold text-warn">-{discountPercent(pkg.price, pkg.originalPrice)}%</span>
+      <div aria-live="polite" className="mt-3 rounded-xl bg-surface-soft p-3.5 tab:p-5">
+        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+          <div>
+            <p className="text-sm text-subtle">{partial ? "Giá tạm tính" : "Giá gói"}</p>
+            <div className="mt-1 flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+              <span className="text-[28px] leading-none font-bold text-brand-600 tab:text-[32px]">{formatVnd(estimate)}</span>
+              <s className="text-sm text-subtle">{formatVnd(originalEstimate)}</s>
+              <span className="rounded-lg bg-warn-soft px-2 py-0.5 text-xs font-bold text-warn">-{discountPercent(pkg.price, pkg.originalPrice)}%</span>
+            </div>
+            <p className="mt-1.5 text-[13px] text-subtle">
+              {selected.size}/{all.length} mũi được chọn
+              {doneCount > 0 && ` (đã bỏ ${doneCount} mũi đã tiêm)`}
+              {partial && ` · Giá gói đầy đủ: ${formatVnd(pkg.price)}`}
+            </p>
+          </div>
+          <div className="grid w-full grid-cols-2 gap-2 tab:flex tab:w-auto">
+            <ButtonLink href={CONSULT_HASH} variant="secondary" size="md">
+              Yêu cầu tư vấn
+            </ButtonLink>
+            <ButtonLink href={bookingHref(pkg.slug)} size="md">
+              Đặt hẹn
+            </ButtonLink>
+          </div>
         </div>
-        <p className="mt-2 text-[13px] text-subtle">
-          {selected.size}/{all.length} mũi được chọn
-          {doneCount > 0 && ` (đã bỏ ${doneCount} mũi đã tiêm)`}
+        <p className="mt-3 text-xs leading-relaxed text-subtle">
+          Giá tạm tính chỉ để tham khảo. Giá cuối cùng và số mũi cần tiêm được xác nhận tại trung tâm sau khi bác sĩ khám sàng lọc.
         </p>
-        {partial && <p className="mt-1 text-[13px] text-subtle">Giá gốc của gói đầy đủ: {formatVnd(pkg.price)}</p>}
-        <div className="mt-4 grid gap-2">
-          <ButtonLink href={bookingHref(pkg.slug)} size="md" className="w-full">
-            Đặt hẹn
-          </ButtonLink>
-          <ButtonLink href={CONSULT_HASH} variant="secondary" size="md" className="w-full">
-            Yêu cầu tư vấn
-          </ButtonLink>
-        </div>
-        <p className="mt-3 text-xs leading-relaxed text-subtle">Giá tạm tính chỉ để tham khảo. Giá cuối cùng và số mũi cần tiêm được xác nhận tại trung tâm sau khi bác sĩ khám sàng lọc.</p>
-      </aside>
+      </div>
     </div>
   );
 }
