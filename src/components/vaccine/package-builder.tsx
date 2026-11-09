@@ -46,32 +46,29 @@ export function PackageBuilder({ pkg }: { pkg: PackageDetail }) {
       <p className="mb-3 rounded-lg bg-surface-soft px-3 py-2 text-[13px] text-body tab:text-sm">
         Bỏ chọn mũi đã tiêm để xem giá tạm tính. Bác sĩ sẽ kiểm tra sổ tiêm chủng và xác nhận lại khi bạn đến.
       </p>
-      <ul className="grid gap-2.5">
+      <ul className="divide-y divide-line overflow-hidden rounded-xl border border-line">
         {pkg.items.map((item, itemIndex) => (
-          <li key={item.slug} className="rounded-xl border border-line p-3 tab:p-4">
-            <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
-              <div className="min-w-0">
-                <AppLink href={`/vac-xin/${item.slug}`} className="text-base font-bold text-brand-800 hover:underline desk:text-lg">
-                  {item.name}
-                </AppLink>
-                <p className="text-[13px] text-subtle tab:text-sm">
-                  {item.origin} · {item.prevents}
-                </p>
-              </div>
-              <span className="shrink-0 rounded-full bg-surface px-2.5 py-0.5 text-xs font-bold text-brand-600">{item.doses} mũi</span>
+          <li key={item.slug} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-3 py-2.5 tab:px-4 tab:py-3">
+            <div className="min-w-0 flex-1 basis-[220px]">
+              <AppLink href={`/vac-xin/${item.slug}`} className="text-[15px] font-bold text-brand-800 hover:underline desk:text-base">
+                {item.name}
+              </AppLink>
+              <p className="line-clamp-1 text-[13px] text-subtle">
+                {item.origin} · {item.prevents}
+              </p>
             </div>
-            <div className="mt-2.5 flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {Array.from({ length: item.doses }, (_, doseIndex) => {
                 const key = `${itemIndex}:${doseIndex}`;
                 const checked = selected.has(key);
                 return (
                   <label
                     key={key}
-                    className={`flex h-10 cursor-pointer items-center gap-2 rounded-full border px-3.5 text-sm font-bold transition select-none ${checked ? "border-brand-600 bg-brand-600 text-white" : "border-line bg-white text-subtle line-through"}`}
+                    className={`flex h-8 cursor-pointer items-center gap-1.5 rounded-full border px-2.5 text-[13px] font-bold transition select-none ${checked ? "border-brand-600 bg-brand-600 text-white" : "border-line bg-white text-subtle line-through"}`}
                   >
                     <input type="checkbox" checked={checked} onChange={() => toggle(key)} className="sr-only" />
-                    <span aria-hidden="true" className={`grid size-4 place-items-center rounded-full ${checked ? "bg-white text-brand-600" : "border border-line"}`}>
-                      {checked && <Check className="size-3" strokeWidth={3} />}
+                    <span aria-hidden="true" className={`grid size-3.5 place-items-center rounded-full ${checked ? "bg-white text-brand-600" : "border border-line"}`}>
+                      {checked && <Check className="size-2.5" strokeWidth={3.5} />}
                     </span>
                     Mũi {doseIndex + 1}
                   </label>

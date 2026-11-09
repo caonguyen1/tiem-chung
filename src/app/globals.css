@@ -83,6 +83,15 @@
     cursor: default;
   }
 
+  /* Scrollbars stay out of sight until the pointer is over the scrolling area, then show a thin brand-coloured thumb. */
+  *:not(html) {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+  *:not(html):hover {
+    scrollbar-color: var(--color-brand-300) transparent;
+  }
+
   ::selection {
     background: var(--color-sun-300);
     color: var(--color-brand-900);
