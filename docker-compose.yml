@@ -1,0 +1,22 @@
+# Postgres for local development (and later the client's server).
+# Start: docker compose up -d    Stop: docker compose down    Data lives in the "db-data" volume.
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-tiem_chung}
+      POSTGRES_USER: ${POSTGRES_USER:-tiem_chung}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tiem_chung_dev}
+    ports:
+      - "${POSTGRES_PORT:-5436}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  db-data:

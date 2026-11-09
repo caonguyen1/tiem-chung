@@ -1,10 +1,10 @@
-import { whyChooseUs } from "@/content/site";
+import type { WhyItem } from "@/lib/data/settings";
 
 import { BrandIconByName } from "../icons/brand-icons";
 import { ButtonLink } from "../ui/button-link";
 
 /** "Vì sao gia đình chọn Tâm Trí?": the four commitments with a link to the medical team. */
-export function WhySection() {
+export function WhySection({ items }: { items: WhyItem[] }) {
   return (
     <section className="py-4 tab:py-6 desk:py-8">
       <div className="container-site">
@@ -17,7 +17,7 @@ export function WhySection() {
             </ButtonLink>
           </div>
           <ul className="grid grid-cols-2 gap-2 tab:gap-2.5 desk:grid-cols-4 desk:gap-3.5">
-            {whyChooseUs.map((item) => (
+            {items.map((item) => (
               <li key={item.title} className="rounded-xl bg-surface-soft p-3 tab:px-3.5 tab:py-4 desk:px-[18px] desk:py-[22px]">
                 <BrandIconByName name={item.icon} className="size-10 tab:size-11 desk:size-14" />
                 <h3 className="mt-1.5 text-sm font-bold text-brand-800 tab:mt-2 tab:text-[15px] desk:mt-3.5 desk:text-[17px]">{item.title}</h3>

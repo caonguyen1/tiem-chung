@@ -1,7 +1,8 @@
 "use client";
 
-import { vaccinePackages, vaccines } from "@/content/catalog";
-import { centers } from "@/content/editorial";
+import { useState } from "react";
+
+import { submitAppointment } from "@/lib/actions/requests";
 import { BOOKING_HASH } from "@/lib/routes";
 
 import { SelectField, TextAreaField, TextField } from "../forms/form-fields";
@@ -9,11 +10,22 @@ import { HashDialog } from "../forms/hash-dialog";
 import { SyringeIcon } from "../icons/brand-icons";
 import { buttonClasses } from "../ui/button-link";
 
+type Option = { slug: string; name: string };
+
+type BookingDialogProps = {
+  vaccines: Option[];
+  packages: Option[];
+  centers: Option[];
+};
+
 /**
  * "Đặt hẹn" popup (spec page 10). `#dat-lich` opens it empty; `#dat-lich=<slug>`
- * preselects that vaccine or package.
+ * preselects that vaccine or package. Saves to the "Lịch đặt hẹn" table.
  */
-export function BookingDialog() {
+export function BookingDialog({ vaccines, packages, centers }: BookingDialogProps) {
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState("");
+
   return (
     <HashDialog
       hash={BOOKING_HASH}
@@ -27,12 +39,15 @@ export function BookingDialog() {
         <form
           // Re-mount on a new preselection so the select picks it up.
           key={param ?? "none"}
-          method="post"
           className="grid gap-4 px-6 py-6"
-          onSubmit={(event) => {
-            // No backend yet; the CMS "Lịch đặt hẹn" collection will receive this.
+          onSubmit={async (event) => {
             event.preventDefault();
-            onSent();
+            setPending(true);
+            setError("");
+            const result = await submitAppointment(new FormData(event.currentTarget));
+            setPending(false);
+            if (result.ok) onSent();
+            else setError(result.error);
           }}
         >
           <TextField label="Họ và tên người tiêm" name="name" autoComplete="name" required />
@@ -40,7 +55,7 @@ export function BookingDialog() {
           <SelectField label="Vắc xin / gói vắc xin" name="item" defaultValue={param ?? ""}>
             <option value="">Chưa chọn – cần bác sĩ tư vấn</option>
             <optgroup label="Gói vắc xin">
-              {vaccinePackages.map((pkg) => (
+              {packages.map((pkg) => (
                 <option key={pkg.slug} value={pkg.slug}>
                   {pkg.name}
                 </option>
@@ -65,8 +80,13 @@ export function BookingDialog() {
             </SelectField>
           </div>
           <TextAreaField label="Ghi chú" name="note" rows={2} placeholder="Tuổi của bé, mũi đã tiêm…" />
-          <button type="submit" className={`${buttonClasses("primary", "lg")} mt-1 w-full`}>
-            Gửi lịch hẹn
+          {error && (
+            <p role="alert" className="rounded-lg bg-warn-soft px-3 py-2 text-sm text-warn">
+              {error}
+            </p>
+          )}
+          <button type="submit" disabled={pending} className={`${buttonClasses("primary", "lg")} mt-1 w-full disabled:opacity-60`}>
+            {pending ? "Đang gửi…" : "Gửi lịch hẹn"}
           </button>
         </form>
       )}

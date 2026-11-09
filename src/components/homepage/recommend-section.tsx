@@ -3,8 +3,8 @@
 import { ChevronDown, Info } from "lucide-react";
 import { useState } from "react";
 
-import { vaccinePackages, vaccines } from "@/content/catalog";
-import { ageRanges, genders, recommendFor, type Gender } from "@/content/recommendations";
+import type { Vaccine, VaccinePackage } from "@/content/types";
+import type { AgeGroup, Gender, RecommendationRules } from "@/lib/data/catalog";
 import { formatVnd } from "@/lib/format";
 import { bookingHref, CONSULT_HASH } from "@/lib/routes";
 
@@ -16,14 +16,26 @@ import { ButtonLink } from "../ui/button-link";
  * short). Choosing an age and gender and pressing "Xem gợi ý" opens the suggestions in a
  * white panel below, so no extra dark block sits under the band.
  */
-export function RecommendSection() {
-  const [age, setAge] = useState(ageRanges[0].value);
+const genders: { value: Gender; label: string }[] = [
+  { value: "nu", label: "Nữ" },
+  { value: "nam", label: "Nam" },
+];
+
+type RecommendSectionProps = {
+  ageGroups: AgeGroup[];
+  rules: RecommendationRules;
+  vaccines: Vaccine[];
+  packages: VaccinePackage[];
+};
+
+export function RecommendSection({ ageGroups, rules, vaccines, packages }: RecommendSectionProps) {
+  const [age, setAge] = useState(ageGroups[0]?.value ?? "");
   const [gender, setGender] = useState<Gender>("nu");
   const [shown, setShown] = useState(false);
 
-  const rule = recommendFor(age, gender);
+  const rule = rules[age]?.[gender] ?? rules[age]?.all ?? { vaccineSlugs: [], packageSlug: "" };
   const picks = rule.vaccineSlugs.map((slug) => vaccines.find((vaccine) => vaccine.slug === slug)).filter((vaccine) => vaccine !== undefined);
-  const pkg = vaccinePackages.find((item) => item.slug === rule.packageSlug);
+  const pkg = packages.find((item) => item.slug === rule.packageSlug);
 
   return (
     <section id="goi-y-vac-xin" className="scroll-mt-3 py-4 tab:py-6 desk:py-8">
@@ -41,7 +53,7 @@ export function RecommendSection() {
             <p className="text-[13px] opacity-90 tab:text-base">Chọn độ tuổi và giới tính, chúng tôi gợi ý vắc xin phù hợp.</p>
           </div>
           <div className="col-span-full flex flex-wrap gap-2 desk:col-span-1 desk:flex-nowrap desk:gap-2.5">
-            <Select label="Độ tuổi" value={age} onChange={setAge} options={ageRanges} />
+            <Select label="Độ tuổi" value={age} onChange={setAge} options={ageGroups} />
             <Select label="Giới tính" value={gender} onChange={(value) => setGender(value as Gender)} options={genders} />
             <button
               type="submit"

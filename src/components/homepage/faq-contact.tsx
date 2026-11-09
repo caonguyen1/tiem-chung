@@ -1,7 +1,7 @@
 import { Clock, MapPin, Plus } from "lucide-react";
 
-import { centers } from "@/content/editorial";
-import { faqs, siteSettings } from "@/content/site";
+import { getCenters, getFaqs } from "@/lib/data/content";
+import { getSiteSettings } from "@/lib/data/settings";
 
 import { SocialLinks } from "../site/social-links";
 import { AppLink } from "../ui/app-link";
@@ -13,9 +13,10 @@ const SHOWN = 3;
  * FAQ (three questions, layout C §6) beside the center's details: no building photo,
  * switchboard branches and social links (client feedback 2026-11-03).
  */
-export function FaqContact() {
+export async function FaqContact() {
+  const [faqs, centers, settings] = await Promise.all([getFaqs({ homeOnly: true }), getCenters(), getSiteSettings()]);
   const center = centers[0];
-  const { hotlineHours, hotlineLines, social, name } = siteSettings;
+  const { hotlineHours, hotlineLines, social, name } = settings;
   return (
     <section id="lien-he" className="scroll-mt-3 py-4 tab:py-6 desk:py-8">
       <div className="container-site grid gap-8 tab:gap-5 desk:grid-cols-[1.15fr_0.85fr] desk:items-start desk:gap-6">
@@ -41,11 +42,11 @@ export function FaqContact() {
           <ul className="mt-2.5 grid gap-2 text-[13.5px] text-body tab:mt-3 tab:text-[15px]">
             <li className="flex gap-2.5">
               <MapPin className="mt-0.5 size-[18px] shrink-0 text-brand-600" />
-              {center.address}
+              {center?.address}
             </li>
             <li className="flex gap-2.5">
               <Clock className="mt-0.5 size-[18px] shrink-0 text-brand-600" />
-              Mở cửa {center.openingHours}
+              Mở cửa {center?.openingHours}
             </li>
           </ul>
           <p className="mt-5 text-[13px] font-bold tracking-[0.04em] text-brand-800">TỔNG ĐÀI ({hotlineHours})</p>

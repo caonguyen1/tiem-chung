@@ -1,14 +1,14 @@
 import Image from "next/image";
 
-import { siteSettings } from "@/content/site";
+import { getSiteSettings } from "@/lib/data/settings";
 
 import { AppLink } from "../ui/app-link";
 import { Wave } from "../ui/wave";
 import { SocialLinks } from "./social-links";
 
 /** Layout C footer: navy, joined to the page above by a curve; logo, switchboard and social first. */
-export function Footer() {
-  const { footerColumns, hotlineLines, hotlineHours, social, address, name, slogan } = siteSettings;
+export async function Footer() {
+  const { footerColumns, hotlineLines, hotlineHours, social, address, name, slogan } = await getSiteSettings();
   return (
     <footer className="relative bg-brand-800 pt-[52px] pb-4 text-[13px] text-brand-200 tab:pt-14 tab:pb-5 tab:text-[14.5px] desk:pt-[84px] desk:pb-7">
       <Wave edge="top" className="text-surface" />

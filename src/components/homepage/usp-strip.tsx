@@ -1,12 +1,12 @@
-import { whyChooseUs } from "@/content/site";
+import type { WhyItem } from "@/lib/data/settings";
 
 import { BrandIconByName } from "../icons/brand-icons";
 
 /** The four commitments under the banner (desktop and tablet only; phones see them further down). */
-export function UspStrip() {
+export function UspStrip({ items }: { items: WhyItem[] }) {
   return (
     <ul className="mt-3 hidden grid-cols-2 rounded-xl bg-white p-2 tab:grid desk:mt-5 desk:grid-cols-4 desk:px-2 desk:py-4">
-      {whyChooseUs.map((item, index) => (
+      {items.map((item, index) => (
         <li
           key={item.title}
           className={`flex items-center gap-3 border-line px-2.5 py-2 desk:border-l desk:px-4 desk:py-0 desk:first:border-l-0 ${index % 2 === 1 ? "border-l" : ""}`}

@@ -25,6 +25,8 @@ export function WelcomePopup({ popup }: { popup: Popup }) {
       // Storage can be blocked (private mode); then the popup simply opens.
     }
     const timer = window.setTimeout(() => {
+      // Never stack on top of the booking/consult popup or a visitor arriving on a #hash link.
+      if (window.location.hash || document.querySelector("dialog[open]")) return;
       dialogRef.current?.showModal();
       try {
         sessionStorage.setItem(SEEN_KEY, "1");

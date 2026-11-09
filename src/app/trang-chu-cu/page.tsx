@@ -12,7 +12,7 @@ import { FloatingActions } from "@/components/layout/floating-actions";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { diseaseGroups, vaccinePackages, vaccines } from "@/content/catalog";
-import { articleCategories, articles } from "@/content/editorial";
+import { articleCategories, articles, centers } from "@/content/editorial";
 import { heroBanners, outbreakAlerts } from "@/content/site";
 
 /*
@@ -37,7 +37,7 @@ export default function HomePage() {
       <SiteFooter />
       <FloatingActions />
       <ConsultDialog />
-      <BookingDialog />
+      <BookingDialog vaccines={vaccines} packages={vaccinePackages} centers={centers} />
     </div>
   );
 }

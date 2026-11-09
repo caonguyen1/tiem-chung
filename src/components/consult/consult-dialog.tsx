@@ -1,14 +1,20 @@
 "use client";
 
+import { useState } from "react";
+
+import { submitConsultRequest } from "@/lib/actions/requests";
 import { CONSULT_HASH } from "@/lib/routes";
 
-import { TextAreaField, TextField, SelectField } from "../forms/form-fields";
+import { SelectField, TextAreaField, TextField } from "../forms/form-fields";
 import { HashDialog } from "../forms/hash-dialog";
 import { AdvisorIcon } from "../icons/brand-icons";
 import { buttonClasses } from "../ui/button-link";
 
-/** "Yêu cầu tư vấn" popup (spec page 11), opened by any link to `#tu-van`. */
+/** "Yêu cầu tư vấn" popup (spec page 11), opened by any link to `#tu-van`. Saves to "Yêu cầu tư vấn". */
 export function ConsultDialog() {
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState("");
+
   return (
     <HashDialog
       hash={CONSULT_HASH}
@@ -20,12 +26,15 @@ export function ConsultDialog() {
     >
       {({ onSent }) => (
         <form
-          method="post"
           className="grid gap-4 px-6 py-6"
-          onSubmit={(event) => {
-            // No backend yet; the CMS "Yêu cầu tư vấn" collection will receive this.
+          onSubmit={async (event) => {
             event.preventDefault();
-            onSent();
+            setPending(true);
+            setError("");
+            const result = await submitConsultRequest(new FormData(event.currentTarget));
+            setPending(false);
+            if (result.ok) onSent();
+            else setError(result.error);
           }}
         >
           <TextField label="Họ và tên" name="name" autoComplete="name" required />
@@ -38,8 +47,13 @@ export function ConsultDialog() {
             <option>Khác</option>
           </SelectField>
           <TextAreaField label="Ghi chú" name="note" rows={3} />
-          <button type="submit" className={`${buttonClasses("primary", "lg")} mt-1 w-full`}>
-            Gửi yêu cầu
+          {error && (
+            <p role="alert" className="rounded-lg bg-warn-soft px-3 py-2 text-sm text-warn">
+              {error}
+            </p>
+          )}
+          <button type="submit" disabled={pending} className={`${buttonClasses("primary", "lg")} mt-1 w-full disabled:opacity-60`}>
+            {pending ? "Đang gửi…" : "Gửi yêu cầu"}
           </button>
         </form>
       )}

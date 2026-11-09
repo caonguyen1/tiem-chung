@@ -4,7 +4,7 @@ import { Menu, Search, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-import { siteSettings } from "@/content/site";
+import type { NavItem } from "@/content/types";
 import { BOOKING_HASH } from "@/lib/routes";
 
 import { AppLink } from "../ui/app-link";
@@ -18,7 +18,7 @@ export const VACCINE_SEARCH_EVENT = "vaccine-search";
  * menu in logo blue, a search icon that opens a compact search box, and "Đặt lịch hẹn".
  * Below 901px the menu moves into a drawer opened by the hamburger.
  */
-export function Header() {
+export function Header({ menu, siteName }: { menu: NavItem[]; siteName: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -52,7 +52,7 @@ export function Header() {
           <Menu className="size-5" />
         </button>
         <AppLink href="/" className="shrink-0">
-          <Image src="/images/logo-horizontal.png" alt={siteSettings.shortName} width={900} height={299} priority className="h-[30px] w-auto tab:h-[38px] desk:h-11" />
+          <Image src="/images/logo-horizontal.png" alt={siteName} width={900} height={299} priority className="h-[30px] w-auto tab:h-[38px] desk:h-11" />
         </AppLink>
 
         {/* Desktop: inline menu. Mobile: off-canvas drawer with a dimmed backdrop. */}
@@ -79,7 +79,7 @@ export function Header() {
             >
               <X className="size-5" />
             </button>
-            {siteSettings.headerMenu.map((item) => (
+            {menu.map((item) => (
               <AppLink
                 key={item.href}
                 href={item.href}

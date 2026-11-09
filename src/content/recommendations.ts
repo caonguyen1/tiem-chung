@@ -19,9 +19,10 @@ export const genders: { value: Gender; label: string }[] = [
   { value: "nam", label: "Nam" },
 ];
 
-type Rule = { vaccineSlugs: string[]; packageSlug: string };
+export type Rule = { vaccineSlugs: string[]; packageSlug: string };
 
-const rules: Record<string, Partial<Record<Gender, Rule>> & { all?: Rule }> = {
+// Exported for the database seed (scripts/db/seed.ts).
+export const rules: Record<string, Partial<Record<Gender, Rule>> & { all?: Rule }> = {
   "0-6-thang": { all: { vaccineSlugs: ["hexaxim", "rotateq", "synflorix"], packageSlug: "goi-0-6-thang" } },
   "6-24-thang": { all: { vaccineSlugs: ["vaxigrip-tetra", "mmr-ii", "imojev", "havrix"], packageSlug: "goi-0-24-thang" } },
   "2-9-tuoi": { all: { vaccineSlugs: ["vaxigrip-tetra", "qdenga", "vac-xin-tay-chan-mieng", "twinrix"], packageSlug: "goi-tien-hoc-duong" } },
