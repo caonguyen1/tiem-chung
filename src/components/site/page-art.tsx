@@ -6,8 +6,8 @@ import { VaccineVial } from "../icons/vaccine-vial";
 
 /*
  * Illustration on the right of every inner-page banner. Each page picks a theme; the pieces are
- * the brand icons, the vaccine vial and the clinic photo, laid out on a shared soft backdrop
- * (shield, rings and crosses). Positions are percentages of the art box, so it scales as one.
+ * the brand icons, the vaccine vial and the clinic photo, laid out on the banner image
+ * with nothing else around them. Positions are percentages of the art box, so it scales as one.
  */
 
 export type PageArtName = "vaccine" | "package" | "promo" | "recommend" | "booking" | "about" | "team" | "center" | "knowledge" | "policy" | "faq" | "icon";
@@ -95,21 +95,6 @@ export function PageArt({ name, icon }: { name: PageArtName; icon?: BrandIconNam
 
   return (
     <div aria-hidden="true" className="relative h-full aspect-[23/12]">
-      {/* Backdrop: soft disc, shield outline, rings and crosses */}
-      <svg viewBox="0 0 460 240" className="absolute inset-0 size-full text-white" fill="none">
-        <circle cx="230" cy="120" r="112" fill="currentColor" opacity=".55" />
-        <circle cx="230" cy="120" r="150" stroke="currentColor" strokeWidth="2" opacity=".6" />
-        <path d="M230 14 330 50v66c0 52-40 88-100 112C170 204 130 168 130 116V50Z" fill="currentColor" opacity=".7" />
-        <path d="M230 26 318 58v58c0 44-34 76-88 98-54-22-88-54-88-98V58Z" stroke="currentColor" strokeWidth="3" opacity=".9" />
-        <g fill="currentColor" opacity=".85">
-          <path d="M392 36h14v14h14v14h-14v14h-14V64h-14V50h14Z" />
-          <path d="M52 152h10v10h10v10H62v10H52v-10H42v-10h10Z" />
-          <circle cx="418" cy="176" r="9" />
-          <circle cx="86" cy="52" r="6" />
-          <circle cx="330" cy="214" r="5" />
-        </g>
-      </svg>
-
       {pieces.map((piece, index) => {
         if (piece.kind === "icon")
           return <BrandIconByName key={index} name={piece.name} disc="white" className="absolute h-auto" style={{ ...place(piece.x, piece.y), width: `${piece.w}%` }} />;

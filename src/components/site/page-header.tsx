@@ -77,7 +77,7 @@ export function PageHeader({
 }) {
   return (
     <>
-      <section className="relative overflow-hidden bg-linear-110 from-white via-surface-deep to-brand-200/80">
+      <section className="relative overflow-hidden bg-surface-soft bg-[url(/images/page-banner-bg.webp)] bg-cover bg-center">
         <div className="container-site relative">
           <div className="relative z-[1] max-w-[640px] py-6 tab:py-9 desk:min-h-[280px] desk:max-w-[620px] desk:py-12">
             <Breadcrumb items={crumbs} />
