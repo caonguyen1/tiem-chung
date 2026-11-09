@@ -42,6 +42,16 @@ function hashPassword(password: string) {
   return `${salt}:${scryptSync(password, salt, 64).toString("hex")}`;
 }
 
+/**
+ * Sample package prices follow the package contents: the original price is what the doses cost
+ * bought one by one, and the package price keeps the discount percentage of the sample data.
+ */
+function packagePrices(pkg: { slug: string; price: number; originalPrice: number }) {
+  const original = (packageContents[pkg.slug] ?? []).reduce((sum, item) => sum + item.doses * (vaccines.find((vaccine) => vaccine.slug === item.vaccine)?.price ?? 0), 0);
+  const discount = 1 - pkg.price / pkg.originalPrice;
+  return { originalPrice: original, price: Math.round((original * (1 - discount)) / 10_000) * 10_000 };
+}
+
 async function main() {
   await db.transaction(async (tx) => {
     const tables = (Object.values(schema) as unknown[])
@@ -121,8 +131,7 @@ async function main() {
           description: packageDescriptions[pkg.slug] ?? null,
           doseCount: (packageContents[pkg.slug] ?? []).reduce((sum, item) => sum + item.doses, 0),
           vaccineCount: (packageContents[pkg.slug] ?? []).length,
-          price: pkg.price,
-          originalPrice: pkg.originalPrice,
+          ...packagePrices(pkg),
           highlight: pkg.highlight ?? null,
           sortOrder: index,
         })),

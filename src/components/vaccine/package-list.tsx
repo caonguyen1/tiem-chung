@@ -54,7 +54,7 @@ export function PackageList({ packages, activeSlug }: { packages: VaccinePackage
                 href={`/goi-vac-xin/${pkg.slug}`}
                 aria-current={current ? "page" : undefined}
                 scroll={false}
-                className={`flex h-full items-center gap-2.5 rounded-xl border p-2.5 transition ${current ? "border-brand-600 bg-surface-soft ring-1 ring-brand-600" : "border-line bg-white hover:border-brand-bright"}`}
+                className={`flex h-full items-center gap-2.5 rounded-xl border p-2.5 transition ${current ? "border-brand-600 bg-surface-soft ring-1 ring-inset ring-brand-600" : "border-line bg-white hover:border-brand-bright"}`}
               >
                 <BrandIconByName name={pkg.icon} className="size-11 shrink-0" />
                 <span className="min-w-0">
