@@ -2,7 +2,10 @@
  * Pages that exist today. Add a path here when its page ships; until then every
  * link to it renders as plain, unclickable content instead of leading to a 404.
  */
-const builtPaths = new Set<string>(["/"]);
+const builtPaths = new Set<string>(["/", "/vac-xin", "/goi-vac-xin", "/khuyen-mai", "/toi-nen-tiem-gi", "/dat-hen", "/gioi-thieu", "/doi-ngu-chuyen-mon", "/he-thong-trung-tam", "/kien-thuc", "/cau-hoi-thuong-gap", "/bang-gia"]);
+
+/** Sections whose pages come from the database (`/vac-xin/<slug>`): any path below them counts as built. */
+const builtPrefixes: string[] = ["/vac-xin/", "/goi-vac-xin/", "/khuyen-mai/", "/doi-ngu-chuyen-mon/", "/he-thong-trung-tam/", "/kien-thuc/", "/chinh-sach/"];
 
 /**
  * In-page actions that already work: popups (`#tu-van`, `#dat-lich`) and the
@@ -35,5 +38,5 @@ export function isNavigable(href: string | undefined): href is string {
   if (isExternalHref(href)) return true;
   if (href.startsWith("#")) return builtHashActions.has(href.split("=")[0]);
   const path = href.split(/[?#]/)[0] || "/";
-  return builtPaths.has(path);
+  return builtPaths.has(path) || builtPrefixes.some((prefix) => path.startsWith(prefix));
 }

@@ -12,6 +12,20 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
 import { diseaseGroups, vaccinePackages, vaccines } from "../../src/content/catalog";
+import {
+  about,
+  articleBodies,
+  centerDetails,
+  doctorDetails,
+  packageContents,
+  packageDescriptions,
+  policyPages,
+  promotionCategory,
+  promotions,
+  vaccineFacts,
+  vaccineFaqs,
+  vaccineSections,
+} from "../../src/content/details";
 import { articleCategories, articles, centers, doctors } from "../../src/content/editorial";
 import { ageRanges, genders, rules } from "../../src/content/recommendations";
 import { faqs, homeBanners, outbreakAlerts, promoBanner, siteSettings, welcomePopup, whyChooseUs } from "../../src/content/site";
@@ -43,7 +57,7 @@ async function main() {
     // Doctors
     const doctorRows = await tx
       .insert(schema.doctors)
-      .values(doctors.map((doctor, index) => ({ ...doctor, sortOrder: index })))
+      .values(doctors.map((doctor, index) => ({ ...doctor, ...doctorDetails[doctor.slug], sortOrder: index })))
       .returning({ id: schema.doctors.id, name: schema.doctors.name, title: schema.doctors.title });
     const doctorByLabel = new Map(doctorRows.map((row) => [`${row.title} ${row.name}`, row.id]));
 
@@ -73,11 +87,21 @@ async function main() {
           audience: vaccine.audience,
           price: vaccine.price,
           status: vaccine.status,
+          unit: vaccineFacts[vaccine.slug]?.unit ?? null,
+          doseCount: vaccineFacts[vaccine.slug]?.doses ?? null,
+          content: vaccineSections(vaccine, vaccine.diseaseSlugs),
+          faqs: vaccineFaqs(vaccine.name),
+          reviewerId: doctorByLabel.get("BSCKII. Đỗ Văn Tâm") ?? null,
           sortOrder: index,
         })),
       )
       .returning({ id: schema.vaccines.id, slug: schema.vaccines.slug });
     const vaccineId = new Map(vaccineRows.map((row) => [row.slug, row.id]));
+    await tx.insert(schema.vaccineAgeGroups).values(
+      vaccines.flatMap((vaccine) =>
+        (vaccineFacts[vaccine.slug]?.ages ?? []).map((age) => ({ vaccineId: vaccineId.get(vaccine.slug)!, ageGroupId: ageId.get(age)! })),
+      ),
+    );
     await tx.insert(schema.vaccineDiseaseGroups).values(
       vaccines.flatMap((vaccine) =>
         vaccine.diseaseSlugs.map((slug) => ({ vaccineId: vaccineId.get(vaccine.slug)!, diseaseGroupId: groupId.get(slug)! })),
@@ -94,8 +118,9 @@ async function main() {
           kind: pkg.kind,
           audienceLabel: pkg.audienceLabel,
           icon: pkg.icon,
-          doseCount: pkg.doses,
-          vaccineCount: pkg.vaccineCount,
+          description: packageDescriptions[pkg.slug] ?? null,
+          doseCount: (packageContents[pkg.slug] ?? []).reduce((sum, item) => sum + item.doses, 0),
+          vaccineCount: (packageContents[pkg.slug] ?? []).length,
           price: pkg.price,
           originalPrice: pkg.originalPrice,
           highlight: pkg.highlight ?? null,
@@ -104,6 +129,11 @@ async function main() {
       )
       .returning({ id: schema.vaccinePackages.id, slug: schema.vaccinePackages.slug });
     const packageId = new Map(packageRows.map((row) => [row.slug, row.id]));
+    await tx.insert(schema.packageItems).values(
+      Object.entries(packageContents).flatMap(([slug, items]) =>
+        items.map((item, index) => ({ packageId: packageId.get(slug)!, vaccineId: vaccineId.get(item.vaccine)!, doses: item.doses, sortOrder: index })),
+      ),
+    );
 
     // "Tôi nên tiêm gì?" rules: one row per age range and gender ("all" when both match).
     for (const range of ageRanges) {
@@ -122,12 +152,15 @@ async function main() {
     }
 
     // Centers
-    await tx.insert(schema.centers).values(centers.map((center, index) => ({ ...center, sortOrder: index })));
+    await tx.insert(schema.centers).values(centers.map((center, index) => ({ ...center, ...centerDetails[center.slug], sortOrder: index })));
 
     // Articles, then outbreak alerts (an alert points at an existing article or gets its own).
     const categoryRows = await tx
       .insert(schema.articleCategories)
-      .values(articleCategories.map((category, index) => ({ ...category, sortOrder: index })))
+      .values([
+        ...articleCategories.map((category, index) => ({ ...category, sortOrder: index })),
+        { ...promotionCategory, isPromotion: true, sortOrder: articleCategories.length },
+      ])
       .returning({ id: schema.articleCategories.id, slug: schema.articleCategories.slug });
     const categoryId = new Map(categoryRows.map((row) => [row.slug, row.id]));
     await tx.insert(schema.articles).values(
@@ -159,6 +192,23 @@ async function main() {
         });
       }
     }
+
+    for (const [slug, body] of Object.entries(articleBodies)) {
+      await tx.update(schema.articles).set({ body }).where(sql`${schema.articles.slug} = ${slug}`);
+    }
+    await tx.insert(schema.articles).values(
+      promotions.map((promotion, index) => ({
+        slug: promotion.slug,
+        title: promotion.title,
+        excerpt: promotion.excerpt,
+        body: promotion.body,
+        image: promotion.image,
+        categoryId: categoryId.get(promotionCategory.slug) ?? null,
+        publishedAt: new Date(promotion.publishedAt),
+        sortOrder: index,
+      })),
+    );
+    await tx.insert(schema.policyPages).values(policyPages.map((page, index) => ({ ...page, sortOrder: index })));
 
     // Banners
     await tx.insert(schema.banners).values([
@@ -205,6 +255,7 @@ async function main() {
       { key: "social", value: siteSettings.social },
       { key: "footerColumns", value: siteSettings.footerColumns.map((column, index) => ({ title: column.title, menu: footerMenus[index] })) },
       { key: "whyChooseUs", value: whyChooseUs },
+      { key: "about", value: about },
     ]);
   });
 

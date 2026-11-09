@@ -92,6 +92,24 @@ export type Vaccine = {
   audience: string;
   price: number;
   status: VaccineStatus;
+  /** Age ranges (slugs of the age groups) this vaccine can be given in; used by the list filter. */
+  ageSlugs?: string[];
+  /** Doses in a full course; used by the list filter. */
+  doseCount?: number;
+};
+
+export type ContentSection = { key: string; title: string; body: string };
+export type Faq = { question: string; answer: string };
+
+/** Everything the vaccine detail page shows (admin module 1). */
+export type VaccineDetail = Vaccine & {
+  unit?: string;
+  originalPrice?: number;
+  gallery: string[];
+  sections: ContentSection[];
+  faqs: Faq[];
+  reviewer?: { slug: string; label: string; specialty: string };
+  groups: { slug: string; name: string }[];
 };
 
 export type VaccinePackage = {
@@ -107,6 +125,11 @@ export type VaccinePackage = {
   highlight?: string;
 };
 
+export type PackageItem = { slug: string; name: string; origin: string; doses: number; price: number; prevents: string };
+
+/** Package detail page: the doses inside the package (admin module 3). */
+export type PackageDetail = VaccinePackage & { description?: string; items: PackageItem[] };
+
 export type Doctor = {
   slug: string;
   title: string;
@@ -114,6 +137,9 @@ export type Doctor = {
   specialty: string;
   photo?: string;
   quote?: string;
+  /** Detail page only. */
+  bio?: string;
+  experience?: string;
 };
 
 export type ArticleCategory = { slug: string; name: string };
@@ -127,6 +153,18 @@ export type Article = {
   views: number;
   publishedAt: string;
   reviewedBy?: string;
+};
+
+export type ArticleDetail = Article & { body: string; categoryName: string; reviewer?: { slug: string; label: string } };
+
+export type PolicyPage = { slug: string; title: string; body: string };
+
+/** "Giới thiệu" page blocks (admin module 12, general information). */
+export type AboutContent = {
+  intro: string;
+  story: string[];
+  values: { icon: BrandIconName; title: string; text: string }[];
+  numbers: { value: string; label: string }[];
 };
 
 export type Center = {
@@ -144,4 +182,9 @@ export type Center = {
    * Google already knows at that address (a café, for 424 Nguyễn Thị Minh Khai).
    */
   mapEmbedUrl?: string;
+  /** Address before the 2025 merger of provinces and wards. */
+  addressOld?: string;
+  ward?: string;
+  latitude?: number;
+  longitude?: number;
 };

@@ -1,10 +1,11 @@
-import { Clock, MapPin, Plus } from "lucide-react";
+import { Clock, MapPin } from "lucide-react";
 
 import { getCenters, getFaqs } from "@/lib/data/content";
 import { getSiteSettings } from "@/lib/data/settings";
 
 import { SocialLinks } from "../site/social-links";
 import { AppLink } from "../ui/app-link";
+import { FaqList } from "../ui/faq-list";
 import { SectionTitle } from "../ui/section-title";
 
 const SHOWN = 3;
@@ -22,19 +23,7 @@ export async function FaqContact() {
       <div className="container-site grid gap-8 tab:gap-5 desk:grid-cols-[1.15fr_0.85fr] desk:items-start desk:gap-6">
         <div>
           <SectionTitle title="Câu hỏi thường gặp" action={{ label: "Xem thêm câu hỏi", href: "/cau-hoi-thuong-gap" }} />
-          <div className="grid gap-2 desk:gap-2.5">
-            {faqs.slice(0, SHOWN).map((faq) => (
-              <details key={faq.question} className="group rounded-[10px] border border-line bg-white open:border-brand-bright open:bg-surface-soft">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-2.5 py-3 pr-3 pl-3.5 text-sm font-bold text-brand-800 tab:gap-5 tab:py-4 tab:pr-[18px] tab:pl-[22px] tab:text-base [&::-webkit-details-marker]:hidden">
-                  {faq.question}
-                  <span className="grid size-7 shrink-0 place-items-center rounded-full bg-surface text-brand-600 transition group-open:rotate-45 tab:size-8">
-                    <Plus className="size-4" />
-                  </span>
-                </summary>
-                <p className="px-3.5 pb-3.5 text-sm text-body tab:px-[22px] tab:pb-[18px] tab:text-[15px]">{faq.answer}</p>
-              </details>
-            ))}
-          </div>
+          <FaqList items={faqs.slice(0, SHOWN)} />
         </div>
 
         <div className="rounded-box bg-white p-4 ring-1 ring-line ring-inset tab:px-[26px] tab:pt-6 tab:pb-[26px]">

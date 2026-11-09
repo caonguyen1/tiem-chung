@@ -277,16 +277,16 @@ export const vaccines: Vaccine[] = [
 ];
 
 export const vaccinePackages: VaccinePackage[] = [
-  { slug: "goi-0-6-thang", name: "Gói cho bé 0–6 tháng", kind: "age", audienceLabel: "0 – 6 tháng", icon: "baby", doses: 12, vaccineCount: 6, price: 11_890_000, originalPrice: 12_980_000, highlight: "Phổ biến nhất" },
-  { slug: "goi-0-12-thang", name: "Gói cho bé 0–12 tháng", kind: "age", audienceLabel: "0 – 12 tháng", icon: "baby", doses: 18, vaccineCount: 9, price: 18_450_000, originalPrice: 20_110_000 },
-  { slug: "goi-0-24-thang", name: "Gói cho bé 0–24 tháng", kind: "age", audienceLabel: "0 – 24 tháng", icon: "baby", doses: 25, vaccineCount: 13, price: 25_360_000, originalPrice: 27_890_000 },
-  { slug: "goi-tien-hoc-duong", name: "Gói tiền học đường", kind: "age", audienceLabel: "3 – 9 tuổi", icon: "rash", doses: 8, vaccineCount: 7, price: 7_950_000, originalPrice: 8_640_000 },
-  { slug: "goi-thanh-thieu-nien", name: "Gói thanh thiếu niên", kind: "age", audienceLabel: "9 – 18 tuổi", icon: "hpv", doses: 7, vaccineCount: 6, price: 12_480_000, originalPrice: 13_560_000 },
-  { slug: "goi-nguoi-truong-thanh", name: "Gói người trưởng thành", kind: "age", audienceLabel: "Từ 18 tuổi", icon: "shield", doses: 8, vaccineCount: 7, price: 13_200_000, originalPrice: 14_350_000 },
-  { slug: "goi-tien-hon-nhan", name: "Gói tiền hôn nhân", kind: "audience", audienceLabel: "Chuẩn bị kết hôn", icon: "rings", doses: 9, vaccineCount: 6, price: 14_650_000, originalPrice: 15_920_000 },
-  { slug: "goi-truoc-mang-thai", name: "Gói chuẩn bị mang thai", kind: "audience", audienceLabel: "Trước mang thai 3 tháng", icon: "heartPlus", doses: 8, vaccineCount: 6, price: 9_870_000, originalPrice: 10_740_000, highlight: "Bác sĩ Sản tư vấn" },
-  { slug: "goi-mang-thai", name: "Gói cho mẹ bầu", kind: "audience", audienceLabel: "Phụ nữ mang thai", icon: "pregnancy", doses: 3, vaccineCount: 3, price: 6_150_000, originalPrice: 6_620_000 },
-  { slug: "goi-benh-man-tinh", name: "Gói bệnh mạn tính", kind: "audience", audienceLabel: "Tiểu đường, tim mạch, hô hấp", icon: "pulse", doses: 5, vaccineCount: 4, price: 6_980_000, originalPrice: 7_540_000 },
+  { slug: "goi-0-6-thang", name: "Gói cho bé 0–6 tháng", kind: "age", audienceLabel: "0 – 6 tháng", icon: "baby", doses: 9, vaccineCount: 3, price: 11_890_000, originalPrice: 12_980_000, highlight: "Phổ biến nhất" },
+  { slug: "goi-0-12-thang", name: "Gói cho bé 0–12 tháng", kind: "age", audienceLabel: "0 – 12 tháng", icon: "baby", doses: 13, vaccineCount: 6, price: 18_450_000, originalPrice: 20_110_000 },
+  { slug: "goi-0-24-thang", name: "Gói cho bé 0–24 tháng", kind: "age", audienceLabel: "0 – 24 tháng", icon: "baby", doses: 20, vaccineCount: 7, price: 25_360_000, originalPrice: 27_890_000 },
+  { slug: "goi-tien-hoc-duong", name: "Gói tiền học đường", kind: "age", audienceLabel: "3 – 9 tuổi", icon: "rash", doses: 9, vaccineCount: 5, price: 7_950_000, originalPrice: 8_640_000 },
+  { slug: "goi-thanh-thieu-nien", name: "Gói thanh thiếu niên", kind: "age", audienceLabel: "9 – 18 tuổi", icon: "hpv", doses: 10, vaccineCount: 5, price: 12_480_000, originalPrice: 13_560_000 },
+  { slug: "goi-nguoi-truong-thanh", name: "Gói người trưởng thành", kind: "age", audienceLabel: "Từ 18 tuổi", icon: "shield", doses: 12, vaccineCount: 6, price: 13_200_000, originalPrice: 14_350_000 },
+  { slug: "goi-tien-hon-nhan", name: "Gói tiền hôn nhân", kind: "audience", audienceLabel: "Chuẩn bị kết hôn", icon: "rings", doses: 9, vaccineCount: 4, price: 14_650_000, originalPrice: 15_920_000 },
+  { slug: "goi-truoc-mang-thai", name: "Gói chuẩn bị mang thai", kind: "audience", audienceLabel: "Trước mang thai 3 tháng", icon: "heartPlus", doses: 7, vaccineCount: 4, price: 9_870_000, originalPrice: 10_740_000, highlight: "Bác sĩ Sản tư vấn" },
+  { slug: "goi-mang-thai", name: "Gói cho mẹ bầu", kind: "audience", audienceLabel: "Phụ nữ mang thai", icon: "pregnancy", doses: 2, vaccineCount: 2, price: 6_150_000, originalPrice: 6_620_000 },
+  { slug: "goi-benh-man-tinh", name: "Gói bệnh mạn tính", kind: "audience", audienceLabel: "Tiểu đường, tim mạch, hô hấp", icon: "pulse", doses: 5, vaccineCount: 3, price: 6_980_000, originalPrice: 7_540_000 },
 ];
 
 export function vaccinesForDisease(slug: string) {
