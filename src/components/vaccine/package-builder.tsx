@@ -79,27 +79,29 @@ export function PackageBuilder({ pkg }: { pkg: PackageDetail }) {
       </ul>
 
       <div aria-live="polite" className="mt-3 rounded-xl bg-surface-soft p-3.5 tab:p-5">
-        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
-          <div className="tab:order-2 tab:text-right">
-            <p className="text-sm text-subtle">{partial ? "Giá tạm tính" : "Giá gói"}</p>
-            <div className="mt-1 flex flex-wrap items-baseline gap-x-2.5 gap-y-1 tab:justify-end">
-              <span className="text-[28px] leading-none font-bold text-brand-600 tab:text-[32px]">{formatVnd(estimate)}</span>
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <p className="text-sm font-bold text-brand-800">{partial ? "Giá tạm tính" : "Giá gói"}</p>
+            <p className="mt-1 text-[13px] text-subtle">
+              {selectedDoses}/{totalDoses} mũi được chọn
+            </p>
+            {partial && <p className="mt-0.5 text-[13px] text-subtle">Giá gói đầy đủ: {formatVnd(pkg.price)}</p>}
+          </div>
+          <div className="text-right">
+            <p className="text-[28px] leading-none font-bold text-brand-600 tab:text-[34px]">{formatVnd(estimate)}</p>
+            <p className="mt-1.5 flex flex-wrap items-center justify-end gap-x-2 gap-y-1">
               <s className="text-sm text-subtle">{formatVnd(selectedValue)}</s>
               <span className="rounded-lg bg-warn-soft px-2 py-0.5 text-xs font-bold text-warn">-{discountPercent(pkg.price, pkg.originalPrice)}%</span>
-            </div>
-            <p className="mt-1.5 text-[13px] text-subtle">
-              {selectedDoses}/{totalDoses} mũi được chọn
-              {partial && ` · Giá gói đầy đủ: ${formatVnd(pkg.price)}`}
             </p>
           </div>
-          <div className="grid w-full grid-cols-2 gap-2 tab:order-1 tab:flex tab:w-auto">
-            <ButtonLink href={CONSULT_HASH} variant="secondary" size="md">
-              Yêu cầu tư vấn
-            </ButtonLink>
-            <ButtonLink href={bookingHref(pkg.slug)} size="md">
-              Đặt hẹn
-            </ButtonLink>
-          </div>
+        </div>
+        <div className="mt-4 grid grid-cols-2 gap-2.5 border-t border-line pt-4">
+          <ButtonLink href={CONSULT_HASH} variant="secondary" size="md">
+            Yêu cầu tư vấn
+          </ButtonLink>
+          <ButtonLink href={bookingHref(pkg.slug)} size="md">
+            Đặt hẹn
+          </ButtonLink>
         </div>
         <p className="mt-3 text-xs leading-relaxed text-subtle">
           Giá tạm tính chỉ để tham khảo. Giá cuối cùng và số mũi cần tiêm được xác nhận tại trung tâm sau khi bác sĩ khám sàng lọc.
