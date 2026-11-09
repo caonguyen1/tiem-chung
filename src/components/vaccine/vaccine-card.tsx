@@ -1,20 +1,15 @@
 import { Globe2, UserRound } from "lucide-react";
 
 import { AppLink } from "@/components/ui/app-link";
-import type { Vaccine, VaccineStatus } from "@/content/types";
+import type { Vaccine } from "@/content/types";
 import { formatVnd } from "@/lib/format";
-import { bookingHref, CONSULT_HASH, isNavigable } from "@/lib/routes";
+import { isNavigable } from "@/lib/routes";
+import { vaccineAction } from "@/lib/vaccine-action";
 
 import { buttonClasses } from "../ui/button-link";
 
-const statusAction: Record<VaccineStatus, { label: string; href: (slug: string) => string }> = {
-  book: { label: "Đặt lịch", href: (slug) => bookingHref(slug) },
-  preorder: { label: "Đặt trước", href: (slug) => bookingHref(slug) },
-  consult: { label: "Cần tư vấn", href: () => CONSULT_HASH },
-};
-
 export function VaccineCard({ vaccine }: { vaccine: Vaccine }) {
-  const action = statusAction[vaccine.status];
+  const action = vaccineAction[vaccine.status];
   const detailHref = `/vac-xin/${vaccine.slug}`;
   const hover = isNavigable(detailHref) ? "hover:-translate-y-1 hover:border-brand-200 hover:shadow-lift" : "";
   return (

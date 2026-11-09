@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Google_Sans_Flex } from "next/font/google";
+import localFont from "next/font/local";
 
 import { siteSettings } from "@/content/site";
 
@@ -14,6 +15,17 @@ const googleSansFlex = Google_Sans_Flex({
   // next/font has no metric overrides for this family yet, so skip the generated fallback.
   adjustFontFallback: false,
   fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
+});
+
+// SVN-Aptima is the brand font the client sent (2026-11-01). It ships only 400 and 700.
+const aptima = localFont({
+  variable: "--font-aptima",
+  src: [
+    { path: "../../public/fonts/svn-aptima-regular.ttf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/svn-aptima-bold.ttf", weight: "700", style: "normal" },
+  ],
+  display: "swap",
+  fallback: ["Google Sans Flex", "system-ui", "Segoe UI", "Arial", "sans-serif"],
 });
 
 // The site holds sample prices and placeholder doctors until launch, so search
@@ -37,7 +49,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="vi" className={`${googleSansFlex.variable} h-full antialiased`}>
+    <html lang="vi" className={`${aptima.variable} ${googleSansFlex.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );

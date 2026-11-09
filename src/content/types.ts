@@ -6,7 +6,7 @@ import type { BrandIconName } from "@/components/icons/brand-icons";
  * loaders change, not the components.
  */
 
-export type NavItem = { label: string; href: string };
+export type NavItem = { label: string; href: string; /** Shown in the accent colour (e.g. "Khuyến mãi"). */ highlight?: boolean };
 
 export type SiteSettings = {
   name: string;
@@ -24,6 +24,22 @@ export type SiteSettings = {
   mainMenu: NavItem[];
   secondaryMenu: NavItem[];
   policyMenu: NavItem[];
+  /** Layout C header menu (short labels so it fits one row). */
+  headerMenu: NavItem[];
+  footerColumns: { title: string; items: NavItem[] }[];
+  /** Switchboard hours and its branches, shown in the contact card and footer. */
+  hotlineHours: string;
+  hotlineLines: { label: string; value: string; dial: string }[];
+  /** Empty href = account not set up yet; the icon shows but is not clickable. */
+  social: { network: "facebook" | "zalo" | "tiktok" | "youtube"; label: string; href: string }[];
+};
+
+/** Homepage welcome popup (admin module "Banner & trang chủ"): one square image. */
+export type WelcomePopup = {
+  enabled: boolean;
+  image: string;
+  alt: string;
+  href: string;
 };
 
 /**
@@ -47,6 +63,10 @@ export type HeroBanner = {
 export type OutbreakAlert = {
   id: string;
   level: "high" | "watch";
+  /** Short label on the card, e.g. "Đang vào mùa". */
+  tag: string;
+  /** One line under the title on the card. */
+  teaser: string;
   title: string;
   summary: string;
   href: string;

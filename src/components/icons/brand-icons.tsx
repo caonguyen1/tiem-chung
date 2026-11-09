@@ -14,12 +14,16 @@ const SUN = "#FADC00";
 type IconProps = SVGProps<SVGSVGElement> & {
   /** Hide the background disc when the icon sits on its own tinted tile. */
   bare?: boolean;
+  /** Disc colour; white when the icon sits on a navy block. */
+  disc?: "soft" | "white";
 };
 
-function BrandIcon({ bare, children, ...props }: IconProps & { children: ReactNode }) {
+const DISC = { soft: "#F2F4FB", white: "#FFFFFF" } as const;
+
+function BrandIcon({ bare, disc = "soft", children, ...props }: IconProps & { children: ReactNode }) {
   return (
     <svg viewBox="0 0 64 64" fill="none" aria-hidden="true" {...props}>
-      {!bare && <circle cx="32" cy="32" r="30" fill="#F2F4FB" />}
+      {!bare && <circle cx="32" cy="32" r="30" fill={DISC[disc]} />}
       <g stroke={NAVY} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
         {children}
       </g>

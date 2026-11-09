@@ -27,13 +27,29 @@
 
   --color-ink: #141c3a;
   --color-muted: #5b6382;
-  --color-line: #e4e7f1;
+  --color-line: #e2e8f6;
   --color-canvas: #f7f8fc;
   --color-alert: #d9480f;
 
-  --font-sans: var(--font-google-sans-flex), ui-sans-serif, system-ui, sans-serif;
+  /* Layout C (docs/design/layout-c.md). */
+  --color-surface: #eef3ff; /* nền trang */
+  --color-surface-soft: #f5f8ff;
+  --color-surface-deep: #e3ebff; /* nền ảnh thẻ vắc xin */
+  --color-body: #4a5277; /* chữ thường */
+  --color-subtle: #7a819e; /* chữ phụ */
+  --color-link: #324cbd; /* link "Xem tất cả", số nhấn */
+  --color-brand-bright: #4a62cf; /* điểm cuối gradient xanh */
+  --color-warn: #f04e23; /* chỉ cho cảnh báo dịch và nhãn giảm giá */
+  --color-warn-soft: #ffe6dc;
+
+  --breakpoint-tab: 37.5625rem; /* 601px: máy tính bảng */
+  --breakpoint-desk: 56.3125rem; /* 901px: desktop */
+
+  --font-sans: var(--font-aptima), var(--font-google-sans-flex), ui-sans-serif, system-ui, sans-serif;
+  --font-legacy: var(--font-google-sans-flex), ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 1.25rem;
+  --radius-box: 0.625rem; /* layout C: khung lớn và thẻ */
   --shadow-card: 0 1px 2px rgb(20 30 74 / 0.04), 0 8px 24px -12px rgb(20 30 74 / 0.12);
   --shadow-lift: 0 2px 4px rgb(20 30 74 / 0.05), 0 24px 48px -20px rgb(20 30 74 / 0.28);
 
@@ -101,4 +117,36 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Layout C: khung nội dung 1200px + lề 16px (tablet 20px). */
+@utility container-site {
+  width: 100%;
+  max-width: 77rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 37.5625rem) and (width < 56.3125rem) {
+    padding-inline: 1.25rem;
+  }
+}
+
+/* Lớp hoa văn duy nhất của khối xanh: lưới chấm trắng mờ (khách bỏ đường cong và hiệu ứng ánh sáng). */
+@utility dots-overlay {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background-image: radial-gradient(rgb(255 255 255 / 0.1) 1px, transparent 1.6px);
+    background-size: 14px 14px;
+  }
+}
+
+/* Trang chủ cũ (/trang-chu-cu) giữ font Google Sans Flex để khách so sánh. */
+@utility font-legacy {
+  font-family: var(--font-legacy);
 }

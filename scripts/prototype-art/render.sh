@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Xuất ảnh banner chính, banner ưu đãi và popup chào mừng cho bản xem trước
-# layout C vào public/prototypes/art/ (chụp bằng puppeteer qua shot.mjs).
+# layout C vào public/images/home/ (chụp bằng puppeteer qua shot.mjs).
 # Usage: bash scripts/prototype-art/render.sh
 set -euo pipefail
 
 here="$(cd "$(dirname "$0")" && pwd)"
 root="$(cd "$here/../.." && pwd)"
-out="$root/public/prototypes/art"
+out="$root/public/images/home"
 mkdir -p "$out"
 
 shot() { # file query width height target [scale]

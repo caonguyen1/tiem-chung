@@ -4,10 +4,10 @@ Cập nhật: 2026-11-04. Khách đã duyệt bố cục trang chủ theo phươ
 
 - Bản xem trước: `public/prototypes/layout-c.html`. Từ 2026-11-04 đây là trang chủ chính: https://tiem-chung-lilac.vercel.app/ (rewrite `/` trong `next.config.ts`). Trang chủ Next.js cũ chuyển sang https://tiem-chung-lilac.vercel.app/trang-chu-cu để khách so sánh.
 - File HTML này dùng đường dẫn tuyệt đối (`/prototypes/...`, `/images/...`, `/fonts/...`) để chạy được ở cả `/` lẫn `/prototypes/layout-c.html`.
-- Ảnh banner/popup mẫu: `public/prototypes/art/`, thiết kế gốc bằng HTML trong `scripts/prototype-art/`, xuất ảnh bằng `bash scripts/prototype-art/render.sh`
+- Ảnh banner/popup mẫu: `public/images/home/`, thiết kế gốc bằng HTML trong `scripts/prototype-art/`, xuất ảnh bằng `bash scripts/prototype-art/render.sh`
 - Font: `public/fonts/svn-aptima-regular.ttf`, `public/fonts/svn-aptima-bold.ttf` (khách gửi ngày 2026-11-01)
 
-> Bản xem trước là HTML tĩnh. Khi đưa vào Next.js, các giá trị dưới đây chuyển thành token trong `src/app/globals.css` và component trong `src/components/`, không chép nguyên CSS.
+> Bản xem trước là HTML tĩnh. Từ 2026-11-09 trang chủ đã dựng bằng component (xem mục 9); các trang mới dùng lại token và component đó, không chép CSS từ file HTML.
 
 ## 1. Thương hiệu
 
@@ -111,6 +111,23 @@ Cách làm ảnh mẫu: vẽ bằng HTML trong `scripts/prototype-art/` (dùng `
 - 2026-11-03 (file "[Thư 3.11] FIX HOME WEB"): header thấp hơn, nền trắng, tìm kiếm thành icon, nút "Đặt lịch hẹn"; banner chính ảnh tòa nhà, chỉ tiêu đề và 3 lợi thế, nút Tư vấn + Đặt lịch tiêm; khối Gói vắc xin nền xanh nhạt; banner ưu đãi nằm ngang cả trên mobile; đổi tên "Bạn chưa biết tiêm gì?" và thu gọn; thông tin cơ sở bỏ ảnh tòa nhà, thêm tổng đài theo nhánh và mạng xã hội; nút bo tròn, nút chính xanh, nút phụ trắng viền xanh.
 - 2026-11-04: khách chọn layout C làm trang chủ chính.
 - 2026-11-01 (góp ý thêm): bỏ đường cong vàng ở mọi khối, khối xanh có gradient, section vắc xin nền trắng trên mobile, banner/popup làm thành ảnh theo mẫu khách gửi, dùng font SVN-Aptima, giảm khoảng trống giữa section, banner mobile đủ nội dung như desktop.
+
+## 9. Cài đặt trong Next.js
+
+| Thứ trong tài liệu | Trong code |
+|---|---|
+| Màu | token trong `src/app/globals.css`: `brand-600` (xanh chính), `brand-800` (xanh đậm), `link`, `brand-bright`, `sun-400`, `surface` (nền trang), `surface-soft`, `surface-deep`, `line`, `body`, `subtle`, `warn`, `warn-soft` |
+| Breakpoint | `tab:` ≥601px, `desk:` ≥901px (mặc định là điện thoại) |
+| Khung nội dung | `container-site` |
+| Hoa văn khối xanh | `dots-overlay` |
+| Bo góc khung lớn | `rounded-box` (10px); thẻ dùng `rounded-xl` (12px) |
+| Font | `--font-aptima` (SVN-Aptima) qua `font-sans`; chỉ dùng `font-bold` (700), không dùng 800/900 |
+| Nút | `ButtonLink`: `primary`, `secondary`, `onNavy` |
+| Tiêu đề section | `SectionTitle` (link "Xem tất cả" tự ẩn khi trang đích chưa có) |
+| Đường cong | `Wave` |
+| Thẻ vắc xin / thẻ gói | `VaccineTile`, `PackageCard` |
+| Header / footer | `src/components/site/header.tsx`, `footer.tsx` |
+| Section trang chủ | `src/components/homepage/` |
 
 ## 8. Còn chờ khách xác nhận
 

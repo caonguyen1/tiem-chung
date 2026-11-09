@@ -1,6 +1,6 @@
 import type { BrandIconName } from "@/components/icons/brand-icons";
 
-import type { HeroBanner, OutbreakAlert, SiteSettings } from "./types";
+import type { HeroBanner, OutbreakAlert, SiteSettings, WelcomePopup } from "./types";
 
 // Placeholder values from the client's files. The admin "Menu & thông tin chung"
 // module owns all of this; nothing here should be copied into components.
@@ -39,6 +39,86 @@ export const siteSettings: SiteSettings = {
     { label: "Chính sách đổi trả", href: "/chinh-sach/doi-tra" },
     { label: "Chính sách nội dung", href: "/chinh-sach/noi-dung" },
   ],
+  headerMenu: [
+    { label: "Vắc xin", href: "/vac-xin" },
+    { label: "Gói vắc xin", href: "/goi-vac-xin" },
+    { label: "Khuyến mãi", href: "/khuyen-mai", highlight: true },
+    { label: "Tôi nên tiêm gì?", href: "/toi-nen-tiem-gi" },
+    { label: "Kiến thức", href: "/kien-thuc" },
+    { label: "Đội ngũ chuyên môn", href: "/doi-ngu-chuyen-mon" },
+    { label: "Về chúng tôi", href: "/gioi-thieu" },
+  ],
+  footerColumns: [
+    {
+      title: "Dịch vụ",
+      items: [
+        { label: "Vắc xin phòng bệnh", href: "/vac-xin" },
+        { label: "Gói vắc xin", href: "/goi-vac-xin" },
+        { label: "Tôi nên tiêm gì?", href: "/toi-nen-tiem-gi" },
+        { label: "Bảng giá", href: "/bang-gia" },
+      ],
+    },
+    {
+      title: "Về Tâm Trí",
+      items: [
+        { label: "Giới thiệu", href: "/gioi-thieu" },
+        { label: "Đội ngũ chuyên môn", href: "/doi-ngu-chuyen-mon" },
+        { label: "Kiến thức tiêm chủng", href: "/kien-thuc" },
+      ],
+    },
+    {
+      title: "Chính sách",
+      items: [
+        { label: "Quy chế hoạt động", href: "/chinh-sach/quy-che-hoat-dong" },
+        { label: "Bảo mật", href: "/chinh-sach/bao-mat" },
+        { label: "Thanh toán", href: "/chinh-sach/thanh-toan" },
+      ],
+    },
+  ],
+  // Branches of *3979 from docs/company/README.md; the client still has to confirm them.
+  hotlineHours: "7:30 – 20:00",
+  hotlineLines: [
+    { label: "Tư vấn và đặt hẹn", value: "*3979 (nhánh 1)", dial: "*3979" },
+    { label: "Góp ý chất lượng dịch vụ và hỗ trợ khác", value: "*3979 (nhánh 0)", dial: "*3979" },
+  ],
+  social: [
+    { network: "facebook", label: "Facebook", href: "" },
+    { network: "zalo", label: "Zalo", href: "" },
+    { network: "tiktok", label: "TikTok", href: "" },
+    { network: "youtube", label: "YouTube", href: "" },
+  ],
+};
+
+// Layout C homepage art, drawn in scripts/prototype-art/ (bash scripts/prototype-art/render.sh).
+// The banner leaves its bottom-left corner (desktop) and bottom strip (mobile) empty for `actions`.
+export const homeBanners: HeroBanner[] = [
+  {
+    id: "gioi-thieu",
+    alt: "Trung tâm Tiêm chủng Tâm Trí: bác sĩ khám sàng lọc trước tiêm, vắc xin chính hãng rõ nguồn gốc, theo dõi và nhắc lịch sau tiêm",
+    href: "#dat-lich",
+    imageDesktop: "/images/home/hero-pc.jpg",
+    imageMobile: "/images/home/hero-mb.jpg",
+    actions: [
+      { label: "Tư vấn", href: "#tu-van" },
+      { label: "Đặt lịch tiêm", href: "#dat-lich" },
+    ],
+  },
+];
+
+// Secondary offer banner: desktop 3:1, mobile 9:5. The wording on it is still sample content.
+export const promoBanner: HeroBanner = {
+  id: "uu-dai-thang-11",
+  alt: "Ưu đãi tháng 11: gói vắc xin cho bé tiết kiệm đến 8%",
+  href: "#goi-vac-xin",
+  imageDesktop: "/images/home/offer-pc.jpg",
+  imageMobile: "/images/home/offer-mb.jpg",
+};
+
+export const welcomePopup: WelcomePopup = {
+  enabled: true,
+  image: "/images/home/welcome.jpg",
+  alt: "Trung tâm Tiêm chủng Tâm Trí Quy Nhơn chính thức đón khách, mở cửa 7:30–20:00 hằng ngày",
+  href: "#dat-lich",
 };
 
 // Banner artwork is generated from scripts/banners/*.html (bash scripts/banners/render.sh).
@@ -90,6 +170,8 @@ export const outbreakAlerts: OutbreakAlert[] = [
   {
     id: "sot-xuat-huyet",
     level: "high",
+    tag: "Đang vào mùa",
+    teaser: "Dấu hiệu nặng và cách phòng",
     title: "Sốt xuất huyết đang vào mùa cao điểm",
     summary: "Số ca mắc tại Gia Lai tăng trong tháng 10. Vắc xin Qdenga phòng được cả 4 tuýp virus Dengue.",
     href: "/kien-thuc/bai-viet/sot-xuat-huyet-mua-cao-diem",
@@ -97,6 +179,8 @@ export const outbreakAlerts: OutbreakAlert[] = [
   {
     id: "cum-mua",
     level: "watch",
+    tag: "Giao mùa",
+    teaser: "Ai nên tiêm nhắc lại mỗi năm",
     title: "Cúm mùa tăng khi thời tiết chuyển lạnh",
     summary: "Nên tiêm nhắc vắc xin cúm mỗi năm, đặc biệt cho trẻ nhỏ, mẹ bầu và người trên 60 tuổi.",
     href: "/kien-thuc/bai-viet/cum-mua",
@@ -104,6 +188,8 @@ export const outbreakAlerts: OutbreakAlert[] = [
   {
     id: "tay-chan-mieng",
     level: "high",
+    tag: "Trẻ dưới 5 tuổi",
+    teaser: "Dấu hiệu cần đưa bé đi khám",
     title: "Tay chân miệng ở trẻ dưới 5 tuổi",
     summary: "Theo dõi sốt, loét miệng, phát ban tay chân; đưa bé đi khám ngay khi sốt cao không hạ.",
     href: "/kien-thuc/bai-viet/tay-chan-mieng",
@@ -111,6 +197,8 @@ export const outbreakAlerts: OutbreakAlert[] = [
   {
     id: "soi",
     level: "watch",
+    tag: "Cần theo dõi",
+    teaser: "Kiểm tra mũi sởi mốc 9 và 18 tháng",
     title: "Sởi có thể quay lại ở trẻ chưa tiêm đủ mũi",
     summary: "Kiểm tra lịch tiêm sởi – quai bị – rubella của bé ở mốc 9 và 18 tháng.",
     href: "/kien-thuc/bai-viet/phong-soi",

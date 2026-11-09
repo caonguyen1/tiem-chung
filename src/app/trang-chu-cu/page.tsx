@@ -21,7 +21,8 @@ import { heroBanners, outbreakAlerts } from "@/content/site";
  */
 export default function HomePage() {
   return (
-    <>
+    // Kept for comparison with the old design, including its Google Sans Flex font.
+    <div className="contents font-legacy">
       <SiteHeader />
       <main className="pb-16 lg:pb-0">
         <HeroSlider banners={heroBanners} />
@@ -37,6 +38,6 @@ export default function HomePage() {
       <FloatingActions />
       <ConsultDialog />
       <BookingDialog />
-    </>
+    </div>
   );
 }

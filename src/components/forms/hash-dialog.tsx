@@ -55,7 +55,7 @@ export function HashDialog({ hash, title, description, icon, successTitle, succe
       onClose={clearHash}
       onClick={(event) => event.target === dialogRef.current && close()}
       aria-labelledby={titleId}
-      className="m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg overflow-y-auto rounded-[var(--radius-card)] bg-white p-0 shadow-2xl backdrop:bg-brand-950/50 backdrop:backdrop-blur-sm"
+      className="m-auto max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-lg overflow-y-auto rounded-xl bg-white p-0 shadow-2xl backdrop:bg-brand-950/50 backdrop:backdrop-blur-sm"
     >
       <div className="relative bg-brand-50 px-6 pt-6 pb-5">
         <button
