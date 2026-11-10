@@ -13,7 +13,7 @@ export function DoctorCard({ doctor }: { doctor: Doctor }) {
     .join("");
   return (
     <AppLink href={`/doi-ngu-chuyen-mon/${doctor.slug}`} className="block h-full overflow-hidden rounded-xl border border-line bg-white">
-      <div className="relative aspect-[4/5] bg-linear-160 from-surface-soft to-surface-deep">
+      <div className="relative aspect-square bg-linear-160 from-surface-soft to-surface-deep">
         {doctor.photo ? (
           <Image src={doctor.photo} alt={`${doctor.title} ${doctor.name}`} fill sizes="(min-width: 901px) 290px, (min-width: 601px) 45vw, 100vw" className="object-cover object-top" />
         ) : (
