@@ -83,6 +83,24 @@
     cursor: default;
   }
 
+  /* Tailwind v4 leaves buttons on the default arrow; everything clickable shows the pointer. */
+  a[href],
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="tab"],
+  [role="radio"],
+  summary,
+  select,
+  label:has(input:not(:disabled)),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    cursor: pointer;
+  }
+  button:disabled,
+  input:disabled {
+    cursor: not-allowed;
+  }
+
   /* Scrollbars stay out of sight until the pointer is over the scrolling area, then show a thin brand-coloured thumb. */
   *:not(html) {
     scrollbar-width: thin;
