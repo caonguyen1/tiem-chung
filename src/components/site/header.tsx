@@ -85,7 +85,7 @@ export function Header({
             className={`absolute inset-0 bg-brand-900/70 transition-opacity duration-200 desk:hidden ${menuOpen ? "opacity-100" : "opacity-0"}`}
           />
           <div
-            className={`absolute inset-y-0 left-0 flex w-[min(300px,calc(100vw-56px))] flex-col overflow-y-auto bg-white px-5 pt-[72px] pb-5 shadow-[12px_0_36px_rgb(15_29_78/0.18)] transition-transform duration-[260ms] desk:static desk:w-auto desk:flex-row desk:justify-center desk:max-[1179px]:gap-0.5 min-[1180px]:gap-[22px] desk:overflow-visible desk:bg-transparent desk:p-0 desk:shadow-none desk:transition-none ${menuOpen ? "translate-x-0" : "-translate-x-full desk:translate-x-0"}`}
+            className={`absolute inset-y-0 left-0 flex w-[min(300px,calc(100vw-56px))] flex-col overflow-y-auto bg-white px-5 pt-[72px] pb-5 shadow-[12px_0_36px_rgb(15_29_78/0.18)] transition-transform duration-[260ms] desk:static desk:w-auto desk:flex-row desk:justify-center desk:max-[1179px]:gap-0.5 min-[1180px]:gap-1 desk:overflow-visible desk:bg-transparent desk:p-0 desk:shadow-none desk:transition-none ${menuOpen ? "translate-x-0" : "-translate-x-full desk:translate-x-0"}`}
           >
             <button
               type="button"
@@ -105,7 +105,7 @@ export function Header({
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
-                  className={`relative border-b border-line px-2 py-3.5 text-[15px] font-bold transition-colors last:border-0 desk:rounded-lg desk:border-0 desk:py-2 desk:max-[1179px]:px-1.5 desk:max-[1179px]:text-[13.5px] min-[1180px]:px-3 min-[1180px]:text-[15px] min-[1380px]:text-[16px] desk:whitespace-nowrap hover:bg-brand-50 hover:text-brand-800 ${active ? "bg-brand-50 text-brand-800 desk:bg-transparent desk:after:absolute desk:after:inset-x-3 desk:after:-bottom-0.5 desk:after:h-[3px] desk:after:rounded-full desk:after:bg-sun-400" : "text-brand-600"}`}
+                  className={`relative border-b border-line px-2 py-3.5 text-[15px] font-bold transition-colors last:border-0 desk:rounded-lg desk:border-0 desk:py-2 desk:max-[1179px]:px-1.5 desk:max-[1179px]:text-[13.5px] min-[1180px]:px-3 min-[1180px]:text-[15px] desk:whitespace-nowrap hover:bg-brand-50 hover:text-brand-800 ${active ? "bg-brand-50 text-brand-800 desk:bg-transparent desk:after:absolute desk:after:inset-x-3 desk:after:-bottom-0.5 desk:after:h-[3px] desk:after:rounded-full desk:after:bg-sun-400" : "text-brand-600"}`}
                 >
                   {item.label}
                 </AppLink>
