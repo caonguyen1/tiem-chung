@@ -32,7 +32,17 @@ const aptima = localFont({
 // engines stay out unless the deployment sets SITE_INDEXABLE=1.
 const indexable = process.env.SITE_INDEXABLE === "1";
 
+// Absolute address of the site for canonical and social-share URLs; set SITE_URL on the server.
+const siteUrl = process.env.SITE_URL ?? "http://localhost:3210";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    type: "website",
+    locale: "vi_VN",
+    siteName: siteSettings.name,
+    images: [{ url: "/images/cover.jpg", alt: siteSettings.name }],
+  },
   robots: indexable ? undefined : { index: false, follow: false },
   title: {
     default: `${siteSettings.name} – ${siteSettings.slogan}`,
