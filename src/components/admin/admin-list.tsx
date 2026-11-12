@@ -148,3 +148,54 @@ export function ListTable({ columns, children, empty }: { columns: { label: stri
 export function EmptyList({ text }: { text: string }) {
   return <p className="px-5 py-12 text-center text-[15px] text-subtle">{text}</p>;
 }
+
+export type SimpleRow = {
+  id: number;
+  title: string;
+  /** Second line under the title. */
+  meta?: ReactNode;
+  visible?: boolean;
+  /** Why this row cannot be deleted, if it cannot. */
+  blocked?: string;
+};
+
+/**
+ * A complete list for modules that only need title + second line + status + row actions.
+ * `basePath` is the module path; rows edit at `${basePath}/${id}`.
+ */
+export function SimpleList({
+  title,
+  rows,
+  basePath,
+  onToggle,
+  onMove,
+  onDelete,
+  deleteMessage,
+  empty,
+}: {
+  title: string;
+  rows: SimpleRow[];
+  basePath: string;
+  onToggle?: Action;
+  onMove?: Action;
+  onDelete: Action;
+  deleteMessage: (row: SimpleRow) => string;
+  empty: string;
+}) {
+  return (
+    <ListTable columns={[{ label: title }, { label: "Trạng thái", className: "w-32" }, { label: "", className: onMove ? "w-48" : "w-32" }]} empty={rows.length === 0 && <EmptyList text={empty} />}>
+      {rows.map((row) => (
+        <li key={row.id} className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 tab:px-5">
+          <div className="min-w-0 flex-1 basis-56">
+            <p className="font-bold text-brand-800">{row.title}</p>
+            {row.meta && <div className="text-[13px] text-subtle">{row.meta}</div>}
+          </div>
+          <div className="w-32">{row.visible !== undefined && <VisibleBadge visible={row.visible} />}</div>
+          <div className={onMove ? "w-48" : "w-32"}>
+            <RowActions id={row.id} editHref={`${basePath}/${row.id}`} visible={row.visible} onToggle={row.visible === undefined ? undefined : onToggle} onMove={onMove} onDelete={onDelete} deleteMessage={deleteMessage(row)} deleteBlocked={row.blocked} />
+          </div>
+        </li>
+      ))}
+    </ListTable>
+  );
+}

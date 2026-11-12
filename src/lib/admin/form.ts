@@ -41,6 +41,11 @@ export function date(form: FormData, name: string) {
   return /^\d{4}-\d{2}-\d{2}$/.test(raw) ? new Date(`${raw}T00:00:00+07:00`) : null;
 }
 
+/** `yyyy-mm-dd` for a date input, in Vietnam time (dates are stored as 00:00 +07). */
+export function dateInput(value: Date | null | undefined) {
+  return value ? new Date(value.getTime() + 7 * 60 * 60 * 1000).toISOString().slice(0, 10) : "";
+}
+
 /** Only addresses this site serves or plain http(s) links; keeps `javascript:` out of saved links. */
 export function url(form: FormData, name: string, label: string, max = 600) {
   const value = text(form, name, max);

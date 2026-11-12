@@ -81,3 +81,21 @@ export function SeoFields({ title, description }: { title?: string | null; descr
     </Section>
   );
 }
+
+/** A group of checkboxes posting one `name=value` per ticked item (`getAll` in the action). */
+export function CheckList({ label, hint, name, options, selected }: { label: string; hint?: string; name: string; options: { value: number | string; label: string }[]; selected?: (number | string)[] }) {
+  return (
+    <fieldset className="grid gap-2">
+      <legend className="text-sm font-bold text-brand-800">{label}</legend>
+      <div className="grid gap-2 tab:grid-cols-2 desk:grid-cols-3">
+        {options.map((option) => (
+          <label key={option.value} className="flex items-center gap-2.5 rounded-lg border border-line bg-white px-3 py-2 text-[14.5px] text-brand-800">
+            <input type="checkbox" name={name} value={option.value} defaultChecked={selected?.includes(option.value)} className="size-[18px] shrink-0 accent-brand-600" />
+            {option.label}
+          </label>
+        ))}
+      </div>
+      {hint && <span className="text-[13px] text-subtle">{hint}</span>}
+    </fieldset>
+  );
+}

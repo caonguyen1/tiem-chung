@@ -3,6 +3,7 @@ import { Check, Section, Select, SeoFields, TextArea, TextInput } from "@/compon
 import { ImageField } from "@/components/admin/image-field";
 import type { schema } from "@/db";
 import { saveArticle } from "@/lib/actions/admin/articles";
+import { dateInput } from "@/lib/admin/form";
 
 type Article = typeof schema.articles.$inferSelect;
 
@@ -16,7 +17,7 @@ export function ArticleForm({
   categories: { id: number; name: string; isPromotion: boolean }[];
   doctors: { id: number; title: string; name: string }[];
 }) {
-  const published = (article?.publishedAt ?? new Date()).toISOString().slice(0, 10);
+  const published = dateInput(article?.publishedAt ?? new Date());
   return (
     <AdminForm action={saveArticle} cancelHref="/admin/bai-viet" submitLabel={article ? "Lưu thay đổi" : "Thêm bài viết"}>
       <input type="hidden" name="id" value={article?.id ?? ""} />
