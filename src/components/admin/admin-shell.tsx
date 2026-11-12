@@ -23,7 +23,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, Suspense, useState } from "react";
 
 import { logout } from "@/lib/actions/auth";
 import { type AdminIcon, adminGroups, modulesFor } from "@/lib/admin/modules";
@@ -123,7 +123,10 @@ export function AdminShell({ admin, children }: { admin: AdminUser; children: Re
             </form>
           </div>
         </header>
-        <main className="flex-1 p-4 tab:p-6 desk:p-8">{children}</main>
+        <main className="flex-1 p-4 tab:p-6 desk:p-8">
+          {/* Pages read live data; the frame stays on screen while a page loads. */}
+          <Suspense fallback={<div aria-busy="true" className="h-48 animate-pulse rounded-box bg-white/70" />}>{children}</Suspense>
+        </main>
       </div>
     </div>
   );

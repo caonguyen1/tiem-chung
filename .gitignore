@@ -42,3 +42,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# Images uploaded in the admin (persistent volume on the server).
+/data/uploads/
