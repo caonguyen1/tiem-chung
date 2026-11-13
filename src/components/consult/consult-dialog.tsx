@@ -37,6 +37,8 @@ export function ConsultDialog() {
             else setError(result.error);
           }}
         >
+          {/* Trap for bots: invisible and skipped by keyboards; a filled value means it is not a person. */}
+          <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 opacity-0" />
           <TextField label="Họ và tên" name="name" autoComplete="name" required />
           <TextField label="Số điện thoại" name="phone" type="tel" autoComplete="tel" inputMode="tel" required />
           <SelectField label="Bạn cần tư vấn về" name="topic">
