@@ -21,7 +21,9 @@ if (!quiet("docker info")) {
   const desktop = "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe";
   if (process.platform === "win32" && existsSync(desktop)) {
     console.log("[local] Đang mở Docker Desktop...");
-    spawn(desktop, [], { detached: true, stdio: "ignore" }).unref();
+    // Started through `cmd /c start` so it is not a child of this script: stopping the dev server
+    // (which kills its process tree) must not shut Docker Desktop down with it.
+    spawn("cmd", ["/c", "start", '""', `"${desktop}"`], { detached: true, stdio: "ignore", windowsHide: true, windowsVerbatimArguments: true }).unref();
   } else {
     console.log("[local] Docker chưa chạy, hãy mở Docker rồi thử lại.");
   }
