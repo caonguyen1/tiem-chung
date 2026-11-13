@@ -17,6 +17,7 @@ import {
   StatusBadge,
 } from "@/components/admin/admin-ui";
 import { db, schema } from "@/db";
+import { verifyPassword } from "@/lib/auth/password";
 import { requireAdmin } from "@/lib/auth/session";
 import { count, desc, eq } from "drizzle-orm";
 
@@ -25,6 +26,9 @@ export const metadata: Metadata = { title: "Tổng quan" };
 /** Dashboard: what needs attention today, plus the size of the catalogue. Data is read live. */
 export default async function AdminDashboard() {
   const admin = await requireAdmin();
+  // The seed account starts with the password from .env.example; nag until it is changed.
+  const [account] = await db.select({ hash: schema.adminUsers.passwordHash }).from(schema.adminUsers).where(eq(schema.adminUsers.id, admin.id));
+  const defaultPassword = await verifyPassword("change-me-please", account?.hash);
   const [
     [newAppointments],
     [newConsults],
@@ -94,6 +98,14 @@ export default async function AdminDashboard() {
 
   return (
     <>
+      {defaultPassword && (
+        <p role="alert" className="mb-4 rounded-xl bg-warn-soft px-4 py-3 text-[15px] font-bold text-warn">
+          Bạn đang dùng mật khẩu mặc định.{" "}
+          <Link href="/admin/mat-khau" className="underline">
+            Đổi mật khẩu ngay
+          </Link>
+        </p>
+      )}
       <AdminPageHeader
         title={`Xin chào, ${admin.name}`}
         description="Những việc cần xử lý hôm nay và số liệu nội dung của website."

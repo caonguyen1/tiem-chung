@@ -2,7 +2,7 @@ import "server-only";
 
 import { createHash, randomBytes } from "node:crypto";
 
-import { and, eq, gt, sql } from "drizzle-orm";
+import { and, eq, gt, ne, sql } from "drizzle-orm";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -34,6 +34,18 @@ export async function destroySession() {
   const token = jar.get(COOKIE)?.value;
   if (token) await db.delete(schema.adminSessions).where(eq(schema.adminSessions.id, digest(token)));
   jar.delete(COOKIE);
+}
+
+/** Id (SHA-256 of the token) of the session in this request's cookie, or null. */
+export async function currentSessionId() {
+  const token = (await cookies()).get(COOKIE)?.value;
+  return token ? digest(token) : null;
+}
+
+/** Signs a user out everywhere (after a password reset or deactivation), optionally keeping one session. */
+export async function revokeSessions(userId: number, exceptId?: string | null) {
+  const own = eq(schema.adminSessions.userId, userId);
+  await db.delete(schema.adminSessions).where(exceptId ? and(own, ne(schema.adminSessions.id, exceptId)) : own);
 }
 
 /**

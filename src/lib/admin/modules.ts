@@ -55,8 +55,6 @@ export const adminGroups: { title: string; slugs: string[] }[] = [
   { title: "Hệ thống", slugs: ["tai-khoan"] },
 ];
 
-export const phaseLabel = { "8c": "Phase 8c", "8d": "Phase 8d", "8e": "Phase 8e" } as const;
-
 export function modulesFor(role: "admin" | "editor") {
   return adminModules.filter((module) => !module.roles || module.roles.includes(role));
 }

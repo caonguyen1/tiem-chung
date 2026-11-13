@@ -111,10 +111,10 @@ export function AdminShell({ admin, children }: { admin: AdminUser; children: Re
             <Menu className="size-5" />
           </button>
           <div className="ml-auto flex items-center gap-3">
-            <div className="text-right leading-tight">
+            <Link href="/admin/mat-khau" title="Đổi mật khẩu" className="rounded-lg px-2 py-1 text-right leading-tight hover:bg-brand-50">
               <p className="text-sm font-bold text-brand-800">{admin.name}</p>
-              <p className="text-xs text-subtle">{roleLabel[admin.role]}</p>
-            </div>
+              <p className="text-xs text-subtle">{roleLabel[admin.role]} · Đổi mật khẩu</p>
+            </Link>
             <form action={logout}>
               <button type="submit" className="inline-flex h-10 items-center gap-2 rounded-full px-4 text-sm font-bold text-brand-600 ring-1 ring-brand-200 ring-inset hover:bg-brand-50">
                 <LogOut aria-hidden="true" className="size-4" />
